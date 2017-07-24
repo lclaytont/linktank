@@ -1,11 +1,23 @@
-var express = require('express'); 
-var bodyParser = require('body-parser'); 
-var path = require('path');
+//still need cookie-parser and prerender as of 7/24 3:20
+var express = require("express");
+var bodyParser = require("body-parser");
+var path = require("path");
+var api = require("./api");
+var routeMw = require("./middleware/routing.mw"); 
 
-var app = express(); 
+var app = express();
 
-app.use(express.static(path.join( __dirname, '../client' )));
+app.use(express.static(path.join(__dirname, "../client")));
 app.use(bodyParser.json());
 
-app.listen(3000);
-console.log('Listening on Port 3000');
+app.use('/api', api);
+
+app.get("*", function(req, res, next) {
+    if(routeMw.isAsset(req.url)) {
+        next();
+    } else {
+        res.sendFile(path.join(__dirname, "../client/index.html"));
+    }
+})
+
+app.listen(process.env.PORT || 3000);  // process.env.PORT for aws

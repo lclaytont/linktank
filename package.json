@@ -18,6 +18,8 @@
   "homepage": "https://github.com/lclaytont/linktank#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
-    "express": "^4.15.3"
+    "cookie-parser": "^1.4.3",
+    "express": "^4.15.3",
+    "passport-google-oauth20": "^1.0.0"
   }
 }
