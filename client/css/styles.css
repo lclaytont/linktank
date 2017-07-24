@@ -1,0 +1,60 @@
+/*
+Global Styles
+*/
+
+ body {
+     box-sizing: border-box;
+ }
+
+/*
+Navbar Styles
+*/
+
+.navbar {
+    border-radius: 0;
+    margin-bottom: 0;
+    background-color:#fff;
+    border: none;
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+}
+
+.navbar-brand {
+    font-family: 'Playfair Display SC', serif;
+    color: #000 !important;
+}
+
+.menu-item {
+    color: #000 !important;
+    text-align: center;
+}
+
+.navbar-collapse {
+    color: #000 !important;
+}
+
+/*
+Home View Styles
+*/
+
+.row.pr-content {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 0;
+}
+
+.pr-content-1 {
+    background-color:#fff;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    text-shadow: .1em .1em 0 #d3d3d3;
+}
+
+.pr-content h1{
+    padding-top: 1rem;
+}
+
+.pr-content-2 {
+    max-height: 50rem;
+    padding: 0 0 0 0;
+}

@@ -7,6 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- bootstrap css -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display+SC" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
     <!-- local css -->
     <link rel="stylesheet" href="./css/styles.css">
     <!-- jQuery and Bootstrap js -->
@@ -18,11 +21,38 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-resource.js" ></script>
     <!-- local scripts -->
     <script src="app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.js">
     <script src="/js/controllers/HomeController.js" ></script>
+    <script src="/js/controllers/LoginController.js"></script>
+    <script src="/js/controllers/RegisterController.js"></script>
     <title>LinkTank</title>
 </head>
 
 <body>
+
+    <!-- navbar -->
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- toggle effect and navbar brand -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#thing-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle Navigation</span> 
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+            <a href="/" class="grab navbar-brand">LinkTank</a>
+        </div>
+        <!-- menu items -->
+        <div class="collapse navbar-collapse navbar-right" id="thing-collapse">
+            <ul class="nav navbar-nav">
+                <li><a class="menu-item" href="/register">Sign Up</a></li>
+                <li><a class="menu-item" href="/login">Login</a></li>
+                <li><a class="menu-item" href="#">About Us</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
 
 

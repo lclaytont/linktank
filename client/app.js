@@ -10,4 +10,12 @@ app.config(['$routeProvider', '$locationProvider',
                 templateUrl: 'views/home.html',
                 controller: 'HomeController'
             })
+            .when('/login', {
+                templateUrl: 'views/login.html',
+                controller: 'LoginController'
+            })
+            .when('/register', {
+                templateUrl: 'views/register.html',
+                controller: 'RegisterController'
+            })
     }])
