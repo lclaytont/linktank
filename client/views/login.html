@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4 text-center thing">
+            <form>
+                <div class="form-group">
+                    <a href="/auth/google">Sign In with Google</a>
+                    <hr/>
+                </div>
+                <div class="form-group">
+                    <label for="newUserEmail">Email</label>
+                    <input type="email" class="form-control" placeholder="Type Email Here" ng-model="email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" placeholder="New Password Here" ng-model="password">
+                </div>
+                <button type="submit" ng-click="login()" class="btn btn-lg btn-danger">Login</button>
+            </form>
+        </div>
+    </div>
+</div>
