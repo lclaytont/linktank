@@ -31,7 +31,7 @@ router.post('/login', function (req, res, next) {//its a post request because yo
 });
 
 router.route('*')//everything after this point, we are ensuring the user is logged in.
-    .all(auth.isLoggedIn);//includes all methods 'get, put, post, delete, etc'
+    .all(auth.isLoggedIn);
 
 router.get('/logout', function (req, res) {//it could be a post request, but its a get request just so we could go to /api/users/logout to logout
     req.session.destroy(function () {

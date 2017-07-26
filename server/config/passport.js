@@ -23,7 +23,7 @@ function configurePassport(app) {
                     return done(null, false, { message: 'Incorrect Login!' });
                 }
                 console.log('checking password');
-                utils.checkPassword(password, user.password) //checks pw against 
+                utils.checkPassword(password, user.password) //checks hashed pw vs what it should be
                     .then(function (passwordMatches) {
                         console.log('password checked!');
                         console.log(passwordMatches);
