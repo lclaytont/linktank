@@ -10,8 +10,11 @@
     <!-- fonts -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display+SC" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+    <script src="https://use.fontawesome.com/452fb9516f.js"></script>
     <!-- local css -->
     <link rel="stylesheet" href="./css/styles.css">
+    <!-- google sign-in -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <!-- jQuery and Bootstrap js -->
     <script src="http://code.jquery.com/jquery-3.2.1.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
@@ -23,8 +26,9 @@
      <!-- local scripts -->
     <script src="app.js"></script>
     <script src="/js/controllers/HomeController.js"></script>
-    <script src="/js/controllers/LoginController.js"></script>
+    <script src="/js/controllers/VolunteerLoginController.js"></script>
     <script src="/js/controllers/RegisterController.js"></script>
+    <script src="/js/controllers/OrganizationLoginController.js"></script>
     <script src="/js/services/userService.js"></script>
     <title>LinkTank</title>
 </head>
@@ -48,7 +52,15 @@
         <div class="collapse navbar-collapse navbar-right" id="thing-collapse">
             <ul class="nav navbar-nav">
                 <li><a class="menu-item" href="/register">Sign Up</a></li>
-                <li><a class="menu-item" href="/login">Login</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle menu-item" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        Login<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="menu-item" href="/volunteer_login">Volunteer Login</a></li>
+                        <li><a class="menu-item" href="/organization_login">Organization Login</a></li>
+                    </ul>
+                </li>
                 <li><a class="menu-item" href="#">About Us</a></li>
             </ul>
         </div>

@@ -5,7 +5,13 @@ Global Styles
  body {
      box-sizing: border-box;
      background-color: #faebd7;
+     height: 100%;
  }
+
+hr {
+    border-top: 3px double #000 !important;
+    /* border-color: #000 !important; */
+}
 
 /*
 Navbar Styles
@@ -56,8 +62,39 @@ Home View Styles
 }
 
 .pr-content-2 {
-    max-height: 50rem;
+    min-height: auto;
     padding: 0 0 0 0;
+}
+
+.pr-content-3 {
+    max-height: 20%;
+    padding: 0 0 0 0;
+}
+
+.pr-content-4 {
+    font-family: 'Playfair Display', serif;
+    text-shadow: .1em .1em 0 #d3d3d3;
+}
+
+.pr-content-4-mod {
+    line-height: 4.5rem;
+}
+
+/*
+Footer in Home View
+*/
+
+.footer {
+    background-color: #000;
+    color: #faebd7;
+    height: 30rem;
+}
+
+.fa {
+    text-decoration: none;
+    color: #faebd7;
+    font-size: 5rem;
+    padding: 5rem 0 0 0;
 }
 
 /*
