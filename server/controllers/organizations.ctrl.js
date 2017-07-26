@@ -1,5 +1,6 @@
 var express = require('express');
 var orgProc = require('../procedures/organizations.proc');
+var auth = require('../middleware/auth.mw');
 
 var router = express.Router();
 
@@ -40,7 +41,7 @@ router.route('/:id')
             });
     })
 
-    .post(auth.isLoggedIn, isOrg, function (req, res) {  //only the logged in AS ORG can post a new event
+    .post(auth.isLoggedIn, auth.isOrg, function (req, res) {  //only the logged in AS ORG can post a new event
         orgProc.create(req.params.id, req.body.title, req.body.content)
             .then(function () {
                 res.sendStatus(204);
@@ -50,7 +51,7 @@ router.route('/:id')
             });
     })
 
-    .put(auth.isLoggedIn, isOrg, function (req, res) {  //only the logged in AS ORG can update an event
+    .put(auth.isLoggedIn, auth.isOrg, function (req, res) {  //only the logged in AS ORG can update an event
         orgProc.update(req.params.id, req.body.title, req.body.content)
             .then(function () {
                 res.sendStatus(204);
@@ -60,7 +61,7 @@ router.route('/:id')
             });
     })
 
-    .delete(auth.isLoggedIn, isOrg, function (req, res) {  //has to be logged AS ORG in to delete
+    .delete(auth.isLoggedIn, auth.isOrg, function (req, res) {  //has to be logged AS ORG in to delete
         orgProc.destroy(req.params.id)
             .then(function () {
                 res.sendStatus(204);

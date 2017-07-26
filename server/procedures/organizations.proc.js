@@ -1,6 +1,6 @@
 // NEED TO MAKE STORED PROCEDURES FOR DIS SHITS as of 7/25/17
 
-var db = require('../config/db');
+var db = require('../config/sql.db');
 
 exports.all = function(){
     return db.rows('GetEvents');

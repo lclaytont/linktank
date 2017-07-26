@@ -1,10 +1,10 @@
 //all of this should be good
 var express = require('express');
 var passport = require('passport');
-var procedures = require('../procedures/users.proc');
+var procedures = require('../procedures/volunteers.proc');
 var auth = require('../middleware/auth.mw');
 var utils = require('../utils');  //this is for the hashing/salting
-var volCtrl = require("/controllers/volunteers.ctrl")
+
 
 
 var router = express.Router();

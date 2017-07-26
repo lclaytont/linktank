@@ -1,9 +1,11 @@
 var express = require("express");
 
-var orgCtrl = require("./controllers/organization.ctrl");
+var orgCtrl = require("./controllers/organizations.ctrl");
+var volCtrl = require("./controllers/volunteers.ctrl");
 
 var router = express.Router();
 
 router.use('/organization', orgCtrl);
+router.use('/volunteers', volCtrl);
 
 module.exports = router;
