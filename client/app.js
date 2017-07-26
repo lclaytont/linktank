@@ -12,10 +12,10 @@ app.config(['$routeProvider', '$locationProvider',
             })
             .when('/volunteer_login', {
                 templateUrl: 'views/volunteerLogin.html',
-                controller: 'LoginController'
+                controller: 'VolunteerLoginController'
             })
             .when('/organization_login',{
-                templateUrl: 'views/organization_login.html',
+                templateUrl: 'views/organizationLogin.html',
                 controller: 'OrganizationLoginController'
             })
             .when('/register', {

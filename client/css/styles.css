@@ -6,6 +6,7 @@ Global Styles
      box-sizing: border-box;
      background-color: #faebd7;
      height: 100%;
+     padding-top: 60px;
  }
 
 hr {
@@ -21,9 +22,10 @@ Navbar Styles
     border-radius: 0;
     margin-bottom: 0;
     background-color:#faebd7;
-    border: none;
+     border: none;  
     font-family: 'Playfair Display', serif;
     font-weight: bold;
+
 }
 
 .navbar-brand {

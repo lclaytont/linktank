@@ -1,9 +1,6 @@
-app.controller('LoginController',  
+app.controller('VolunteerLoginController',  
     function($scope, userService) {
-        console.log('Login to use our page')
-
-        
-        console.log($scope.loginObj)
+        console.log('Volunteer Login to use our page')
 
         $scope.login = function() {
 
@@ -27,6 +24,7 @@ app.controller('LoginController',
                     // remember to remove later and trigger error response
                     $scope.email = '';
                     $scope.password = '';
+                    alert("You entered an incorrect email address or password. Please try again.")
                 })
             }
 
