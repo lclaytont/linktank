@@ -4,6 +4,8 @@ var passport = require('passport');
 var procedures = require('../procedures/users.proc');
 var auth = require('../middleware/auth.mw');
 var utils = require('../utils');  //this is for the hashing/salting
+var volCtrl = require("/controllers/volunteers.ctrl")
+
 
 var router = express.Router();
 
