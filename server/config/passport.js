@@ -140,20 +140,20 @@ function configurePassport(app) {
 
     passport.serializeUser(function (user, done) { //serialize users shit (takes user id, email, names, etc and spit out a way to uniquely identify the user)
         console.log(user);
-        done(null, user.id + "|" + user.role);
+        done(null, {id: user.id, role: user.role});
     });
 
-    passport.deserializeUser(function (id, done) {  //deserialize user (take a unique identifier of a user and spit out the full user (e.g. get the user from the database))
-        var parts = id.split("|");
+    passport.deserializeUser(function (key, done) {  //deserialize user (take a unique identifier of a user and spit out the full user (e.g. get the user from the database))
+        console.log("Deserialize that shit");
         // if (user) {
-            if (parts[1].role === 'Volunteer') {
-                userProc.read(Number(parts[0])).then(function (user) {  //references the procedure function that eventually calls getUsers()
+            if (key.role === 'Volunteer') {
+                userProc.read(key.id).then(function (user) {  //references the procedure function that eventually calls getUsers()
                     done(null, user);  //this happens after you have already logged in. this is what sets req.user
                 }, function (err) {
                     done(err);
                 });
-            } else if (parts[1].role === 'Organization') {
-                orgProc.read(Number(parts[0])).then(function(user) {
+            } else if (key.role === 'Organization') {
+                orgProc.read(key.id).then(function(user) {
                     done(null, user);
                 }, function(err) {
                     done(err);

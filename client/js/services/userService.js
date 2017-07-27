@@ -10,6 +10,7 @@ app.service('userService',
             url: "http://localhost:3000/api/volunteers/login",
             data: obj
         }).then(function(success) {
+            console.log(success);
             user = success.data;
             return success.data;
         })
@@ -27,8 +28,9 @@ app.service('userService',
     }
 
 
-    // Log Out
-    this.logout = function() {
+    // Log Out a vol
+    this.VolunteerLogout = function() {
+        console.log(user);
         return $http({
             method: 'GET', 
             url: "http://localhost:3000/api/volunteers/logout"
@@ -36,6 +38,16 @@ app.service('userService',
             user = undefined;
         })
     }
+
+    // log out a org
+    // this.logout = function() {
+    //     return $http({
+    //         method: 'GET', 
+    //         url: "http://localhost:3000/api/volunteers/logout"
+    //     }).then(function() {
+    //         user = undefined;
+    //     })
+    // }
 
     // Maintain user session
     this.me = function() {
@@ -45,11 +57,9 @@ app.service('userService',
         return $http({
             url: 'http://localhost:3000/api/volunteers/me' 
         }).then(function(success) {
+            console.log(success);
             user = success.data;
             return success.data
         }) 
     }
-
-
-
 })
