@@ -4,7 +4,7 @@ app.service('userService',
     var user; 
 
     // Log Local Strategy Users in with email and pw
-    this.login = function(obj) {
+    this.VolunteerLogin = function(obj) {
         return $http({
             method: 'POST',
             url: "http://localhost:3000/api/volunteers/login",
@@ -14,6 +14,18 @@ app.service('userService',
             return success.data;
         })
     }
+
+    this.OrganizationLogin = function(obj) {
+        return $http({
+            method: 'POST',
+            url: "http://localhost:3000/api/organizations/login",
+            data: obj
+        }).then(function(success) {
+            user = success.data;
+            return success.data;
+        })
+    }
+
 
     // Log Out
     this.logout = function() {

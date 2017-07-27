@@ -8,12 +8,12 @@ exports.readByEmail = function(email) {
 
 // GET ALL VOLUNTEERS
 exports.all = function() {
-    return db.rows('Get_Volunteers', []);
+    return db.rows('Get_Organization', []);
 }
 
 // GET SINGLE VOLUNTEER
 exports.read = function(id) {
-    return db.row('Get_singleVolunteer', [id]);
+    return db.row('Get_singleOrganization', [id]);
 }
 
 // INSERT VOLUNTEER

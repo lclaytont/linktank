@@ -8,7 +8,7 @@ var utils = require('../utils');  //this is for the hashing/salting
 var router = express.Router();
 
 router.post('/login', function (req, res, next) {//its a post request because you are sending data to the database
-    passport.authenticate('local', function (err, user, info) { //this is ONLY FOR LOCAL STRAT
+    passport.authenticate('Organization', function (err, user, info) { //this is ONLY FOR LOCAL STRAT
         if (err) {
             console.log(err);
             return res.sendStatus(500);

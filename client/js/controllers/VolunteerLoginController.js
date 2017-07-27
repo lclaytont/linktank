@@ -11,7 +11,7 @@ app.controller('VolunteerLoginController',
         
             console.log($scope.loginObj);
 
-            userService.login($scope.loginObj)
+            userService.VolunteerLogin($scope.loginObj)
                 .then(function() {
                     // redirect to profile page
                     profileRedirect();

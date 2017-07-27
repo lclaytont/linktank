@@ -5,7 +5,7 @@ var volCtrl = require("./controllers/volunteers.ctrl");
 
 var router = express.Router();
 
-router.use('/organization', orgCtrl);
+router.use('/organizations', orgCtrl);
 router.use('/volunteers', volCtrl);
 
 module.exports = router;
