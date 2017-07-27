@@ -2,6 +2,22 @@ app.controller('OrganizationProfileController',
     function ($scope, userService) {
         console.log('Welcome to an orgs profile!')
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//jquery dom minuplation
+
         var jumboHeight = $('.jumbotron').outerHeight();
 
         function parallax() {
