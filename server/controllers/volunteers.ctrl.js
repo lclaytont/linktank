@@ -5,7 +5,7 @@ var procedures = require('../procedures/volunteers.proc');
 var auth = require('../middleware/auth.mw');
 var utils = require('../utils');  //this is for the hashing/salting
 
-
+// k
 
 var router = express.Router();
 
@@ -45,7 +45,7 @@ router.get('/logout', function (req, res) {//it could be a post request, but its
 router.get('/', function(req, res) {
         return procedures.all()
         .then(function(users) {
-            console.log("FETCHED USERS");
+            console.log("FETCHED VOLUNTEERS");
             console.log(users)
             res.send(users);
         }, function(err) {
