@@ -3,9 +3,9 @@ var passport = require('passport');
 var session = require('express-session');
 var MySQLStore = require('express-mysql-session')(session);
 var LocalStrategy = require('passport-local').Strategy;  //enables passport to authenticate un and pw
-var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;  //for google strat
-var userProc = require('../procedures/users.proc');
-var pool = require('./db').pool;
+// var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;  //for google strat
+var userProc = require('../procedures/volunteers.proc');
+var pool = require('./sql.db').pool;
 var utils = require('../utils');
 
 
@@ -23,78 +23,83 @@ function configurePassport(app) {
                     return done(null, false, { message: 'Incorrect Login!' });
                 }
                 console.log('checking password');
-                utils.checkPassword(password, user.password) //checks hashed pw vs what it should be
-                    .then(function (passwordMatches) {
-                        console.log('password checked!');
-                        console.log(passwordMatches);
-                        if (passwordMatches) {
-                            // delete user.password;
-                            return done(null, user);
-                        } else {
-                            return done(null, false, { message: 'Incorrect Login!' });
-                        }
-                    }, console.log);
+                // utils.checkPassword(password, user.password) //checks hashed pw vs what it should be
+                //     .then(function (passwordMatches) {
+                //         console.log('password checked!');
+                //         console.log(passwordMatches);
+                //         if (passwordMatches) {
+                //             // delete user.password;
+                //             return done(null, user);
+                //         } else {
+                //             return done(null, false, { message: 'Incorrect Login!' });
+                //         }
+                //     }, console.log);
+                if (password === user.password) {
+                    return done(null, user);
+                } else {
+                    return done(null, false, {message: 'Incorrect Login!'});
+                }
             }, function (err) {
                 return done(err);
             });
     }));
 
-    passport.use(new CreateStrategy(  //Create new users stratagy. Not sure if we have to require passport-create??
-        function (done) {
-            User.create({
-                usernameField: 'email',
-                passwordField: "password"
-            }, function (err, user) {
-                if (err) {
-                    return done(err);
-                }
-                if (!user) {
-                    return done(null, false);
-                }
-                return done(null, user);
-            });
-        }
-    ));
+    // passport.use(new CreateStrategy(  //Create new users stratagy. Not sure if we have to require passport-create??
+    //     function (done) {
+    //         User.create({
+    //             usernameField: 'email',
+    //             passwordField: "password"
+    //         }, function (err, user) {
+    //             if (err) {
+    //                 return done(err);
+    //             }
+    //             if (!user) {
+    //                 return done(null, false);
+    //             }
+    //             return done(null, user);
+    //         });
+    //     }
+    // ));
 
-    passport.use(new GoogleStrategy({  //GOOGLE STRAT SIGN IN
-        clientID: configAuth.googleAuth.clientID,
-        clientSecret: configAuth.googleAuth.clientSecret,
-        callbackURL: "http://www.example.com/auth/google/callback",
+    // passport.use(new GoogleStrategy({  //GOOGLE STRAT SIGN IN
+    //     clientID: configAuth.googleAuth.clientID,
+    //     clientSecret: configAuth.googleAuth.clientSecret,
+    //     callbackURL: "http://www.example.com/auth/google/callback",
 
-    },
-        function (token, refreshToken, profile, done) {
+    // },
+    //     function (token, refreshToken, profile, done) {
 
-            // make the code asynchronous
-            // User.findOne won't fire until we have all our data back from Google
-            process.nextTick(function () {
+    //         // make the code asynchronous
+    //         // User.findOne won't fire until we have all our data back from Google
+    //         process.nextTick(function () {
 
-                // try to find the user based on their google email
-                User.findOne({ 'google.email': profile.email }, function (err, user) {
-                    if (err)
-                        return done(err);
+    //             // try to find the user based on their google email
+    //             User.findOne({ 'google.email': profile.email }, function (err, user) {
+    //                 if (err)
+    //                     return done(err);
 
-                    if (user) {// if a user is found, log them in
-                        return done(null, user);
+    //                 if (user) {// if a user is found, log them in
+    //                     return done(null, user);
 
-                    } else { // if the user isnt in our database, create a new user
-                        var newUser = new User();
+    //                 } else { // if the user isnt in our database, create a new user
+    //                     var newUser = new User();
 
-                        // set all of the relevant information
-                        newUser.google.id = profile.id;
-                        newUser.google.token = token;
-                        newUser.google.name = profile.displayName;
-                        newUser.google.email = profile.emails[0].value; // pull the first email
+    //                     // set all of the relevant information
+    //                     newUser.google.id = profile.id;
+    //                     newUser.google.token = token;
+    //                     newUser.google.name = profile.displayName;
+    //                     newUser.google.email = profile.emails[0].value; // pull the first email
 
-                        // save the user
-                        newUser.save(function (err) {
-                            if (err)
-                                throw err;
-                            return done(null, newUser);
-                        });
-                    }
-                });
-            });
-        }));
+    //                     // save the user
+    //                     newUser.save(function (err) {
+    //                         if (err)
+    //                             throw err;
+    //                         return done(null, newUser);
+    //                     });
+    //                 }
+    //             });
+    //         });
+    //     }));
 
     passport.serializeUser(function (user, done) { //serialize users shit (takes user id, email, names, etc and spit out a way to uniquely identify the user)
         done(null, user.id);

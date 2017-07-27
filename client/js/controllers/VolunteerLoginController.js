@@ -14,21 +14,19 @@ app.controller('VolunteerLoginController',
             userService.login($scope.loginObj)
                 .then(function() {
                     // redirect to profile page
-
+                    profileRedirect();
                     // empty email and password fields 
                     $scope.email = '';
                     $scope.password = '';
                 }, function(err) {
                     console.log(err);
-                    // empty email and password fields
-                    // remember to remove later and trigger error response
                     $scope.email = '';
                     $scope.password = '';
                     alert("You entered an incorrect email address or password. Please try again.")
                 })
             }
 
-        // function profileRedirect() {
-        //     var dest = 
-        // }
+        function profileRedirect() {
+            window.location.href = '/'
+        }
     })

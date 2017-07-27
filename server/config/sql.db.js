@@ -5,7 +5,7 @@ var pool = mysql.createPool({
     host: process.env.HOST,
     user: process.env.RDS_USER, 
     password: process.env.PASSWORD,
-    database: process.env.DATABASE
+    database: process.env.RDS_DATABASE
 });
 
 console.log(pool);
