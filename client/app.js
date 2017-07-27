@@ -18,22 +18,6 @@ app.config(['$routeProvider', '$locationProvider',
                 templateUrl: 'views/organizationLogin.html',
                 controller: 'OrganizationLoginController'
             })
-            .when('/volunteer_logout', {
-                templateUrl: 'views/volunteerLogout.html',
-                controller: 'VolunteerLogoutController'
-            })
-            // .when('/organization_logout',{
-            //     templateUrl: 'views/organizationLogout.html',
-            //     controller: 'OrganizationLogoutController'
-            // })
-            // .when ('/OrganizationProfile/:id'), {
-            //     templateUrl:
-            //     controller:
-            // }
-            // .when ('/VolunteersProfile/:id'), {
-            //     templateUrl:
-            //     controller:
-            // }
             .when('/register', {
                 templateUrl: 'views/register.html',
                 controller: 'RegisterController'
