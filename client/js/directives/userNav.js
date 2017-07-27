@@ -1,5 +1,13 @@
+app.directive('mainNav',
+    function() {
+        return {
+            restrict: 'E',
+            templateUrl: 'views/mainNav.html'
+        }
+    });
+
 app.directive('volunteerNav', 
-    function($scope) {
+    function() {
         return {
             restrict: 'E',
             templateUrl: 'views/volunteerNav.html'
@@ -7,7 +15,7 @@ app.directive('volunteerNav',
     }); 
 
 app.directive('organizationNav', 
-    function($scope) {
+    function() {
         return {
             restric: 'E',
             templateUrl: 'views/organizationNav.html'
