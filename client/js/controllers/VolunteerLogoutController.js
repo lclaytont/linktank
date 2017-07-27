@@ -1,5 +1,5 @@
 app.controller('VolunteerLogoutController',
-    function($scope, $route, userService) {
+    function($scope, $route, $location, userService) {
         userService.me();
         console.log('Log out of an account');
 

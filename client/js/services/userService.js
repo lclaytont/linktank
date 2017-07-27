@@ -10,6 +10,7 @@ app.service('userService',
             url: "http://localhost:3000/api/volunteers/login",
             data: obj
         }).then(function(success) {
+            console.log(success);
             user = success.data;
             return success.data;
         })
