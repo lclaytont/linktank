@@ -8,7 +8,7 @@ var pool = mysql.createPool({
     database: process.env.RDS_DATABASE
 });
 
-console.log(pool);
+// console.log(pool);
 
 exports.pool = pool;
 

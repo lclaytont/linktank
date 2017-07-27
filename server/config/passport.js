@@ -5,13 +5,14 @@ var MySQLStore = require('express-mysql-session')(session);
 var LocalStrategy = require('passport-local').Strategy;  //enables passport to authenticate un and pw
 // var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;  //for google strat
 var userProc = require('../procedures/volunteers.proc');
+var orgProc = require('../procedures/organizations.proc');
 var pool = require('./sql.db').pool;
 var utils = require('../utils');
 
 
 function configurePassport(app) {
 
-    passport.use(new LocalStrategy({  //LOCAL STRAT SIGN IN
+    passport.use('Volunteer', new LocalStrategy({  //LOCAL STRAT SIGN IN
         usernameField: 'email',
         passwordField: 'password'
     }, function (email, password, done) {
@@ -37,7 +38,43 @@ function configurePassport(app) {
                 if (password === user.password) {
                     return done(null, user);
                 } else {
-                    return done(null, false, {message: 'Incorrect Login!'});
+                    return done(null, false, { message: 'Incorrect Login!' });
+                }
+            }, function (err) {
+                return done(err);
+            });
+    }));
+
+
+    // //////////////////////////////////////
+
+    passport.use('Organization', new LocalStrategy({  //LOCAL STRAT SIGN IN
+        usernameField: 'email',
+        passwordField: 'password'
+    }, function (email, password, done) {
+        orgProc.readByEmail(email)
+            .then(function (user) {
+                console.log('got user for authenticate');
+                console.log(user);
+                if (!user) {
+                    return done(null, false, { message: 'Incorrect Login!' });
+                }
+                console.log('checking password');
+                // utils.checkPassword(password, user.password) //checks hashed pw vs what it should be
+                //     .then(function (passwordMatches) {
+                //         console.log('password checked!');
+                //         console.log(passwordMatches);
+                //         if (passwordMatches) {
+                //             // delete user.password;
+                //             return done(null, user);
+                //         } else {
+                //             return done(null, false, { message: 'Incorrect Login!' });
+                //         }
+                //     }, console.log);
+                if (password === user.password) {
+                    return done(null, user);
+                } else {
+                    return done(null, false, { message: 'Incorrect Login!' });
                 }
             }, function (err) {
                 return done(err);
@@ -102,16 +139,35 @@ function configurePassport(app) {
     //     }));
 
     passport.serializeUser(function (user, done) { //serialize users shit (takes user id, email, names, etc and spit out a way to uniquely identify the user)
-        done(null, user.id);
+        console.log(user);
+        done(null, user.id + "|" + user.role);
     });
 
     passport.deserializeUser(function (id, done) {  //deserialize user (take a unique identifier of a user and spit out the full user (e.g. get the user from the database))
-        userProc.read(id).then(function (user) {  //references the procedure function that eventually calls getUsers()
-            done(null, user);  //this happens after you have already logged in. this is what sets req.user
-        }, function (err) {
-            done(err);
-        });
+        var parts = id.split("|");
+        // if (user) {
+            if (parts[1].role === 'Volunteer') {
+                userProc.read(Number(parts[0])).then(function (user) {  //references the procedure function that eventually calls getUsers()
+                    done(null, user);  //this happens after you have already logged in. this is what sets req.user
+                }, function (err) {
+                    done(err);
+                });
+            } else if (parts[1].role === 'Organization') {
+                orgProc.read(Number(parts[0])).then(function(user) {
+                    done(null, user);
+                }, function(err) {
+                    done(err);
+                })
+            }
+        // }
     });
+
+    //     userProc.read(id).then(function (user) {  //references the procedure function that eventually calls getUsers()
+    //         done(null, user);  //this happens after you have already logged in. this is what sets req.user
+    //     }, function (err) {
+    //         done(err);
+    //     });
+    // });
 
     var sessionStore = new MySQLStore({ //basically we are ensuring that the sessions are maintained by express in a table in the db and not in memory (ram)
         createDatabaseTable: true

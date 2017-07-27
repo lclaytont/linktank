@@ -8,7 +8,9 @@ app.controller('OrganizationLoginController',
                 password: $scope.password
             }
 
-            userService.login(loginObj)
+            console.log($scope.loginObj)
+
+            userService.OrganizationLogin($scope.loginObj)
                 .then(function() {
                     console.log('Signed Org in')
                     profileRedirect(0)
