@@ -30,4 +30,8 @@ app.config(['$routeProvider', '$locationProvider',
                 templateUrl: 'views/volunteerProfile.html',
                 controller: 'VolunteerProfileController'
             })
+            .when('/volunteer_logout', {
+                templateUrl: 'views/volunteerLogout.html',
+                controller: 'VolunteerLogoutController'
+            })
     }])
