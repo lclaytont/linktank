@@ -13,6 +13,7 @@ var router = express.Router();
 
 //this is actually /api/user/login
 router.post('/login', function (req, res, next) {//its a post request because you are sending data to the database
+    console.log("loggging int");
     passport.authenticate('Volunteer', function (err, user, info) { //this is ONLY FOR LOCAL STRAT
         if (err) {
             console.log(err);
@@ -21,7 +22,7 @@ router.post('/login', function (req, res, next) {//its a post request because yo
         if (!user) { //login failure
             return res.status(401).send(info);
         }
-        req.login(user, function (err) {
+        req.logIn(user, function (err) {
             if (err) {
                 console.log(err);
                 return res.sendStatus(500);
@@ -32,15 +33,25 @@ router.post('/login', function (req, res, next) {//its a post request because yo
     })(req, res, next);
 });
 
-router.route('*')//everything after this point, we are ensuring the user is logged in.
-    .all(auth.isLoggedIn);
-
-router.get('/logout', function (req, res) {//it could be a post request, but its a get request just so we could go to /api/users/logout to logout
+router.get('/logout', function (req, res) {//it could be a post request, but its a get request just so we could go to /api/volunteers/logout to logout
+    console.log("Logging out");
     req.session.destroy(function () {
-        req.logOut();
+        console.log(1);
+        req.logout();
+        console.log(2);
         res.sendStatus(204);
     });
+    // console.log("Heres the seesss" + req.session)
 });
+
+router.get('/me', function (req, res) { //get request to /api/users/me
+    console.log("ITsame");
+    console.log(req.user);
+    res.send(req.user); //we are guaranteed that we are going to be logged in, and we are sending a user object with the current logged in user back with its properties (id, email, firstname, lastname) // passport sets req.user
+});
+
+// router.route('*')//everything after this point, we are ensuring the user is logged in.
+//     .all(auth.isLoggedIn);
 
 router.get('/', function(req, res) {
         return procedures.all()
@@ -65,11 +76,6 @@ router.post('/', function(req, res) {
             })
     })
 })   
-
-
-router.get('/me', function (req, res) { //get request to /api/users/me
-    res.send(req.user); //we are guaranteed that we are going to be logged in, and we are sending a user object with the current logged in user back with its properties (id, email, firstname, lastname) // passport sets req.user
-});
 
 router.get('/:id', function(req, res) {
     procedures.read(req.params.id)
