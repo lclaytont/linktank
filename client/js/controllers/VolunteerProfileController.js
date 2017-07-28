@@ -5,9 +5,9 @@ app.controller('VolunteerProfileController',
         // volunteer facotry 
         //events factory
 
-        $scope.vols = volunteerFactory.get({id: 2})
+        $scope.volunteer = volunteerFactory.get({id: $routeParams.id})
 
-        console.log($scope.vols);
+        console.log($scope.volunteer);
 
 
     })

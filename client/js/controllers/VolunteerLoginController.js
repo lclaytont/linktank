@@ -12,9 +12,11 @@ app.controller('VolunteerLoginController',
             console.log($scope.loginObj);
 
             userService.VolunteerLogin($scope.loginObj)
-                .then(function() {
+                .then(function(data) {
+                    var volId = data.id
                     // redirect to profile page
-                    profileRedirect();
+                    profileRedirect(volId);
+                    // profileRedirect();
                     // empty email and password fields 
                     $scope.email = '';
                     $scope.password = '';
@@ -26,7 +28,7 @@ app.controller('VolunteerLoginController',
                 })
             }
 
-        function profileRedirect() {
-            window.location.href = '/'
+        function profileRedirect(x) {
+            window.location.href = '/volunteer_profile/' + x;
         }
     })

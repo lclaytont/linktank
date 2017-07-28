@@ -22,16 +22,17 @@ app.config(['$routeProvider', '$locationProvider',
                 templateUrl: 'views/register.html',
                 controller: 'RegisterController'
             })
-            .when('/organization_profile', {
+            .when('/organization_profile/:id', {
                 templateUrl: 'views/organizationProfile.html',
                 controller: 'OrganizationProfileController'
-            })
-            .when('/volunteer_profile', {
-                templateUrl: 'views/volunteerProfile.html',
-                controller: 'VolunteerProfileController'
             })
             .when('/volunteer_logout', {
                 templateUrl: 'views/volunteerLogout.html',
                 controller: 'VolunteerLogoutController'
             })
+            .when('/volunteer_profile/:id', {
+                templateUrl: 'views/volunteerProfile.html',
+                controller: 'VolunteerProfileController'
+            })
+            
     }])
