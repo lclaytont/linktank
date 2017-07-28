@@ -15,7 +15,7 @@ var router = express.Router();
 router.post('/login', function (req, res, next) {//its a post request because you are sending data to the database
     console.log("loggging int");
     passport.authenticate('Volunteer', function (err, user, info) { //this is ONLY FOR LOCAL STRAT
-        console.log("the signed in user it" + user)
+        // console.log("the signed in user it" + )
         if (err) {
             console.log(err);
             return res.sendStatus(500);
@@ -48,6 +48,17 @@ router.post('/', function(req, res) {
             })
     })
 })   
+
+// utils.encryptPassword(u.password).then(function(hash){
+//         procedures.write(u.email, u.name, hash)
+//             .then(function (id) {
+//                 res.send(id)
+//             }, function (err) {
+//                 console.log(err);
+//                 res.status(500).send(err);
+//             })
+//     })
+// }) 
 
 // router.route('*')//everything after this point, we are ensuring the user is logged in.
 //     .all(auth.isLoggedIn);

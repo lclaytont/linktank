@@ -12,6 +12,21 @@ var utils = require('../utils');
 
 function configurePassport(app) {
 
+    var sessionStore = new MySQLStore({ //basically we are ensuring that the sessions are maintained by express in a table in the db and not in memory (ram)
+        createDatabaseTable: true
+    }, pool);
+
+    app.use(session({  //starting the express session. session is the variable declared at the top of the page.
+        secret: 'randomly-generated string!',
+        store: sessionStore,
+        resave: false,
+        saveUninitialized: false  //only create sessions and save them to db from users that are logged in
+    }));
+
+    app.use(passport.initialize());//starts up passport
+    app.use(passport.session());//telling passport that express is going to be cooperating with the session
+
+
     passport.use('Volunteer', new LocalStrategy({  //LOCAL STRAT SIGN IN
         usernameField: 'email',
         passwordField: 'password'
@@ -26,24 +41,27 @@ function configurePassport(app) {
                 console.log('checking password');
                 utils.checkPassword(password, user.password) //checks hashed pw vs what it should be
                     .then(function (passwordMatches) {
+                        console.log(password);
                         console.log('password checked!');
                         console.log(passwordMatches);
                         if (passwordMatches) {
-                            // delete user.password;
+                        
                             return done(null, user);
                         } else {
                             return done(null, false, { message: 'Incorrect Login!' });
                         }
-                    }, console.log);
-                if (password === user.password) {
-                    return done(null, user);
-                } else {
-                    return done(null, false, { message: 'Incorrect Login!' });
-                }
-            }, function (err) {
-                return done(err);
-            });
-    }));
+                    }, function(err) {
+                        return done(err);
+                    });
+            //     if (password === user.password) {
+            //         return done(null, user);
+            //     } else {
+            //         return done(null, false, { message: 'Incorrect Login!' });
+            //     }
+            // }, function (err) {
+            //     return done(err);
+            // });
+    });
 
 
     // //////////////////////////////////////
@@ -169,20 +187,21 @@ function configurePassport(app) {
     //     });
     // });
 
-    var sessionStore = new MySQLStore({ //basically we are ensuring that the sessions are maintained by express in a table in the db and not in memory (ram)
-        createDatabaseTable: true
-    }, pool);
+    // var sessionStore = new MySQLStore({ //basically we are ensuring that the sessions are maintained by express in a table in the db and not in memory (ram)
+    //     createDatabaseTable: true
+    // }, pool);
 
-    app.use(session({  //starting the express session. session is the variable declared at the top of the page.
-        secret: 'randomly-generated string!',
-        store: sessionStore,
-        resave: false,
-        saveUninitialized: false  //only create sessions and save them to db from users that are logged in
-    }));
+    // app.use(session({  //starting the express session. session is the variable declared at the top of the page.
+    //     secret: 'randomly-generated string!',
+    //     store: sessionStore,
+    //     resave: false,
+    //     saveUninitialized: false  //only create sessions and save them to db from users that are logged in
+    // }));
 
-    app.use(passport.initialize());//starts up passport
-    app.use(passport.session());//telling passport that express is going to be cooperating with the session
+    // app.use(passport.initialize());//starts up passport
+    // app.use(passport.session());//telling passport that express is going to be cooperating with the session
 
-}
+    }
+))}
 
 module.exports = configurePassport;
