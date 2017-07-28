@@ -61,7 +61,8 @@ function configurePassport(app) {
             // }, function (err) {
             //     return done(err);
             // });
-    });
+    })
+    }));
 
 
     // //////////////////////////////////////
@@ -88,18 +89,43 @@ function configurePassport(app) {
                         } else {
                             return done(null, false, { message: 'Incorrect Login!' });
                         }
-                    }, console.log);
-                if (password === user.password) {
-                    return done(null, user);
-                } else {
-                    return done(null, false, { message: 'Incorrect Login!' });
-                }
-            }, function (err) {
-                return done(err);
-            });
+                    }, function(err) {
+                        return done(err);
+                    });
+            
+    })
     }));
 
-    // passport.use(new CreateStrategy(  //Create new users stratagy. Not sure if we have to require passport-create??
+   
+    passport.serializeUser(function (user, done) { //serialize users shit (takes user id, email, names, etc and spit out a way to uniquely identify the user)
+        console.log(user);
+        done(null, {id: user.id, role: user.role});
+    });
+
+    passport.deserializeUser(function (key, done) {  //deserialize user (take a unique identifier of a user and spit out the full user (e.g. get the user from the database))
+        console.log("Deserialize that shit");
+        // if (user) {
+            if (key.role === 'Volunteer') {
+                userProc.read(key.id).then(function (user) {  //references the procedure function that eventually calls getUsers()
+                    done(null, user);  //this happens after you have already logged in. this is what sets req.user
+                }, function (err) {
+                    done(err);
+                });
+            } else if (key.role === 'Organization') {
+                orgProc.read(key.id).then(function(user) {
+                    done(null, user);
+                }, function(err) {
+                    done(err);
+                })
+            }
+        // }
+    });
+
+}
+
+module.exports = configurePassport;
+
+        // passport.use(new CreateStrategy(  //Create new users stratagy. Not sure if we have to require passport-create??
     //     function (done) {
     //         User.create({
     //             usernameField: 'email',
@@ -156,30 +182,6 @@ function configurePassport(app) {
     //         });
     //     }));
 
-    passport.serializeUser(function (user, done) { //serialize users shit (takes user id, email, names, etc and spit out a way to uniquely identify the user)
-        console.log(user);
-        done(null, {id: user.id, role: user.role});
-    });
-
-    passport.deserializeUser(function (key, done) {  //deserialize user (take a unique identifier of a user and spit out the full user (e.g. get the user from the database))
-        console.log("Deserialize that shit");
-        // if (user) {
-            if (key.role === 'Volunteer') {
-                userProc.read(key.id).then(function (user) {  //references the procedure function that eventually calls getUsers()
-                    done(null, user);  //this happens after you have already logged in. this is what sets req.user
-                }, function (err) {
-                    done(err);
-                });
-            } else if (key.role === 'Organization') {
-                orgProc.read(key.id).then(function(user) {
-                    done(null, user);
-                }, function(err) {
-                    done(err);
-                })
-            }
-        // }
-    });
-
     //     userProc.read(id).then(function (user) {  //references the procedure function that eventually calls getUsers()
     //         done(null, user);  //this happens after you have already logged in. this is what sets req.user
     //     }, function (err) {
@@ -201,7 +203,8 @@ function configurePassport(app) {
     // app.use(passport.initialize());//starts up passport
     // app.use(passport.session());//telling passport that express is going to be cooperating with the session
 
-    }
-))}
+//     }
+// ))}
 
-module.exports = configurePassport;
+
+

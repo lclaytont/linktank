@@ -17,8 +17,8 @@ exports.read = function(id) {
 }
 
 // INSERT VOLUNTEER
-exports.write = function(email, password) {
-    return db.empty('Insert_Volunteers', [email, password]);
+exports.write = function(email, password, organizationName, contact, address, city, state, zip, phone) {
+    return db.empty('Insert_Organization', [email, password, organizationName, contact, address, city, state, zip, phone]);
 }
 
 // UPDATE VOLUNTEER

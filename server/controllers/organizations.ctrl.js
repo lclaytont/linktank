@@ -27,6 +27,20 @@ router.post('/login', function (req, res, next) {//its a post request because yo
     })(req, res, next);
 });
 
+
+router.post('/', function(req, res) {
+    utils.encryptPassword(req.body.password).then(function(hash){
+        console.log(req.body);
+        orgProc.write(req.body.email, hash, req.body.name, req.body.contact, req.body.address, req.body.city, req.body.state, req.body.zip, req.body.phone)
+            .then(function (id) {
+                res.send(id)
+            }, function (err) {
+                console.log(err);
+                res.status(500).send(err);
+            })
+    })
+})
+
 router.route('*')//everything after this point, we are ensuring the user is logged in.
     .all(auth.isLoggedIn);
 
@@ -38,7 +52,7 @@ router.get('/logout', function (req, res) {//it could be a post request, but its
 });
 
 router.get('/', function(req, res) {
-        return procedures.all()
+        return orgProc.all()
         .then(function(users) {
             console.log("FETCHED ORGS");
             console.log(users)
@@ -49,17 +63,17 @@ router.get('/', function(req, res) {
         })
     }) 
 
-router.post('/', function(req, res) {
-    utils.encryptPassword(req.body.password).then(function(hash){
-        procedures.write(req.body.firstname, req.body.lastname, req.body.email, hash)
-            .then(function (id) {
-                res.send(id)
-            }, function (err) {
-                console.log(err);
-                res.status(500).send(err);
-            })
-    })
-})   
+// router.post('/', function(req, res) {
+//     utils.encryptPassword(req.body.password).then(function(hash){
+//         procedures.write(req.body.firstname, req.body.lastname, req.body.email, hash)
+//             .then(function (id) {
+//                 res.send(id)
+//             }, function (err) {
+//                 console.log(err);
+//                 res.status(500).send(err);
+//             })
+//     })
+// })   
 
 
 router.get('/me', function (req, res) { //get request to /api/users/me
@@ -67,7 +81,7 @@ router.get('/me', function (req, res) { //get request to /api/users/me
 });
 
 router.get('/:id', function(req, res) {
-    procedures.read(req.params.id)
+    orgProc.read(req.params.id)
     .then(function(user) {
         res.send(user).status(201);
         console.log("Grabbed the org")
@@ -78,10 +92,10 @@ router.get('/:id', function(req, res) {
 })
 
 router.put('/:id', function(req, res) {
-    procedures.updateEmail(req.params.id, req.body.name, req.body.email, req.body.image, req.body.about).then(function() {
+    orgProc.updateEmail(req.params.id, req.body.name, req.body.email, req.body.image, req.body.about).then(function() {
         if(req.body.password) {
             utils.encryptPassword(req.body.password).then(function(hash) {
-                procedures.updatePw(req.params.id, hash).then(function() {
+                orgProc.updatePw(req.params.id, hash).then(function() {
                     res.sendStatus(204)
                 })               
             })

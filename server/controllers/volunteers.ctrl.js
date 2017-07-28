@@ -49,6 +49,9 @@ router.post('/', function(req, res) {
     })
 })   
 
+
+router.route('*')//everything after this point, we are ensuring the user is logged in.
+    .all(auth.isLoggedIn);
 // utils.encryptPassword(u.password).then(function(hash){
 //         procedures.write(u.email, u.name, hash)
 //             .then(function (id) {
@@ -134,7 +137,7 @@ router.put('/:id', function(req, res) {
     
 })
 
-router.route('*')//everything after this point, we are ensuring the user is logged in.
-    .all(auth.isLoggedIn);
+// router.route('*')//everything after this point, we are ensuring the user is logged in.
+    // .all(auth.isLoggedIn);
 
 module.exports = router;
