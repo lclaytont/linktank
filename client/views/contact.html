@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="email">Your Email</label>
+                <input type="email" class="form-control" ng-model="email" placeholder="Enter Email">
+            </div>
+            <div class="form-group">
+                <label for="subject">Your Subject</label>
+                <input type="text" class="form-control" ng-model="subject" placeholder="Enter Subject">
+            </div>
+            <div class="form-group">
+                <label for="content">Your Message</label>
+                <textarea class="form-control" ng-model="content" cols="1" rows="5" placeholder="Type your message here"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg" ng-click="sendMessage()">Submit</button>
+        </div>
+    </div>
+</div>
