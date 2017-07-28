@@ -1,48 +1,62 @@
+<main-nav></main-nav>
+
 <div class="orgBG"></div>
 <div class="jumbotron">
-  <h1>This is the name of company</h1>
+  <h1>{{organization.name}}</h1>
 </div>
+
 
 
 
 <div class="container">
   <div class="row">
-    <h2>Page Content</h2>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. Quisque mauris augue,
-    molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis dolor, in sagittis nisi. Sed ac orci quis
-    tortor imperdiet venenatis. Duis elementum auctor accumsan. Aliquam in felis sit amet augue.
-    <br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. Quisque mauris
-    augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis dolor, in sagittis nisi. Sed ac
-    orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. Aliquam in felis sit amet augue.
-    <br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. Quisque mauris
-    augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis dolor, in sagittis nisi. Sed ac
-    orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. Aliquam in felis sit amet augue.
-    <br> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. Quisque mauris
-    augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis dolor, in sagittis nisi. Sed ac
-    orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan. Aliquam in felis sit amet augue.
-  </div>
-  <hr>
-  <div class="row">
-    <h2>Page Content</h2>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. Quisque mauris augue,
-    molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis dolor, in sagittis nisi. Sed ac orci quis
-    tortor imperdiet venenatis. Duis elementum auctor accumsan. Aliquam in felis sit amet augue.
-    <h2>Page Content</h2>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. Quisque mauris augue,
-    molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis dolor, in sagittis nisi. Sed ac orci quis
-    tortor imperdiet venenatis. Duis elementum auctor accumsan. Aliquam in felis sit amet augue.
-    <h2>Page Content</h2>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. Quisque mauris augue,
-    molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis dolor, in sagittis nisi. Sed ac orci quis
-    tortor imperdiet venenatis. Duis elementum auctor accumsan. Aliquam in felis sit amet augue.
+    <div class="col-md-4">
+      <div class="thumbnail vol-profile-cont">
+        <img ng-src="{{volunteer.image}}">
+        <div class="caption">
+          <h3>{{ organization.name }}</h3>
+          <p>{{ organization.location }}</p>
+          <hr>
+          <p>{{ organization.about }}</p>
+        </div>
+        <buttton ng-click="editProfile()" class="btn btn-danger">Edit Profile</buttton>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="thumbnail vol-profile-cont ">
+        <h1>organization Events</h1>
+        <hr>
+        <buttton ng-click="findEvents()" class="btn btn-danger">Search Events</buttton>
+      </div>
 
+    </div>
   </div>
-  <hr>
   <div class="row">
-    <h2>Page Content</h2>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate. Quisque mauris augue,
-    molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis dolor, in sagittis nisi. Sed ac orci quis
-    tortor imperdiet venenatis. Duis elementum auctor accumsan. Aliquam in felis sit amet augue.
+    <div class="col-md-8">
+      <div class="thumbnail vol-profile-cont">
+        <h1>Completed Events</h1>
+        <hr>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th></th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+    <div class="col-md-4 ">
+      <div class="thumbnail vol-profile-cont">
+        <div class="caption">
+          <h1>Achievements</h1>
+          <hr>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+    </div>
   </div>
 </div>
 
@@ -51,8 +65,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12 text-center">
-      <button class"btn btn-lg btn-danger">Log Out </button>
-      <p>The End.</p>
+      <a class="menu-item" href="/volunteer_logout">Log out dis bit</a>
     </div>
   </div>
 </div>
