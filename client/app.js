@@ -22,6 +22,14 @@ app.config(['$routeProvider', '$locationProvider',
                 templateUrl: 'views/register.html',
                 controller: 'RegisterController'
             })
+            .when('/edit_organization_profile/:id', {
+                templateUrl: 'views/editOrganizationProfile.html',
+                controller: 'EditOrganizationProfileController'
+            })
+            .when('/edit_volunteer_profile/:id', {
+                templateUrl: 'views/editVolunteerProfile.html',
+                controller: 'EditVolunteerProfileController'
+            })
             .when('/organization_profile/:id', {
                 templateUrl: 'views/organizationProfile.html',
                 controller: 'OrganizationProfileController'
