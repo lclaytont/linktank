@@ -13,7 +13,7 @@ var pool = mysql.createPool({
 exports.pool = pool;
 
 exports.empty = function(procedure, values) {
-    return callProcedure(proedure, values).then(function() {
+    return callProcedure(procedure, values).then(function() {
         return;
     })
 }
