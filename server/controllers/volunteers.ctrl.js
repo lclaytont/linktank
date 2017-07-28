@@ -15,9 +15,11 @@ var router = express.Router();
 router.post('/login', function (req, res, next) {//its a post request because you are sending data to the database
     console.log("loggging int");
     passport.authenticate('Volunteer', function (err, user, info) { //this is ONLY FOR LOCAL STRAT
+        console.log("the signed in user it" + user)
         if (err) {
             console.log(err);
             return res.sendStatus(500);
+            console.log("HEEEEEEELP")
         }
         if (!user) { //login failure
             return res.status(401).send(info);
@@ -33,10 +35,24 @@ router.post('/login', function (req, res, next) {//its a post request because yo
     })(req, res, next);
 });
 
-router.route('*')//everything after this point, we are ensuring the user is logged in.
-    .all(auth.isLoggedIn);
+//for writing (creating) a new volunteer!
+router.post('/', function(req, res) {
+    var u = req.body;
+    utils.encryptPassword(u.password).then(function(hash){
+        procedures.write(u.email, u.name, hash)
+            .then(function (id) {
+                res.send(id)
+            }, function (err) {
+                console.log(err);
+                res.status(500).send(err);
+            })
+    })
+})   
 
-    router.get('/logout', function (req, res) {//it could be a post request, but its a get request just so we could go to /api/volunteers/logout to logout
+// router.route('*')//everything after this point, we are ensuring the user is logged in.
+//     .all(auth.isLoggedIn);
+
+router.get('/logout', function (req, res) {//it could be a post request, but its a get request just so we could go to /api/volunteers/logout to logout
     console.log("Logging out");
     req.session.destroy(function () {
         console.log(1);
@@ -44,7 +60,6 @@ router.route('*')//everything after this point, we are ensuring the user is logg
         console.log(2);
         res.sendStatus(204);
     });
-    // console.log("Heres the seesss" + req.session)
 });
 
 router.get('/me', function (req, res) { //get request to /api/users/me
@@ -67,17 +82,19 @@ router.get('/', function(req, res) {
         })
     }) 
 
-router.post('/', function(req, res) {
-    utils.encryptPassword(req.body.password).then(function(hash){
-        procedures.write(req.body.firstname, req.body.lastname, req.body.email, hash)
-            .then(function (id) {
-                res.send(id)
-            }, function (err) {
-                console.log(err);
-                res.status(500).send(err);
-            })
-    })
-})   
+// //for writing (creating) a new volunteer!
+// router.post('/', function(req, res) {
+//     var u = u;
+//     utils.encryptPassword(u.password).then(function(hash){
+//         procedures.write(u.firstname, u.lastname, u.email, hash)
+//             .then(function (id) {
+//                 res.send(id)
+//             }, function (err) {
+//                 console.log(err);
+//                 res.status(500).send(err);
+//             })
+//     })
+// })   
 
 router.get('/:id', function(req, res) {
     procedures.read(req.params.id)
@@ -91,9 +108,10 @@ router.get('/:id', function(req, res) {
 })
 
 router.put('/:id', function(req, res) {
-    procedures.updateEmail(req.params.id, req.body.name, req.body.email, req.body.image, req.body.about).then(function() {
-        if(req.body.password) {
-            utils.encryptPassword(req.body.password).then(function(hash) {
+    var u = Organizations;
+    procedures.updateEmail(req.params.id, Organizations.name, u.email, u.image, u.about).then(function() {
+        if(u.password) {
+            utils.encryptPassword(u.password).then(function(hash) {
                 procedures.updatePw(req.params.id, hash).then(function() {
                     res.sendStatus(204)
                 })               
@@ -104,5 +122,8 @@ router.put('/:id', function(req, res) {
     })
     
 })
+
+router.route('*')//everything after this point, we are ensuring the user is logged in.
+    .all(auth.isLoggedIn);
 
 module.exports = router;
