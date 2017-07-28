@@ -8,7 +8,7 @@ app.controller('VolunteerLoginController',
                 email: $scope.email,
                 password: $scope.password
             } 
-        
+         
             console.log($scope.loginObj);
 
             userService.VolunteerLogin($scope.loginObj)

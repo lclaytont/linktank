@@ -2,6 +2,14 @@ app.controller('RegisterController',
     function($scope, $location, volunteerFactory, organizationFactory) {
         console.log('Register for an account');
 
+        $scope.orgClick = function() {
+            $scope.userType = 'org';
+        }
+
+        $scope.volClick = function() {
+            $scope.userType = 'vol';
+        }
+        
         // this is going to be for vol.
         $scope.createVol = function(){
             var newUser = {
