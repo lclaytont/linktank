@@ -2,7 +2,11 @@ app.controller('OrganizationProfileController',
     function ($scope, userService) {
         console.log('Welcome to an orgs profile!')
 
+$scope.organization = organizaionFactory.get({id: $routeParams.id})
 
+console.log($scope.organization);
+
+    })
 
 
 

@@ -23,9 +23,9 @@ app.controller('OrganizationLoginController',
                     alert('You entered an incorrect Email or Password. Please try again.')
                 })
 
-            function profileRedirect() {
+            function profileRedirect(x) {
                 //Temporarily navigate to home page
-                window.location.href = '/'
+                window.location.href = '/organization_profile/' + x;
             } 
         }
     })
