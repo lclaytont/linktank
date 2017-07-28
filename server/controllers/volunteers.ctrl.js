@@ -1,4 +1,4 @@
-//all of this should be good
+
 var express = require('express');
 var passport = require('passport');
 var procedures = require('../procedures/volunteers.proc');
@@ -9,7 +9,7 @@ var utils = require('../utils');  //this is for the hashing/salting
 
 var router = express.Router();
 
-//you only get to this point once you are past /api/users
+//you only get to this point once you are past /api/volunteers
 
 //this is actually /api/user/login
 router.post('/login', function (req, res, next) {//its a post request because you are sending data to the database
@@ -19,7 +19,6 @@ router.post('/login', function (req, res, next) {//its a post request because yo
         if (err) {
             console.log(err);
             return res.sendStatus(500);
-            console.log("HEEEEEEELP")
         }
         if (!user) { //login failure
             return res.status(401).send(info);

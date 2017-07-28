@@ -13,7 +13,7 @@
                     <div class="col-md-4 text-center">
                         <div class="radio">
                             <label for="org">
-                                <input type="radio" class="custom-control-input" name="acctOptions" value="org" ng-model="userType">
+                                <input type="radio" class="custom-control-input" name="acctOptions" value="org" ng-click="orgClick()" ng-model="userType">
                                 <span class="custom-control-input"></span>
                                 <span class="custom-control-input">Organization</span> 
                             </label>                          
@@ -22,7 +22,7 @@
                     <div class="col-md-4">
                         <div class="radio">
                             <label for="vol">
-                                <input type="radio" name="acctOptions" value="vol" ng-model="userType">
+                                <input type="radio" name="acctOptions" value="vol" ng-click="volClick()" ng-model="userType">
                                 <span class="custom-control-input"></span>
                                 <span class="custom-control-input">Volunteer</span>
                             </label>
@@ -38,7 +38,7 @@
                             <div class="form-group">
                                 <label for="orgName">Organization Name</label>
                                 <input type="text" class="form-control" placeholder="Enter Organization Name" ng-model="orgName">
-                            </div>
+                            
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -52,6 +52,7 @@
                                         <input type="text" class="form-control" placeholder="Contact Phone Number" ng-model="orgContactPhone">
                                     </div>
                                 </div>
+                            </div>
                               <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -94,6 +95,7 @@
                             </div>
                             <div>
                                 <button class="btn btn-lg btn-danger" ng-click="createOrg()">Create Account</button>
+                            </div>
                             </div>
                         </form>
                     </div>
