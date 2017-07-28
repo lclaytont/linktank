@@ -7,6 +7,7 @@ var passport = require('./config/passport');
 var cookieParser = require('cookie-parser'); 
 
 var app = express();
+var router = express.Router()
 
 app.use(express.static(path.join(__dirname, "../client")));
 app.use(bodyParser.json());

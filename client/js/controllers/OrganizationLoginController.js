@@ -13,11 +13,11 @@ app.controller('OrganizationLoginController',
             userService.OrganizationLogin($scope.loginObj)
                 .then(function() {
                     console.log('Signed Org in')
-                    profileRedirect(0)
+                    profileRedirect()
                     $scope.email = ''
                     $scope.password = ''
                 }, function(err) {
-                    console.log('Error logging in user: ' + err.message);
+                    console.log('Error logging in user: ' + err);
                     $scope.email = '',
                     $scope.password = '', 
                     alert('You entered an incorrect Email or Password. Please try again.')
