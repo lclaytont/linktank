@@ -1,5 +1,5 @@
 app.controller('RegisterController',
-    function($scope, $location, volunteerFactory, organizationFactory) {
+    function($scope, $location, volunteerFactory, organizationFactory, userService) {
         console.log('Register for an account');
 
         $scope.orgClick = function() {
@@ -23,9 +23,14 @@ app.controller('RegisterController',
         var u = new volunteerFactory(newUser);
         u.$save(function(data){
             console.log("penis")
-
-            var volId = data;
-            $location.path('/edit_volunteer_profile/' + volId );
+            userService.VolunteerLogin(newUser)
+                .then(function(data) {
+                    console.log(data);
+                    var volId = data.id;
+                    $location.path('/edit_volunteer_profile/' + volId)
+                }, function(err) {
+                    console.log('Error Logging in New User.')
+                })
         }, function(err){
             console.log('Penis error');
         });
