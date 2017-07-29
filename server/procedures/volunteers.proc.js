@@ -22,6 +22,6 @@ exports.write = function(email, name, password) {
 }
 
 // UPDATE VOLUNTEER
-exports.updateVol = function(id, name, email, image, about) {
-    return db.row('update_Volunteers', [id, name, email, password, image, about]);
+exports.updateVol = function(id, name, email, image, about, city, state) {
+    return db.empty('update_Volunteers', [id, name, email, image, about, city, state]);
 } 

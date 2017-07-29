@@ -121,17 +121,21 @@ router.get('/:id', function(req, res) {
 })
 
 router.put('/:id', function(req, res) {
-    var u = Organizations;
-    procedures.updateEmail(req.params.id, Organizations.name, u.email, u.image, u.about).then(function() {
-        if(u.password) {
-            utils.encryptPassword(u.password).then(function(hash) {
-                procedures.updatePw(req.params.id, hash).then(function() {
-                    res.sendStatus(204)
-                })               
-            })
-        } else {
-            res.sendStatus(204);
-        }
+    procedures.updateVol(req.params.id, req.body.name, req.body.email, req.body.image, req.body.about, req.body.city, req.body.state).then(function() {
+        // if(u.password) {
+        //     utils.encryptPassword(u.password).then(function(hash) {
+        //         procedures.updatePw(req.params.id, hash).then(function() {
+        //             res.sendStatus(204)
+        //         })               
+        //     })
+        // } else {
+        //     res.sendStatus(204);
+        // }
+        console.log('Updated Volunteer')
+        res.sendStatus(201);
+    }, function(err) {
+        console.log('Could Not Update User: ' + err.message);
+        res.status(500).send(err);
     })
     
 })
