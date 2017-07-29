@@ -2,55 +2,46 @@
 
 <div class="orgBG"></div>
 <div class="jumbotron">
-  <h1>{{organization.name}}</h1>
+  <h1>{{ organization.organizationName }}</h1>
 </div>
-
-
-
 
 <div class="container">
   <div class="row">
     <div class="col-md-4">
       <div class="thumbnail vol-profile-cont">
-        <img ng-src="{{volunteer.image}}">
+        <img ng-src="{{organization.image}}">
         <div class="caption">
-          <h3>{{ organization.name }}</h3>
-          <p>{{ organization.location }}</p>
+          <h3>{{ organization.organizationName }}</h3>
+          <p>{{ organization.address }}</p>
+          <p>{{ organization.city }}</p>
+          <p>{{ organization.state }}</p>
+          <p>{{ organization.zip }}</p>
           <hr>
           <p>{{ organization.about }}</p>
         </div>
-        <buttton ng-click="editProfile()" class="btn btn-danger">Edit Profile</buttton>
+        <buttton ng-click="editProfile()" class="btn btn-danger"> <a href="/edit_organization_profile/:id">Edit Profile</a></buttton>
       </div>
     </div>
-    <div class="col-md-8">
-      <div class="thumbnail vol-profile-cont ">
-        <h1>organization Events</h1>
-        <hr>
-        <buttton ng-click="findEvents()" class="btn btn-danger">Search Events</buttton>
-      </div>
-
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-8 pull-right">
       <div class="thumbnail vol-profile-cont">
-        <h1>Completed Events</h1>
+        <h1>Available Events </h1> <buttton ng-click="editProfile()" class="btn btn-danger"> <a href="#">Create New Event</a></buttton>
         <hr>
         <table class="table table-striped">
           <thead>
             <tr>
-              <th></th>
+              <th>Date</th>
+              <th>Location</th>
+              <th>Activity</th>
+              <th>Hours</th>
             </tr>
           </thead>
+          <tbody ng-repeat="c in completedEvents">
+            <td>{{ c.date}}</td>
+            <td>{{ c.organizationName }}</td>
+            <td>{{ c.title }}</td>
+            <td>{{ c.endTime - c.startTime }}</td>
+          </tbody>
         </table>
-      </div>
-    </div>
-    <div class="col-md-4 ">
-      <div class="thumbnail vol-profile-cont">
-        <div class="caption">
-          <h1>Achievements</h1>
-          <hr>
-        </div>
       </div>
     </div>
   </div>
