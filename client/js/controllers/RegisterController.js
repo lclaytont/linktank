@@ -21,9 +21,11 @@ app.controller('RegisterController',
         console.log(newUser)
         
         var u = new volunteerFactory(newUser);
-        u.$save(function(){
+        u.$save(function(data){
             console.log("penis")
-            $location.path('/');
+
+            var volId = data;
+            $location.path('/edit_volunteer_profile/' + volId );
         }, function(err){
             console.log('Penis error');
         });
@@ -46,9 +48,11 @@ app.controller('RegisterController',
         console.log(newOrg)
         
         var u = new organizationFactory(newOrg);
-        u.$save(function(){
+        u.$save(function(data){
             console.log("penis")
-            $location.path('/');
+
+            var orgId = data;
+            $location.path('/edit_organization_profile/' + orgId);
         }, function(err){
             console.log('Penis error');
         });
