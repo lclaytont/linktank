@@ -1,57 +1,32 @@
-<!-- navbar -->
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <!-- toggle effect and navbar brand -->
+
+
+<div id="myNavbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#thing-collapse" aria-expanded="false">
-        <span class="sr-only">Toggle Navigation</span> 
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+                <span class="sr-only">Toggle Navigation</span> 
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
             <a href="/" class="grab navbar-brand">LinkTank</a>
         </div>
-        <!-- menu items -->
-        <div class="collapse navbar-collapse navbar-right" id="thing-collapse">
-            <ul class="nav navbar-nav">
-                <li><a class="menu-item" href="/register">Sign Up</a></li>
+        <div class="navbar-collapse collapse navbar-right" id="thing-collapse">
+            <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle menu-item" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        Login<span class="caret"></span>
+                        Sign In<span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="menu-item" href="/volunteer_login">Volunteer Login</a></li>
                         <li><a class="menu-item" href="/organization_login">Organization Login</a></li>
                         <li><a class="menu-item" href="/organization_profile">Organization Profile</a></li>
                         <li><a class="menu-item" href="/volunteer_profile">Volunteer Profile</a></li>
-                        <li><a class="menu-item" href="/volunteer_logout">vol logout</a></li>
                     </ul>
                 </li>
-                <li><a class="menu-item" href="#">About Us</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-
-<div id="myNavbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="#" class="navbar-brand">LinkTank</a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Sign In</a></li>
-                <li><a href="#">Sign Up</a></li>
-                <li><a href="#">Search Organization</a></li>
-                <li><a href="#">Search Volunteers</a></li>
+                <li><a href="/register">Sign Up</a></li>
                 <li><a href="#">About Us</a></li>
-                <li><a href="#">Log Out</a></li>
+                <li><a href="/volunteer_logout">Log Out</a></li>
             </ul>
         </div>
     </div>
