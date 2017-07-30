@@ -1,52 +1,129 @@
 <main-nav></main-nav>
 
-<div class="container-fluid">
-    <div class="row pr-content">
-        <div class="col-md-6 pr-content-1">
-            <h1>{{ description }}</h1>
-            <br/>
-            <button type="button" href="/register" class="btn btn-danger btn-lg">Sign Up</button>
-        </div>
-        <div class="hidden-xs col-md-6 pr-content-2">
-            <img src="/images/mike-wilson-96168.jpg" class="img-responsive">
-        </div>
-    </div>
-</div>
-
-<!-- teamwork image -->
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-6 pr-content-3">
-            <img src="/images/rawpixel-com-250087.jpg" class="img-responsive">
-        </div>
-        <div class="col-md-6 pr-content-4 text-center">
-            <h2>{{ slogan }}</h2>
-            <hr>
-            <br>
-            <h3 class="pr-content-4-mod">{{ companyDescription }}</h3>
-        </div>
-    </div>
-</div>
-
-<!-- footer -->
-<div class="footer">
-    <div class="container-fluid">
+<div id="header" class="header">
+    <div class="container">
         <div class="row">
-            <div class="col-md-4 text-center">
-                <a href="#">
-                    <i class="fa fa-twitter" aria-hidden="true"></i>
-                </a>
+            <div class="col-md-6 wow fadeInLeft">
+                <h1>{{ slogan }}</h1>
+                <p>{{companyDescription}}</p>
+                <button class="btn btn-lg btn-primary">Sign In</button>
+                <button class="btn btn-lg btn-success">Sign Up</button>
             </div>
-            <div class="col-md-4 text-center">
-                <a href="#">
-                    <i class="fa fa-facebook-official" aria-hidden="true"></i>
-                </a>
-            </div>
-            <div class="col-md-4 text-center">
-                <a href="#">
-                    <i class="fa fa-instagram" aria-hidden="true"></i>
-                </a>
+            <div class="col-md-6 wow fadeInRight img-rounded">
+                <img src="./images/homeSlideIn.jpg" alt="This should be a cool picture">
             </div>
         </div>
     </div>
 </div>
+
+
+<!---End Header -->
+
+<!--- Services -->
+
+<div id="services" class="services">
+    <div class="container">
+        <!--Intro Services-->
+        <h2 class="wow fadeInUp">What is it that we do?</h2>
+        <p class="wow fadeInUp" data-wow-delay="0.4">{{whatWeDo}} </p>
+        <!--The actual services-->
+        <div class="row">
+            <div class="col-md-3 wow fadeInLeft" data-wow-delay=".4s">
+                <i class="fa fa-sign-in" aria-hidden="true"></i>
+                <h4>Sign up</h4>
+                <p>{{servicePointOne}}</p>
+            </div>
+            <div class="col-md-3 wow fadeInLeft" data-wow-delay="0.8s">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                <h4>Post or join events</h4>
+                <p> {{servicePointTwo}} </p>
+            </div>
+            <div class="col-md-3 wow fadeInLeft" data-wow-delay="01.3s">
+                <i class="fa fa-database" aria-hidden="true"></i>
+                <h4>Put in work</h4>
+                <p> {{servicePointThree}} </p>
+            </div>
+            <div class="col-md-3 wow fadeInLeft" data-wow-delay="1.8s">
+                <i class="fa fa-university" aria-hidden="true"></i>
+                <h4>Show off what you did</h4>
+                <p> {{servicePointFour}} </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!---End Services -->
+
+
+<!--team-->
+
+
+<div id="team" class="team">
+    <div class="container">
+        <div class="row">
+            <h2 class="wow fadeInUp">Meet the team...</h2>
+            <p class="wow fadeInUp" data-wow-delay="0.4">The team that linked up so that they can help others link up.</p>
+            <div class="col-md-4 wow fadeInLeft" data-wow-delay="0.6s">
+                <img src="images/team-1.jpg" class="img-circle" alt="">
+                <h4>{{personeOneName}}</h4>
+                <b> {{personOneTitle}} </b>
+                <p> {{personeOneAbout}} </p>
+                <a href="#"><i class="fa fa-github" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+            </div>
+            <div class="col-md-4  wow fadeInLeft" data-wow-delay="1.2s">
+                <img src="images/team-1.jpg" class="img-circle" alt="">
+                <h4> {{personTwoName}} </h4>
+                <b> {{personTwoTitle}} </b>
+                <p> {{personeTwoAbout}} </p>
+                <a href="#"><i class="fa fa-github" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+            </div>
+            <div class="col-md-4  wow fadeInLeft" data-wow-delay="1.8s">
+                <img src="images/team-1.jpg" class="img-circle" alt="">
+                <h4>{{personThreeName}}</h4>
+                <b>{{personThreeTitle}}</b>
+                <p>{{personThreeAbout}}</p>
+                <a href="#"><i class="fa fa-github" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--- End Team -->
+
+
+<!--- Contact -->
+
+<div id="contact" class="contact">
+    <div class="container">
+        <div class="row">
+            <h2 class="wow fadeInUp">Contact Us</h2>
+            <p class="wow fadeInUp" data-wow-delay="0.4">What do you have to say? Message us anytime!</p>
+            <div class="col-md-6">
+                <div class="input-group input-group-lg wow fadeInUp" data-wow-delay="0.3s">
+                    <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" aria-describedby="sizing-addon1" placeholder="Full Name">
+                </div>
+                <div class="input-group input-group-lg wow fadeInUp" data-wow-delay=".6s">
+                    <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" aria-describedby="sizing-addon1" placeholder="Email Address">
+                </div>
+                <div class="input-group input-group-lg wow fadeInUp" data-wow-delay=".9s">
+                    <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" aria-describedby="sizing-addon1" placeholder="Phone Number">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="input-group wow fadeInUp" data-wow-delay="1.2s">
+                    <textarea name="" id="" cols="80" rows="6" class="form-control" placeholder="What's Up?"></textarea>
+                </div>
+                <button class="btn btn-lg wow fadeInUp" data-wow-delay="1.5s">Submit Your Message</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!---End Contact ->
+
