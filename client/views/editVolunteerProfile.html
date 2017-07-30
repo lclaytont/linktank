@@ -1,65 +1,116 @@
 <volunteer-nav></volunteer-nav>
 
-<div class="container">
+<div class="container rg-master-1">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="text-center">
+      
+        <div class="col-md-8 col-md-offset-2 text-center">
                 <h1>{{ newVol.name }}</h1>
                 <h4>Edit your profile information</h4>
-            </div>
-        </div>
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <form>  <!-- beginning orgs form -->
-                    <div class="form-group">
-                        <label for="volName">Name</label>
-                        <input type="text" class="form-control" ng-model="newVol.name">
-                    
-                    
-                        <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="volEmail">Email & Username</label>
-                                <input type="text" class="form-control" ng-model="newVol.email">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="volCity">City</label>
-                                <input type="text" class="form-control" placeholder="Enter City" ng-model="newVol.city">
-                            </div>
-                        </div>
 
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="volState">State</label>
-                                <input type="text" class="form-control" placeholder="Enter State" ng-model="newVol.state">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="volPic">DEAL WITH A PICTURE</label>
-                                <input type="text" class="form-control"  ng-model="newVol.image">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="volAbout">Tell us a little about yourself:</label>
-                                <textarea name="volAbout" cols="30" rows="10" ng-model="newVol.about"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <button class="btn btn-lg btn-danger" ng-click="updateVol(newVol)">Update Profile</button>
-                    </div>
-                    </div>
-                </form>
- 
+        
+        <div class="row">
+        <div class="col-md-6 text-center">
+            <div class="radio">
+                <label for="profile">
+                    <input type="radio" class="custom-control-input" name="profileOptions" value="profile" ng-click="profileClick()" ng-model="editType">
+                    <span class="custom-control-input"></span>
+                    <span class="custom-control-input">Edit Profile Information</span> 
+                </label>
             </div>
         </div>
+        <div class="col-md-6">
+            <div class="radio">
+                <label for="pic">
+                    <input type="radio" name="profileOptions" ng-click="picClick()" value="pic" ng-model="editType">
+                    <span class="custom-control-input"></span>
+                    <span class="custom-control-input">Edit Profile Picture</span>
+                </label>
+            </div>
+        </div>
+        </div>
+
+
+    <!-- end of radio row -->
+    <div class="container" ng-show="editType === 'profile'">
+        <!-- <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="text-center">
+                    <h1>{{ newVol.name }}</h1>
+                    <h4>Edit your profile information</h4>
+                </div>
+            </div> -->
+            <div class="row">
+                <div class="col-md-8 text-justify">
+                    <form>
+                        <!-- beginning orgs form -->
+                        <div class="form-group">
+                            <label for="volName">Name</label>
+                            <input type="text" class="form-control" ng-model="newVol.name">
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="volEmail">Email & Username</label>
+                                        <input type="text" class="form-control" ng-model="newVol.email">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="volCity">City</label>
+                                        <input type="text" class="form-control" placeholder="Enter City" ng-model="newVol.city">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="volState">State</label>
+                                        <input type="text" class="form-control" placeholder="Enter State" ng-model="newVol.state">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="volPic">DEAL WITH A PICTURE</label>
+                                        <input type="text" class="form-control" ng-model="newVol.image">
+                                    </div>
+                                </div>
+                            </div> -->
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="volAbout">Tell us a little about yourself:</label>
+                                        <textarea name="volAbout" cols="30" rows="10" ng-model="newVol.about"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="btn btn-lg btn-danger" ng-click="updateVol(newVol)">Update Profile</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    
+    <!-- edit profile pic -->
+    <div class="container" ng-show="editType === 'pic'">
+
+    <div class="row">
+        <div class="col-md-8 text-center">
+            <form ng-submit="updatePic()">
+                <label class="btn btn-danger">
+                    Browse
+                <input type="file" file-model="file.upload" name="profilePic" style="visibility: hidden"> 
+                </label>
+                <button class="btn btn-danger" type="submit">Add Image</button>
+            </form>
+        </div>
+    </div>
+    </div>
+    
+    </div>
     </div>
 </div>
