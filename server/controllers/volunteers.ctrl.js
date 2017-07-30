@@ -141,8 +141,10 @@ router.get('/:id', function(req, res) {
     })
 })
 
+
+//  --> Updates all values for Volunteers except IMAGES
 router.put('/:id', function(req, res) {
-    procedures.updateVol(req.params.id, req.body.name, req.body.email, req.body.image, req.body.about, req.body.city, req.body.state).then(function() {
+    return procedures.updateVol(req.params.id, req.body.name, req.body.email, req.body.about, req.body.city, req.body.state).then(function() {
         // if(u.password) {
         //     utils.encryptPassword(u.password).then(function(hash) {
         //         procedures.updatePw(req.params.id, hash).then(function() {
@@ -161,6 +163,19 @@ router.put('/:id', function(req, res) {
     
 })
 
+//  --> Updates the path of the image in DB 
+router.put('/picture_path/:id', function(req, res) {
+   return procedures.updateVolImg(req.params.id, req.body.image) 
+        .then(function() {
+       console.log('Updated the path to the image');
+       res.sendStatus(201);
+   }, function(err) {
+       console.log('Path to image not updated: ' + err.message)
+       res.status(500).send(err);
+   })
+})
+
+//  --> HANDLES UPLOADED IMAGES AND PUTS THEM IN /client/images/userImg
 router.post('/profile_picture/:id', function(req, res) {
        upload(req, res, function(err) {
            if (err) {
