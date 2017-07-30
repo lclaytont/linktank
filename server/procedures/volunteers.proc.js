@@ -29,3 +29,7 @@ exports.updateVol = function(id, name, email, about, city, state) {
 exports.updateVolImg = function(id, img) {
     return db.empty('Update_VolunteerImage', [id, img]);
 }
+
+exports.getVolImage = function(id) {
+    return db.row('get_VolImg', [id]);
+}
