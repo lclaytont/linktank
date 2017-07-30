@@ -1,9 +1,22 @@
 
 var express = require('express');
+var fs = require('fs');
 var passport = require('passport');
 var procedures = require('../procedures/volunteers.proc');
 var auth = require('../middleware/auth.mw');
 var utils = require('../utils');  //this is for the hashing/salting
+var multer = require('multer');
+//configure multer 
+var storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, '../../client/images/userimg')
+    },
+    filename: function(req, file, cb) {
+        cb(null, 'vol' + req.params.id)
+    }
+}); 
+
+var upload = multer({ storage: storage});
 
 // k
 
@@ -140,6 +153,13 @@ router.put('/:id', function(req, res) {
     
 })
 
+router.post('/profile_picture/:id', upload.single('profilePic'),
+    function(req, res, next) {
+        console.log(req.file);
+        res.send(req.file);
+    }, function(err) {
+        console.log('Error uploading profile pic: ' + err.message);
+    })
 // router.route('*')//everything after this point, we are ensuring the user is logged in.
     // .all(auth.isLoggedIn);
 
