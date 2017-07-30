@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- bootstrap css -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
     <!-- fonts -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display+SC" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
@@ -16,8 +15,13 @@
     <!-- google sign-in -->
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <!-- jQuery and Bootstrap js -->
-    <script src="http://code.jquery.com/jquery-3.2.1.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.js">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script src="http://code.jquery.com/jquery-3.2.1.js"></script>
     <!-- Angular 1.6.5 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.js"></script>
@@ -26,6 +30,13 @@
      <!-- local scripts -->
     <script src="app.js"></script>
     <script src="/js/directives/userNav.js"></script>
+    <script src="/js/directives/fileModel.js"></script>
+    <!-- Factories and Services -->
+    <script src="/js/services/userService.js"></script>
+    <script src="/js/services/volunteerFactory.js"></script>
+    <script src="/js/services/organizationFactory.js"></script>
+    <script src="/js/services/emailFactory.js"></script>
+    <script src="/js/services/uploadFileService.js"></script>
     <!--Controllers-->
     <script src="/js/controllers/HomeController.js"></script>
     <script src="/js/controllers/VolunteerLoginController.js"></script>
@@ -35,52 +46,21 @@
     <script src="/js/controllers/OrganizationProfileController.js"></script>
     <script src="/js/controllers/VolunteerLogoutController.js"></script>
     <script src="/js/controllers/ContactController.js"></script>
+    <script src="/js/controllers/EditOrganizationProfileController.js"></script>
+    <script src="/js/controllers/EditVolunteerProfileController.js"></script>
     <!--Factories/ Services-->
-    <script src="/js/services/userService.js"></script>
-    <script src="/js/services/volunteerFactory.js"></script>
-    <script src="/js/services/organizationFactory.js"></script>
-    <script src="/js/services/emailFactory.js"></script>
     <title>LinkTank</title>
 </head>
 
 <body>
 
-    <!-- navbar -->
-<!-- <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid"> -->
-        <!-- toggle effect and navbar brand -->
-        <!-- <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#thing-collapse" aria-expanded="false">
-        <span class="sr-only">Toggle Navigation</span> 
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-            <a href="/" class="grab navbar-brand">LinkTank</a>
-        </div> -->
-        <!-- menu items -->
-        <!-- <div class="collapse navbar-collapse navbar-right" id="thing-collapse">
-            <ul class="nav navbar-nav">
-                <li><a class="menu-item" href="/register">Sign Up</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle menu-item" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        Login<span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="menu-item" href="/volunteer_login">Volunteer Login</a></li>
-                        <li><a class="menu-item" href="/organization_login">Organization Login</a></li>
-                        <li><a class="menu-item" href="/organization_profile">Organization Profile</a></li>
-                        <li><a class="menu-item" href="/volunteer_logout">vol logout</a></li>
-                    </ul>
-                </li>
-                <li><a class="menu-item" href="#">About Us</a></li>
-            </ul>
-        </div>
+
+    <div ng-view>
+
     </div>
-</nav> -->
 
-
-
-    <div ng-view></div>
+    <script>
+        new WOW().init();
+    </script>
 </body>
 </html>

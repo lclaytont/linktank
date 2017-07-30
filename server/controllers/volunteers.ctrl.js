@@ -1,9 +1,30 @@
 
 var express = require('express');
+var fs = require('fs');
+var path = require('path');
 var passport = require('passport');
 var procedures = require('../procedures/volunteers.proc');
 var auth = require('../middleware/auth.mw');
 var utils = require('../utils');  //this is for the hashing/salting
+var multer = require('multer');
+//configure multer 
+var storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, path.join(__dirname, '../../client/images/userImg'));
+    },
+    filename: function(req, file, cb) {
+        if (!file.originalname.match(/\.(png)$/)) {
+            var err = new Error();
+            err.code = 'filetype';
+            console.log('NOPE, YOUR FILE TYPE DID NOT MATCH VOL.CTRL LINE 18')
+            return cb(err)
+        } else {
+            cb(null,  'vol' + file.originalname )
+        }
+    }
+}); 
+
+var upload = multer({ storage: storage}).single('profilePic');
 
 // k
 
@@ -120,22 +141,68 @@ router.get('/:id', function(req, res) {
     })
 })
 
+
+//  --> Updates all values for Volunteers except IMAGES
 router.put('/:id', function(req, res) {
-    var u = Organizations;
-    procedures.updateEmail(req.params.id, Organizations.name, u.email, u.image, u.about).then(function() {
-        if(u.password) {
-            utils.encryptPassword(u.password).then(function(hash) {
-                procedures.updatePw(req.params.id, hash).then(function() {
-                    res.sendStatus(204)
-                })               
-            })
-        } else {
-            res.sendStatus(204);
-        }
+    return procedures.updateVol(req.params.id, req.body.name, req.body.email, req.body.about, req.body.city, req.body.state).then(function() {
+        // if(u.password) {
+        //     utils.encryptPassword(u.password).then(function(hash) {
+        //         procedures.updatePw(req.params.id, hash).then(function() {
+        //             res.sendStatus(204)
+        //         })               
+        //     })
+        // } else {
+        //     res.sendStatus(204);
+        // }
+        console.log('Updated Volunteer')
+        res.sendStatus(201);
+    }, function(err) {
+        console.log('Could Not Update User: ' + err.message);
+        res.status(500).send(err);
     })
     
 })
 
+//  --> Updates the path of the image in DB 
+router.put('/picture_path/:id', function(req, res) {
+   return procedures.updateVolImg(req.params.id, req.body.image) 
+        .then(function() {
+       console.log('Updated the path to the image');
+       res.sendStatus(201);
+   }, function(err) {
+       console.log('Path to image not updated: ' + err.message)
+       res.status(500).send(err);
+   })
+})
+
+//  --> HANDLES UPLOADED IMAGES AND PUTS THEM IN /client/images/userImg
+router.post('/profile_picture/:id', function(req, res) {
+       upload(req, res, function(err) {
+           if (err) {
+                if (err.code === 'filetype') {
+                    console.log('BAD FILETYPE: ' + err.message)
+                    res.json({success: false, message: 'File type is invalid. Please use .png'})
+                } else {
+                    console.log("SOMETHING ELSE BAD: " + err.message + req.file)
+                    res.json({success: false, message: 'File was not able to be uploaded'})
+                }
+           } else {
+               if (!req.file) {
+                   console.log('NO FILE UPLOADED?')
+                   res.json({success: false, message: 'No File was selected'});
+               } else {
+                   console.log('FILE UPLOADED SUCCESSFULLY')
+                   res.json({success: true, message: 'File was uplaoded'});
+               }
+           }
+       })
+});
+    
+    //     console.log('HERE I AM (FILE)' + req.file);
+    //     res.send(req.file);
+    // }, function(err) {
+    //     console.log('Error uploading profile pic: ' + err.message);
+    // })
 // router.route('*')//everything after this point, we are ensuring the user is logged in.
     // .all(auth.isLoggedIn);
 
