@@ -1,9 +1,9 @@
 app.service('UploadFileService', 
     function($http) {
 
-        this.upload = function(file) {
+        this.createFormData = function(file) {
             var fd = new FormData();
             fd.append('profilePic', file.upload);
-            return fd
+
         }
     });

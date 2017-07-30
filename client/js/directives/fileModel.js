@@ -2,7 +2,7 @@ app.directive('fileModel',
     function($parse) {
         return {
             restrict: 'A',
-            link: function($scope, element, attrs) {
+            link: function(scope, element, attrs) {
                 var parsedFile = $parse(attrs.fileModel);
                 var parsedFileSetter = parsedFile.assign;
 

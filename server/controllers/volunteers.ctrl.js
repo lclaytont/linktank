@@ -1,6 +1,7 @@
 
 var express = require('express');
 var fs = require('fs');
+var path = require('path');
 var passport = require('passport');
 var procedures = require('../procedures/volunteers.proc');
 var auth = require('../middleware/auth.mw');
@@ -9,14 +10,21 @@ var multer = require('multer');
 //configure multer 
 var storage = multer.diskStorage({
     destination: function(req, file, cb) {
-        cb(null, '../../client/images/userimg')
+        cb(null, path.join(__dirname, '../../client/images/userImg'));
     },
     filename: function(req, file, cb) {
-        cb(null, 'vol' + req.params.id)
+        if (!file.originalname.match(/\.(png)$/)) {
+            var err = new Error();
+            err.code = 'filetype';
+            console.log('NOPE, YOUR FILE TYPE DID NOT MATCH VOL.CTRL LINE 18')
+            return cb(err)
+        } else {
+            cb(null,  'vol' + file.originalname )
+        }
     }
 }); 
 
-var upload = multer({ storage: storage});
+var upload = multer({ storage: storage}).single('profilePic');
 
 // k
 
@@ -153,13 +161,33 @@ router.put('/:id', function(req, res) {
     
 })
 
-router.post('/profile_picture/:id', upload.single('profilePic'),
-    function(req, res, next) {
-        console.log(req.file);
-        res.send(req.file);
-    }, function(err) {
-        console.log('Error uploading profile pic: ' + err.message);
-    })
+router.post('/profile_picture/:id', function(req, res) {
+       upload(req, res, function(err) {
+           if (err) {
+                if (err.code === 'filetype') {
+                    console.log('BAD FILETYPE: ' + err.message)
+                    res.json({success: false, message: 'File type is invalid. Please use .png'})
+                } else {
+                    console.log("SOMETHING ELSE BAD: " + err.message + req.file)
+                    res.json({success: false, message: 'File was not able to be uploaded'})
+                }
+           } else {
+               if (!req.file) {
+                   console.log('NO FILE UPLOADED?')
+                   res.json({success: false, message: 'No File was selected'});
+               } else {
+                   console.log('FILE UPLOADED SUCCESSFULLY')
+                   res.json({success: true, message: 'File was uplaoded'});
+               }
+           }
+       })
+});
+    
+    //     console.log('HERE I AM (FILE)' + req.file);
+    //     res.send(req.file);
+    // }, function(err) {
+    //     console.log('Error uploading profile pic: ' + err.message);
+    // })
 // router.route('*')//everything after this point, we are ensuring the user is logged in.
     // .all(auth.isLoggedIn);
 

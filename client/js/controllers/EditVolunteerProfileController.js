@@ -1,5 +1,5 @@
 app.controller('EditVolunteerProfileController', 
-    function($scope, volunteerFactory, $routeParams, UploadFileService) {
+    function($scope, volunteerFactory, $routeParams, $http) {
         $scope.newVol = volunteerFactory.get({id: $routeParams.id});
 
         $scope.profileClick = function() {
@@ -18,11 +18,23 @@ app.controller('EditVolunteerProfileController',
             volunteerFactory.update({id: $routeParams.id}, newVol);
         }
 
+        $scope.file = {};
         $scope.updatePic = function() {
-            var fileWithForm = uploadFileService.upload
+            var file = $scope.file;
+            var fileWithForm = new FormData();
+            fileWithForm.append('profilePic', file.upload)
+            console.log($scope.file);
+            for (var pair of fileWithForm.entries()) {
+                console.log(pair[0]);
+            }
 
-            $http.post('http//localhost:3000/api/volunteers/profile_pic/' + $routeParams.id,
-                fileWithForm, {transformRequest: angular.identity,
-                headers: {'Content-Type': undefined}})
+            $http.post('/api/volunteers/profile_picture/' + $routeParams.id,
+                fileWithForm, 
+                {transformRequest: angular.identity,
+                headers: {'Content-Type': undefined}}).then(function(){
+                    console.log('File Uploaded')
+                }, function(err) {
+                    console.log('File did not make it to where you wanted it to: ' + err.message);
+                })
         }
     });
