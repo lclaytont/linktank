@@ -1,61 +1,40 @@
  <volunteer-nav></volunteer-nav>
  
- <div class="container">
-     <div class="row"> 
-         <div class="col-md-4">
-            <div class="thumbnail vol-profile-cont">
-                 <img ng-src="{{volunteer.image}}"> 
+<div id="volHeader" class="volHeader">
+    <div class="container">
+        <div id="firstRow" class="row">
+            <img class="profilePic" ng-src="{{volunteer.image}}" alt="users picture">
+        </div>
+        <div id="secondRow" class="row">
+            <div id="aboutThumbnail" class="thumbnail col-md-3 wow fadeInLeft">
                 <div class="caption">
-                    <h3>{{ volunteer.name }}</h3>
-                    <p>{{ volunteer.location }}</p>
+                    <h2>{{ volunteer.name }}</h2>
                     <hr>
-                    <p>{{ volunteer.about }}</p>
+                    <p class="fa ">{{ volunteer.email }}</p>
+                    <p class="fa fa-user">{{ volunteer.about }}</p>
+                    <br>
+                    <buttton ng-click="editProfile()" class="btn btn-danger">Edit Profile</buttton>
                 </div>
-              <buttton ng-click="editProfile()" class="btn btn-danger">Edit Profile</buttton>
             </div>
-         </div>
-        <div class="col-md-8">
-            <div class="thumbnail vol-profile-cont ">
-                <h1>Volunteer Schedule</h1>
-                <hr>
-                <buttton ng-click="findEvents()" class="btn btn-danger">Search Events</buttton>
+            <div class="col-md-6">
+                <div class="thumbnail wow fadeInUp">
+                    <h1>Upcoming Events</h1>
+                    <hr>
+                    <buttton ng-click="findEvents()" class="btn btn-danger">Search Events</buttton>
+                </div>
+            </div>
+            <div id="aboutThumbnail" class="thumbnail col-md-3 wow fadeInRight">
+                <div class="caption">
+                    <h1>Past Events</h1>
+                    <hr>
+              
+                </div>
             </div>
         </div>
-     </div>
-     <div class="row"> 
-         <div class="col-md-8">
-             <div class="thumbnail vol-profile-cont">
-                 <h1>Completed Events</h1>
-                 <hr>
-                 <table class="table table-striped">
-                     <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Organization</th>
-                            <th>Activity</th>
-                            <th>Hours</th>
-                        </tr>
-                     </thead>
-                    <tbody ng-repeat="c in completedEvents">
-                        <td>{{ c.date}}</td>
-                        <td>{{ c.organizationName }}</td>
-                        <td>{{ c.title }}</td>
-                        <td>{{ c.endTime - c.startTime }}</td>
-                    </tbody>
-                 </table>
-             </div>
-         </div>
-         <div class="col-md-4 ">
-             <div class="thumbnail vol-profile-cont">
-                 <div class="caption">
-                     <h1>Achievements</h1>
-                     <hr>
-                 </div>
-             </div>
-         </div>
-     </div>
-     <div class="row">
-         <div class="col">
-         </div>
-     </div>
- </div>
+    </div>
+</div>
+
+<!--<contact-area></contact-area>-->
+
+
+ 

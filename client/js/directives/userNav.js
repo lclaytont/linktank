@@ -21,3 +21,11 @@ app.directive('organizationNav',
             templateUrl: 'views/organizationNav.html'
         }
     });
+
+app.directive('contactArea',
+    function() {
+        return {
+            restrict: 'E',
+            templateUrl: 'views/contact.html'
+        }
+    });

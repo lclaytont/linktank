@@ -1,19 +1,33 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="email">Your Email</label>
-                <input type="email" class="form-control" ng-model="email" placeholder="Enter Email">
+<div id="contact" class="contact">
+    <div class="container">
+        <div class="row">
+            <h2 class="wow fadeInUp">Contact Us</h2>
+            <p class="wow fadeInUp" data-wow-delay="0.4">What do you have to say? Message us anytime!</p>
+            <div class="col-md-6">
+                <!--Name-->
+                <div class="input-group input-group-lg wow fadeInUp" data-wow-delay="0.3s">
+                    <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" aria-describedby="sizing-addon1" placeholder="Full Name">
+                </div>
+                <!--email-->
+                <div class="input-group input-group-lg wow fadeInUp" data-wow-delay=".6s">
+                    <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" aria-describedby="sizing-addon1" ng-model="email" placeholder="Email Address">
+                </div>
+                <!--subject-->
+                <div class="input-group input-group-lg wow fadeInUp" data-wow-delay=".9s">
+                    <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-comment" aria-hidden="true"></i></span>
+                    <input type="text" class="form-control" aria-describedby="sizing-addon1" ng-model="subject" placeholder="Enter Subject">
+                </div>
             </div>
-            <div class="form-group">
-                <label for="subject">Your Subject</label>
-                <input type="text" class="form-control" ng-model="subject" placeholder="Enter Subject">
+            <!--content-->
+            <div class="col-md-6">
+                <div class="input-group wow fadeInUp" data-wow-delay="1.2s">
+                    <textarea name="" id="" cols="80" rows="6" class="form-control" ng-model="content" placeholder="What's Up?"></textarea>
+                </div>
+                <!--button-->
+                <button class="btn btn-lg wow fadeInUp" data-wow-delay="1.5s" ng-click="sendMessage()">Submit Your Message</button>
             </div>
-            <div class="form-group">
-                <label for="content">Your Message</label>
-                <textarea class="form-control" ng-model="content" cols="1" rows="5" placeholder="Type your message here"></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary btn-lg" ng-click="sendMessage()">Submit</button>
         </div>
     </div>
 </div>
