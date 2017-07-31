@@ -171,6 +171,7 @@ router.post('/profile_picture/:id', function(req, res) {
 router.get('/:id', function(req, res) {
     procedures.read(req.params.id)
     .then(function(user) {
+        console.log(req.user);
         res.send(user).status(201);
         console.log("Grabbed the user")
     }, function() {

@@ -11,9 +11,9 @@ app.controller('OrganizationLoginController',
             console.log($scope.loginObj)
 
             userService.OrganizationLogin($scope.loginObj)
-                .then(function() {
+                .then(function(data) {
                     console.log('Signed Org in')
-                    profileRedirect()
+                    profileRedirect(data.id)
                     $scope.email = ''
                     $scope.password = ''
                 }, function(err) {
