@@ -67,10 +67,11 @@ router.get('/vols_events/:id', function(req, res) {
 // USER CAN SEE THE EVENTS OF A SINGLE ORG
 // :id = Organization_id
 router.get('/organization/:id', function(req, res) {
+    console.log(req.params.id)
     return eventProc.getEventsbyOrg(req.params.id)
         .then(function(events) {
             console.log('Retrieved all of this organization\'s events');
-            res.status(201).send(data);
+            res.status(201).send(events);
         }, function(err) {
             console.log('Could not grab this organization\'s events');
             res.sendStatus(504);

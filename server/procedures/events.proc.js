@@ -20,8 +20,8 @@ exports.updateEvent = function(id, title, description, helpNeeded, startTime, en
     return db.empty('Update_Events', [id, title, description, helpNeeded, startTime, endTime, totalHours])
 }; 
 
-exports.getEventsbyOrg = function(organzationId) {
-    return db.rows('Get_organizationEvents', [organizationId]);
+exports.getEventsbyOrg = function(orgId) {
+    return db.rows('Get_organizationEvents', [orgId]);
 }
 exports.deleteEvent = function(id) {
     return db.empty('Delete_Event', [id]);
