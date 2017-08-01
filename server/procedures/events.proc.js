@@ -27,6 +27,18 @@ exports.deleteEvent = function(id) {
     return db.empty('Delete_Event', [id]);
 };
 
-exports.volunteerForEvent = function(id, Volunteers_Id) {
-    return db.empty('', [id, volunteers_id])
+exports.volunteerForEvent = function(volunteers_Id, id) {
+    return db.empty('VolunteerForEvent', [volunteers_id, id])
+}
+
+exports.getSignedUpVols = function(eventId) {
+    return db.rows('See_Vols_SignedUp', [eventId]);
+}
+
+exports.getVolsEvents = function(volId) {
+    return db.rows('See_Events_SignedUp', [volId]);
+}
+
+exports.getCountOfVols = function(eventId) {
+    return db.row('See_CountOfVols', [eventId]);
 }

@@ -2,7 +2,8 @@ app.directive('mainNav',
     function() {
         return {
             restrict: 'E',
-            templateUrl: 'views/mainNav.html'
+            templateUrl: 'views/mainNav.html',
+            controller: 'VolunteerLoginController'
         }
     });
 
