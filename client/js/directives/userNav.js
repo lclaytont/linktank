@@ -2,7 +2,8 @@ app.directive('mainNav',
     function() {
         return {
             restrict: 'E',
-            templateUrl: 'views/mainNav.html'
+            templateUrl: 'views/mainNav.html',
+            controller: 'VolunteerLoginController'
         }
     });
 
@@ -19,5 +20,13 @@ app.directive('organizationNav',
         return {
             restric: 'E',
             templateUrl: 'views/organizationNav.html'
+        }
+    });
+
+app.directive('contactArea',
+    function() {
+        return {
+            restrict: 'E',
+            templateUrl: 'views/contact.html'
         }
     });

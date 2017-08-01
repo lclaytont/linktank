@@ -22,31 +22,15 @@ exports.write = function(email, password, organizationName, contact, address, ci
 }
 
 // UPDATE VOLUNTEER
-exports.updateVol = function(id, name, email, image, about) {
-    return db.row('update_Volunteers', [id, name, email, password, image, about]);
+// exports.updateVol = function(id, name, email, image, about) {
+//     return db.row('update_Volunteers', [id, name, email, password, image, about]);
+// }
+
+
+exports.updateOrgImg = function(id, img) {
+    return db.empty('Update_OrganizationImage', [id, img]);
 }
 
-// exports.all = function(){
-//     return db.rows('GetEvents');
-// }
-
-// exports.all = function(){
-//     return db.rows('GetOrgs')
-// }
-
-// exports.create = function(title, userid, categoryid, content){ //C
-//     return db.row('PostNewEvent', [title, userid, content]);
-// }
- 
-// exports.read = function(id){  //R
-//     return db.row('GetSpecifiedEvents', [id]);
-// }
-
-
-// exports.update = function(id, title, content, categoryid){  //U
-//     return db.empty('UpdateEvent', [id, title, content]);
-// }
-
-// exports.destroy = function(id){  //D
-//     return db.empty('DeleteEvent', [id]);
-// }
+exports.updateOrg = function(id, organizationName, contact, address, email, city, state, zip, phone, about) {
+    return db.empty('update_Organization', [id, organizationName, contact, address, email, city, state, zip, phone, about])
+}

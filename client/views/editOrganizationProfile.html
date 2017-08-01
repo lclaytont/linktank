@@ -1,67 +1,137 @@
-<main-nav></main-nav>
+<volunteer-nav></volunteer-nav>
 
-<h2 class="text-center">Edit your organizations information!</h2>
-<form>
-    <div class="form-group">
-        <label for="orgName">Organization Name</label>
-        <input type="text" class="form-control" placeholder="Enter Organization Name" ng-model="orgName">
+<div class="container rg-master-1">
+    <div class="row">
+      
+        <div class="col-md-8 col-md-offset-2 text-center">
+                <h1>{{ newOrg.name }}</h1>
+                <h4>Edit your profile information</h4>
 
+        
         <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="orgContact">Primary Contact</label>
-                    <input type="text" class="form-control" placeholder="Main Contact" ng-model="orgContact">
-                </div>
+        <div class="col-md-6 text-center">
+            <div class="radio">
+                <label for="profile">
+                    <input type="radio" class="custom-control-input" name="profileOptions" value="profile" ng-click="profileClick()" ng-model="editType">
+                    <span class="custom-control-input"></span>
+                    <span class="custom-control-input">Edit Profile Information</span> 
+                </label>
             </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="orgContactPhone">Primary Phone</label>
-                    <input type="text" class="form-control" placeholder="Contact Phone Number" ng-model="orgContactPhone">
+        </div>
+        <div class="col-md-6">
+            <div class="radio">
+                <label for="pic">
+                    <input type="radio" name="profileOptions" ng-click="picClick()" value="pic" ng-model="editType">
+                    <span class="custom-control-input"></span>
+                    <span class="custom-control-input">Edit Profile Picture</span>
+                </label>
+            </div>
+        </div>
+        </div>
+
+
+    <!-- end of radio row -->
+    <div class="container" ng-show="editType === 'profile'">
+        <!-- <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="text-center">
+                    <h1>{{ newVol.name }}</h1>
+                    <h4>Edit your profile information</h4>
+                </div>
+            </div> -->
+            <div class="row">
+                <div class="col-md-8 text-justify">
+                    <form>
+                        <!-- beginning orgs form -->
+                        <div class="form-group">
+                            <label for="orgName">Name</label>
+                            <input type="text" class="form-control" ng-model="newOrg.organizationName">
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="orgEmail">Email & Username</label>
+                                        <input type="text" class="form-control" ng-model="newOrg.email">
+                                    </div>
+
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="orgContact">Primary Contact</label>
+                                        <input type="text" class="form-control" placeholder="Enter Primary Contact" ng-model="newOrg.contact">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="orgTelephone">Telephone</label>
+                                        <input type="text" class="form-control" placeholder="Enter Telephone Number" ng-model="newOrg.phone">
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="orgAddress">Address</label>
+                                        <input type="text" class="form-control" placeholder="Enter Address" ng-model="newOrg.address">
+                                    </div>
+                                </div>
+                            </div> 
+                            <div class="row">
+                                <div class="col-md-4">
+                                   <div class="form-group">
+                                        <label for="orgCity">City</label>
+                                        <input type="text" class="form-control" placeholder="Enter City" ng-model="newOrg.city">
+                                   </div> 
+                                </div>
+                                <div class="col-md-4">
+                                   <div class="form-group">
+                                       <label for="orgState">State</label>
+                                       <input type="text" class="form-control" placeholder="Enter State" ng-model="newOrg.state">
+                                   </div> 
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="orgZip">Zip Code</label>
+                                        <input type="text" class="form-control" ng-model="newOrg.zip">
+                                    </div> 
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="orgAbout">Describe your organization and its services</label>
+                                        <textarea name="orgAbout" class="form-control" cols="30" rows="10" ng-model="newOrg.about"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="btn btn-lg btn-danger" ng-click="updateOrg(newOrg)">Update Profile</button>
+                            </div>
+                        </div>
+                    </form>
+
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="orgEmail">Organization Email & Username</label>
-                    <input type="text" class="form-control" placeholder="Enter Organization Email" ng-model="orgEmail">
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="orgName">Password</label>
-                    <input type="text" class="form-control" placeholder="Enter Password" ng-model="orgPassword">
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="orgAddress">Address</label>
-            <input type="text" class="form-control" placeholder="Address Line 1" ng-model="orgAddress1">
-            <br/>
-            <input type="text" class="form-control" placeholder="Address Line 2" ng-model="orgAddress2">
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label for="orgCity">City</label>
-                    <input type="text" class="form-control" placeholder="Enter City" ng-model="orgCity">
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label for="orgState">State</label>
-                    <input type="text" class="form-control" placeholder="Enter State" ng-model="orgState">
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label for="orgZip">Zip Code</label>
-                    <input type="text" class="form-control" placeholder="XXXXX" ng-model="orgZip">
-                </div>
-            </div>
-        </div>
-        <div>
-            <button class="btn btn-lg btn-danger" ng-click="createOrg()">Create Account</button>
+    
+    <!-- edit profile pic -->
+    <div class="container" ng-show="editType === 'pic'">
+
+    <div class="row">
+        <div class="col-md-8 text-center">
+            <form ng-submit="updatePic()">
+                <label class="btn btn-danger">
+                    Browse
+                <input type="file" file-model="file.upload" name="profilePic" style="visibility: hidden"> 
+                </label>
+                <button class="btn btn-danger" type="submit">Add Image</button>
+            </form>
         </div>
     </div>
-</form>
+    </div>
+    
+    </div>
+    </div>
+</div>

@@ -19,7 +19,10 @@ var storage = multer.diskStorage({
             console.log('NOPE, YOUR FILE TYPE DID NOT MATCH VOL.CTRL LINE 18')
             return cb(err)
         } else {
-            cb(null,  'vol' + file.originalname )
+            // console.log('ABOUT TO PUT PIC IN THE RIGHT FILE')
+            var pieces = file.originalname.split('.')
+            var piecesLen = pieces.length;
+            cb(null,  'vol' + req.params.id + '.' + pieces[piecesLen - 1] )
         }
     }
 }); 
@@ -130,39 +133,6 @@ router.get('/', function(req, res) {
 //     })
 // })   
 
-router.get('/:id', function(req, res) {
-    procedures.read(req.params.id)
-    .then(function(user) {
-        res.send(user).status(201);
-        console.log("Grabbed the user")
-    }, function() {
-        console.log(err);
-        res.status(500).send(err);
-    })
-})
-
-
-//  --> Updates all values for Volunteers except IMAGES
-router.put('/:id', function(req, res) {
-    return procedures.updateVol(req.params.id, req.body.name, req.body.email, req.body.about, req.body.city, req.body.state).then(function() {
-        // if(u.password) {
-        //     utils.encryptPassword(u.password).then(function(hash) {
-        //         procedures.updatePw(req.params.id, hash).then(function() {
-        //             res.sendStatus(204)
-        //         })               
-        //     })
-        // } else {
-        //     res.sendStatus(204);
-        // }
-        console.log('Updated Volunteer')
-        res.sendStatus(201);
-    }, function(err) {
-        console.log('Could Not Update User: ' + err.message);
-        res.status(500).send(err);
-    })
-    
-})
-
 //  --> Updates the path of the image in DB 
 router.put('/picture_path/:id', function(req, res) {
    return procedures.updateVolImg(req.params.id, req.body.image) 
@@ -197,6 +167,75 @@ router.post('/profile_picture/:id', function(req, res) {
            }
        })
 });
+
+router.get('/:id', function(req, res) {
+    procedures.read(req.params.id)
+    .then(function(user) {
+        console.log(req.user);
+        res.send(user).status(201);
+        console.log("Grabbed the user")
+    }, function() {
+        console.log(err);
+        res.status(500).send(err);
+    })
+})
+
+
+//  --> Updates all values for Volunteers except IMAGES
+router.put('/:id', function(req, res) {
+    return procedures.updateVol(req.params.id, req.body.name, req.body.email, req.body.about, req.body.city, req.body.state, req.body.image).then(function() {
+        // if(u.password) {
+        //     utils.encryptPassword(u.password).then(function(hash) {
+        //         procedures.updatePw(req.params.id, hash).then(function() {
+        //             res.sendStatus(204)
+        //         })               
+        //     })
+        // } else {
+        //     res.sendStatus(204);
+        // }
+        console.log('Updated Volunteer')
+        res.sendStatus(201);
+    }, function(err) {
+        console.log('Could Not Update User: ' + err.message);
+        res.status(500).send(err);
+    })
+    
+})
+
+//  --> Updates the path of the image in DB 
+// router.put('/picture_path/:id', function(req, res) {
+//    return procedures.updateVolImg(req.params.id, req.body.image) 
+//         .then(function() {
+//        console.log('Updated the path to the image');
+//        res.sendStatus(201);
+//    }, function(err) {
+//        console.log('Path to image not updated: ' + err.message)
+//        res.status(500).send(err);
+//    })
+// })
+
+// //  --> HANDLES UPLOADED IMAGES AND PUTS THEM IN /client/images/userImg
+// router.post('/profile_picture/:id', function(req, res) {
+//        upload(req, res, function(err) {
+//            if (err) {
+//                 if (err.code === 'filetype') {
+//                     console.log('BAD FILETYPE: ' + err.message)
+//                     res.json({success: false, message: 'File type is invalid. Please use .png'})
+//                 } else {
+//                     console.log("SOMETHING ELSE BAD: " + err.message + req.file)
+//                     res.json({success: false, message: 'File was not able to be uploaded'})
+//                 }
+//            } else {
+//                if (!req.file) {
+//                    console.log('NO FILE UPLOADED?')
+//                    res.json({success: false, message: 'No File was selected'});
+//                } else {
+//                    console.log('FILE UPLOADED SUCCESSFULLY')
+//                    res.json({success: true, message: 'File was uplaoded'});
+//                }
+//            }
+//        })
+// });
     
     //     console.log('HERE I AM (FILE)' + req.file);
     //     res.send(req.file);

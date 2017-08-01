@@ -8,7 +8,7 @@ exports.isLoggedIn = function(req, res, next){
 }
 
 exports.isOrg = function(req, res, next){
-    if(req.Organization){
+    if(req.user.role === 'Organization'){
         next();
     }else{
         res.sendStatus(401);
@@ -16,7 +16,7 @@ exports.isOrg = function(req, res, next){
 }
 
 exports.isVol = function(req, res, next){
-    if(req.Volunteers){
+    if(req.user.role === 'Volunteer'){
         next();
     }else{
         res.sendStatus(401);

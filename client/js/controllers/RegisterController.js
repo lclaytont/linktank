@@ -55,9 +55,14 @@ app.controller('RegisterController',
         var u = new organizationFactory(newOrg);
         u.$save(function(data){
             console.log("penis")
-
-            var orgId = data;
-            $location.path('/edit_organization_profile/' + orgId);
+            userService.OrganizationLogin(newOrg)
+            .then(function(data) {
+                console.log(data);
+                var orgId = data.id;
+                $location.path('/edit_organization_profile/' + orgId);
+            }, function(err) {
+                console.log("Error logging in new Organization")
+            })
         }, function(err){
             console.log('Penis error');
         });
