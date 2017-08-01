@@ -3,7 +3,7 @@
 <div id="volHeader" class="volHeader">
   <div class="container">
     <div id="firstRow" class="row">
-      <img class="profilePic" src="./images/team-1.jpg" alt="users picture">
+      <img class="profilePic" ng-src="{{ organization.image }}" alt="users picture">
     </div>
     <div id="secondRow" class="row">
       <div id="aboutThumbnail" class="thumbnail col-md-3 wow fadeInLeft">
@@ -18,7 +18,7 @@
           <buttton ng-click="editProfile()" class="btn btn-danger">Edit Profile</buttton>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-7">
         <div class="thumbnail vol-profile-cont">
           <h1>{{organization.organizationName}}'s Events </h1>
           <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#createEventModal">Create new event</button>
@@ -27,21 +27,30 @@
             <thead>
               <tr>
                 <th>Date</th>
-                <th>Location</th>
                 <th>Activity</th>
-                <th>Hours</th>
+                <th>Address</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Start Time</th>
+                <th></th>
               </tr>
             </thead>
-            <tbody ng-repeat="c in completedEvents">
-              <td>{{ c.date}}</td>
-              <td>{{ c.organizationName }}</td>
-              <td>{{ c.title }}</td>
-              <td>{{ c.endTime - c.startTime }}</td>
+            <tbody ng-repeat="o in orgEvents">
+              <td>{{ o.date | date:'fullDate'}}</td>
+              <td>{{ o.title }}</td>
+              <td>{{ o.address }}</td>
+              <td>{{ o.city }}</td>
+              <td>{{ o.state }}</td>
+              <td>{{ o.startTime  }}</td>
+              <td>
+                <button class="btn btn-success btn-sm" ng-click="details(event)">Details</button>
+                <button class="btn btn-danger btn-sm" ng-click="delete(event)">Delete</button>
+              </td>
             </tbody>
           </table>
-        </div>
+        </div
       </div>
-      <div id="aboutThumbnail" class="thumbnail col-md-3 wow fadeInRight">
+      <div id="aboutThumbnail" class="thumbnail col-md-2 wow fadeInRight">
         <div class="caption">
           <h1>Past Events</h1>
           <hr>
