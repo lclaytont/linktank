@@ -51,7 +51,9 @@ router.get('/event_vols/:id', function(req, res) {
 
 //  --> SEE EVENTS A VOL SIGNED UP FOR 
 //  --> NOT SURE IF req.params.id is appropraite or if I should grab volId in another way;
+//  --> :id = Volunteers_id
 router.get('/vols_events/:id', function(req, res) {
+    var volId = req.params.id
     return eventProc.getVolsEvents(req.params.id)
         .then(function(events) {
             console.log('Retrieved events for volunteer ' + req.params.id);
@@ -153,3 +155,5 @@ router.delete('/:id', auth.isOrg, function(req, res) {
 })
 
 // ORGS CAN SEE VOLS SIGNED UP FOR AN EVENT
+
+module.exports = router;
