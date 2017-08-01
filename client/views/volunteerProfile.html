@@ -1,5 +1,5 @@
- <volunteer-nav></volunteer-nav>
- 
+<volunteer-nav></volunteer-nav>
+
 <div id="volHeader" class="volHeader">
     <div class="container">
         <div id="firstRow" class="row">
@@ -10,8 +10,9 @@
                 <div class="caption">
                     <h2>{{ volunteer.name }}</h2>
                     <hr>
-                    <p class="fa ">{{ volunteer.email }}</p>
-                    <p class="fa fa-user">{{ volunteer.about }}</p>
+                    <p class="fa fa-envelope"> {{ volunteer.email }}</p>
+                    <br>
+                    <p class="fa fa-user"> {{ volunteer.about }}</p>
                     <br>
                     <buttton ng-click="editProfile()" class="btn btn-danger">Edit Profile</buttton>
                 </div>
@@ -26,8 +27,20 @@
             <div id="aboutThumbnail" class="thumbnail col-md-3 wow fadeInRight">
                 <div class="caption">
                     <h1>Past Events</h1>
-                    <hr>
-              
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <tbody ng-repeat="e in volEvents">
+                                    <td>{{ e.organizationName}}</td>
+                                    <td>{{ e.title}}</td>
+                                    <td>{{ e.description}}</td>
+                                    <td>{{ e.date | date:'fullDate'}}</td>
+                                    <td>{{ e.organizationCity}}, {{ e.organizationState}} </td>
+                                    <td>{{ e.totalHours}}</td>
+                                </tbody>
+                            </tr>
+                        </thead>
+
                 </div>
             </div>
         </div>
@@ -35,6 +48,3 @@
 </div>
 
 <!--<contact-area></contact-area>-->
-
-
- 
