@@ -34,3 +34,11 @@ exports.volunteerForEvent = function(volunteers_Id, id) {
 exports.getSignedUpVols = function(eventId) {
     return db.rows('See_Vols_SignedUp', [eventId]);
 }
+
+exports.getVolsEvents = function(volId) {
+    return db.rows('See_Events_SignedUp', [volId]);
+}
+
+exports.getCountOfVols = function(eventId) {
+    return db.row('See_CountOfVols', [eventId]);
+}
