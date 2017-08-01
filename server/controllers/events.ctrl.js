@@ -24,6 +24,7 @@ router.get('/', function(req, res) {
 });
 
 //  --> ONE EVENT INDEPENDENT OF ORG --> GRABBING EVENT ID
+//  --> :id = Event_Id
 router.get('/:id', function(req, res) {
     return eventProc.getSingleEvent(req.params.id)
         .then(function(event) {
@@ -35,8 +36,34 @@ router.get('/:id', function(req, res) {
         })
 })
 
+// SEE VOLUNTEERS FOR EVENT --> MAYBE NEED TO MOVE TO ORGS W/ auth.isOrg
+// :id = Event_Id
+router.get('/event_vols/:id', function(req, res) {
+    return eventProc.getSignedUpVols(req.params.id)
+        .then(function(volunteer) {
+            console.log('Got list of volunteers for event' + req.params.id);
+            res.send(volunteers);
+        }, function(err) {
+            console.log('Did not retrieve volunteers for this event: ' + err.message);
+            res.sendStatus(504);
+        })
+})
+
+//  --> SEE EVENTS A VOL SIGNED UP FOR 
+//  --> NOT SURE IF req.params.id is appropraite or if I should grab volId in another way;
+router.get('/vols_events/:id', function(req, res) {
+    return eventProc.getVolsEvents(req.params.id)
+        .then(function(events) {
+            console.log('Retrieved events for volunteer ' + req.params.id);
+            res.send(events)
+        }, function(err) {
+            console.log('Could not retrieve volunteer\'s events');
+            res.sendStatus(504);
+        })
+})
 
 // USER CAN SEE THE EVENTS OF A SINGLE ORG
+// :id = Organization_id
 router.get('/organization/:id', function(req, res) {
     return eventProc.getEventsbyOrg(req.params.id)
         .then(function(events) {
@@ -44,6 +71,37 @@ router.get('/organization/:id', function(req, res) {
             res.status(201).send(data);
         }, function(err) {
             console.log('Could not grab this organization\'s events');
+            res.sendStatus(504);
+        })
+})
+
+// VOL/ORG CAN SEE NUMBER OF VOLS ALREADY SIGNED UP
+// :id = Events_id
+router.get('/vol_count/:id', function(req, res) {
+    return eventsProc.getCountOfVols(req.params.id)
+        .then(function(count) {
+            console.log('Retrieved volunteer count for event');
+            res.send(count);
+        }, function(err) {
+            console.log('Unable to retrieve count: ' + err.message);
+            res.sendStatus(504);
+        })
+})
+
+
+
+
+//  --> PROTECTED ONLY FOR VOLS
+//  --> VOLUNTEER CAN SIGN UP TO VOLUNTEER FOR EVENT 
+//  --> :id = Events_id 
+//  --> Must pass along Volunteer_id either as req.user.id or grab from front end some other way
+router.post('/volunteer_for_event/:id', auth.isVol, function(req, res) {
+    return eventProc.volunteerForEvent(req.user.id, req.params.id)
+        .then(function() {
+            console.log('User volunteered for new event');
+            res.send(201);
+        }, function(err) {
+            console.log('User unable to volunteer for new event');
             res.sendStatus(504);
         })
 })
@@ -69,6 +127,7 @@ router.post('/', auth.isOrg, function(req, res) {
 })
 
 // UPDATE EVENT 
+// :id = Events_Id  
 router.put('/:id', auth.isOrg, function(req, res) {
     return eventProc.updateEvent(req.params.id, req.body.title, req.body.description, req.body.helpNeeded,
     req.body.startTime, req.body.endTime, req.body.totalHours)
