@@ -43,7 +43,7 @@ exports.deleteEvent = function(id) {
     return db.empty('Delete_Event', [id]);
 };
 
-exports.volunteerForEvent = function(volunteers_Id, id) {
+exports.volunteerForEvent = function(volunteers_id, id) {
     return db.empty('VolunteerForEvent', [volunteers_id, id])
 }
 
