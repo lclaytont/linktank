@@ -4,9 +4,9 @@
 }
 
 /*all background that is normaly white is now barely not white xD*/
-html{
+/*html{
     background-color: #e6e6e6;
-}
+}*/
 
 body {
     overflow-x: hidden;
@@ -345,3 +345,19 @@ Home View Styles
 }
 /*end footer*/
 
+/*for tables*/
+
+/*th td {
+    text-align: center;
+}
+
+table {
+    border-spacing: 5px;
+}
+
+table#profileTable tr:nth-child(even) {
+    background-color: #eee;
+}
+table#profileTable tr:nth-child(odd) {
+   background-color:#fff;
+}*/
