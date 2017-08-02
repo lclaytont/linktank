@@ -17,6 +17,7 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
+                            <th>Organization</th>
                             <th>Title</th>
                             <th>Description</th>
                             <th>Help Needed</th>
@@ -28,6 +29,7 @@
                         </tr>
                     </thead>
                     <tbody ng-repeat="x in upcomingEvents">
+                        <td><a class="event-anchor" ng-href="/organization_profile/{{x.organizationId}}">{{ x.orgName }}</a></td>
                         <td>{{ x.title }}</td>
                         <td>{{ x.description }}</td>
                         <td>{{ x.helpNeeded }}</td>
