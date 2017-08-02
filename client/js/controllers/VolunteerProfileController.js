@@ -1,5 +1,5 @@
 app.controller('VolunteerProfileController',
-    function ($scope, volunteerFactory, $routeParams, volUpcomingEventsFactory, volPastEventsFactory) {
+    function ($scope, volunteerFactory, $routeParams, volUpcomingEventsFactory, volPastEventsFactory, $location) {
         console.log('Vol Profile Loaded');
 
         //this returns the users info
@@ -12,6 +12,10 @@ app.controller('VolunteerProfileController',
 
         $scope.pastEvents = volPastEventsFactory.query({id: $routeParams.id});
         console.log($scope.pastEvents);
+
+        $scope.findEvents = function() {
+            $location.path('/events')
+        }
         // var acc = document.getElementsByClassName("accordion");
         // var i;
 
