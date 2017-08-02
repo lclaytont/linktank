@@ -43,81 +43,80 @@
               <td>{{ o.state }}</td>
               <td>{{ o.startTime }}</td>
               <td>
-                <button class="btn btn-success btn-sm" ng-click="details(event)">Details</button>
-                <button class="btn btn-danger btn-sm" ng-click="delete(event)">Delete</button>
+                <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#detailsModal" ng-click="details(event)">See Details</button>
+                <!--<button class="btn btn-success btn-sm" ng-click="details(event)">Details</button>-->
+                <!--<button class="btn btn-danger btn-sm" style=margin-top:7px data-toggle="modal" data-target="#manageEventModal">Manage Event</button>-->
+                <button type="button" class="btn btn-danger" style=margin-top:7px data-toggle="modal" data-target="#manageEventModal">Manage Event</button>
               </td>
             </tbody>
           </table>
-        </div 
-        </div>
+        </div </div>
         <div id="aboutThumbnail" class="thumbnail col-md-2 wow fadeInRight">
           <div class="caption">
             <h1>Past Events</h1>
             <hr>
-            <p>{{ volunteer.events }}</p>
-            <p>{{ volunteer.events }}</p>
-            <p>{{ volunteer.events }}</p>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
+</div>
 
-
-  <!--MODAL INFO-->
-  <div class="modal fade" id="createEventModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="form">
-      <div class="modal-content">
-        <!--Header-->
-        <div class="modal-header">
-          <h3 class="modal-title" id="exampleModalLabel">Create a new event!</h3>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<!--NEW EVENT MODAL INFO-->
+<div class="modal fade" id="createEventModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="form">
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Create a new event!</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        </div>
-        <!--Body-->
-        <div class="modal-body">
+      </div>
+      <!--Body-->
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="form-control-label">Title:</label>
+            <input type="text" class="form-control" id="newTitle" placeholder="Title of your event." ng-model="title">
+          </div>
+          <div class="form-group">
+            <label for="newDescription" class="form-control-label">Description:</label>
+            <textarea class="form-control" id="newDescription" placeholder="Describe what you need help with." ng-model="description"></textarea>
+          </div>
+          <!--row-->
+          <div class="row">
+            <div class="form-group col-sm-4">
+              <label for="newAddress" class="form-control-label">Address:</label>
+              <input type="text" class="form-control" id="newAddress" placeholder="123 South Ave" ng-model="address">
+            </div>
+            <div class="form-group col-sm-4">
+              <label for="newCity" class="form-control-label">City:</label>
+              <input type="text" class="form-control" id="newCity" placeholder="Birmingham" ng-model="city">
+            </div>
+            <div class="form-group col-sm-4">
+              <label for="newState" class="form-control-label">State:</label>
+              <input type="text" class="form-control" id="newState" placeholder="AL" ng-model="state">
+            </div>
+          </div>
+          <!--end row-->
+          <div class="row">
+            <div class="form-group col-sm-4">
+              <label for="newDate" class="form-control-label">Date:</label>
+              <input type="date" class="form-control" id="newDate" ng-model="date">
+            </div>
+            <div class="form-group col-sm-4">
+              <label for="newStartTime" class="form-control-label">Start Time:</label>
+              <input type="time" class="form-control" id="newStartTime" ng-model="startTime">
+            </div>
+            <div class="form-group col-sm-4">
+              <label for="newEndTime" class="form-control-label">End Time:</label>
+              <input type="time" class="form-control" id="newEndTime" ng-model="endTime">
+            </div>
+          </div>
           <form>
-            <div class="form-group">
-              <label for="recipient-name" class="form-control-label">Title:</label>
-              <input type="text" class="form-control" id="newTitle" placeholder="Title of your event." ng-model="title">
-            </div>
-            <div class="form-group">
-              <label for="newDescription" class="form-control-label">Description:</label>
-              <textarea class="form-control" id="newDescription"placeholder="Describe what you need help with." ng-model="description"></textarea>
-            </div>
-            <!--row-->
-            <div class="row">
-              <div class="form-group col-sm-4">
-                <label for="newAddress" class="form-control-label">Address:</label>
-                <input type="text" class="form-control" id="newAddress" placeholder="123 South Ave" ng-model="address">
-              </div>
-              <div class="form-group col-sm-4">
-                <label for="newCity" class="form-control-label">City:</label>
-                <input type="text" class="form-control" id="newCity" placeholder="Birmingham" ng-model="city">
-              </div>
-              <div class="form-group col-sm-4">
-                <label for="newState" class="form-control-label">State:</label>
-                <input type="text" class="form-control" id="newState" placeholder="AL" ng-model="state">
-              </div>
-            </div>
-            <!--end row-->
-            <div class="row">
-              <div class="form-group col-sm-4">
-                <label for="newDate" class="form-control-label">Date:</label>
-                <input type="date" class="form-control" id="newDate" ng-model="date">
-              </div>
-              <div class="form-group col-sm-4">
-                <label for="newStartTime" class="form-control-label">Start Time:</label>
-                <input type="time" class="form-control" id="newStartTime" ng-model="startTime">
-              </div>
-              <div class="form-group col-sm-4">
-                <label for="newEndTime" class="form-control-label">End Time:</label>
-                <input type="time" class="form-control" id="newEndTime" ng-model="endTime">
-              </div>
-            </div>
-            <form>
-        </div>
+      </div>
       <!--end body-->
       <!--footer-->
       <div class="modal-footer">
@@ -125,5 +124,125 @@
         <button type="button" class="btn btn-primary" ng-click="createEvent()">Add event</button>
       </div>
     </div>
+  </div>
+</div>
+
+<!--Manage Event Modal Info-->
+
+
+<!--MODAL INFO-->
+<div class="modal fade" id="manageEventModal" tabindex="-1" role="dialog" aria-labelledby="manageEventModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="form">
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <h3 class="modal-title" id="manageEventModalLabel">Manage your event!</h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <!--Body-->
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="form-control-label">Title:</label>
+            <input type="text" class="form-control" id="newTitle" ng-model="title">
+          </div>
+          <div class="form-group">
+            <label for="newDescription" class="form-control-label">Description:</label>
+            <textarea class="form-control" id="newDescription" placeholder="Describe what you need help with." ng-model="description"></textarea>
+          </div>
+          <!--row-->
+          <div class="row">
+            <div class="form-group col-sm-4">
+              <label for="newAddress" class="form-control-label">Address:</label>
+              <input type="text" class="form-control" id="newAddress" placeholder="123 South Ave" ng-model="address">
+            </div>
+            <div class="form-group col-sm-4">
+              <label for="newCity" class="form-control-label">City:</label>
+              <input type="text" class="form-control" id="newCity" placeholder="Birmingham" ng-model="city">
+            </div>
+            <div class="form-group col-sm-4">
+              <label for="newState" class="form-control-label">State:</label>
+              <input type="text" class="form-control" id="newState" placeholder="AL" ng-model="state">
+            </div>
+          </div>
+          <!--end row-->
+          <div class="row">
+            <div class="form-group col-sm-4">
+              <label for="newDate" class="form-control-label">Date:</label>
+              <input type="date" class="form-control" id="newDate" ng-model="date">
+            </div>
+            <div class="form-group col-sm-4">
+              <label for="newStartTime" class="form-control-label">Start Time:</label>
+              <input type="time" class="form-control" id="newStartTime" ng-model="startTime">
+            </div>
+            <div class="form-group col-sm-4">
+              <label for="newEndTime" class="form-control-label">End Time:</label>
+              <input type="time" class="form-control" id="newEndTime" ng-model="endTime">
+            </div>
+          </div>
+        </form>
+      </div>
+      <!--end body-->
+      <!--footer-->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Discard All Changes</button>
+        <button type="button" class="btn btn-danger" ng-click="">DELETE EVENT</button>
+        <button type="button" class="btn btn-primary" ng-click="">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--More Detailed Event Modal Info-->
+
+<div id="detailsModal" class="modal" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">More details for event </h4>
+      </div>
+      <div class="modal-body">
+        <!--table head-->
+        <table class="table table-striped" id="profileTable">
+          <thead>
+            <tr>
+              <th>Organization</th>
+              <th>Activity</th>
+              <th>Date</th>
+              <th>Address</th>
+              <th>Location</th>
+              <th>Description</th>
+              <th>Start Time</th>
+              <th>End Time</th>
+              <th>Total Hours</th>
+              <th></th>
+            </tr>
+          </thead>
+          <!--table body-->
+          <tbody ng-repeat="o in orgEvents">
+            <td>{{ o.organizationName}}</td>
+            <td>{{ o.title}}</td>
+            <td>{{ o.date | date:'fullDate'}}</td>
+            <td>{{ o.address}}</td>
+            <td>{{ o.organizationCity}}, {{ e.organizationState}} </td>
+            <td>{{ o.description}}</td>
+            <td>{{ o.startTime}}</td>
+            <td>{{ o.endTime}}</td>
+            <td>{{ o.totalHours}}</td>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
   </div>
 </div>
