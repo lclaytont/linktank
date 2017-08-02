@@ -23,6 +23,53 @@ router.get('/', function(req, res) {
         })
 });
 
+// GET ALL UPCOMING EVENTS
+router.get('/upcoming', function(req, res) {
+    return eventProc.getAllUpcoming()
+        .then(function(events) {
+            console.log('Got All Upcoming Events');
+            res.send(events);
+        }, function(err) {
+            console.log('Could not retrieve upcoming events');
+            res.sendStatus(504);
+        })
+}) 
+
+// GET ALLUPCOMING EVENTS FOR ONE ORG
+//  --> :id = Organization_Id
+router.get('/upcoming/:id', function(req, res) {
+    return eventProc.getOrgUpcoming(req.params.id)
+        .then(function(events) {
+            console.log('Retrieved upcoming events for Org' + req.params.id);
+            res.send(events);
+        }, function(err) {
+            console.log('Could Not retrieve organization\'s upcoming events');
+            res.sendStatus(504);
+        })
+})
+
+// GET ALL PAST EVENTS
+router.get('/past', function(req, res) {
+    return eventProc.getAllPast()
+        .then(function(events) {
+            console.log('Retrieved all Past Evens');
+            res.send(events);
+        }, function(err) {
+            console.log('Could not retrieve Past Events.');
+            res.sendStatus(504);
+        })
+})
+
+router.get('/past/:id', function(req, res) {
+    return eventProc.getOrgPast(req.params.id)
+        .then(function(events) {
+            console.log('Got past events for Org' + req.params.id);
+            res.send(events);
+        }, function(err) {
+            console.log('Could not retrieve past events for Org');
+            res.sendStatus(504);
+        })
+})
 //  --> ONE EVENT INDEPENDENT OF ORG --> GRABBING EVENT ID
 //  --> :id = Event_Id
 router.get('/:id', function(req, res) {
@@ -64,6 +111,33 @@ router.get('/vols_events/:id', function(req, res) {
         })
 })
 
+// SEE UPCOMING EVENTS FOR A VOL
+// :id = Volunteers_id
+router.get('/vols_events/upcoming/:id', function(req, res) {
+    var volId = req.params.id;
+    return eventProc.getVolsUpcomingEvents(volId)
+        .then(function(events) {
+            console.log('Retrieve upcoming events for Vol' + volId);
+            res.send(events);
+        }, function(err) {
+            console.log('Unable to retrieve vol' + volId + '\'s upcoming events');
+            res.sendStatus(504);
+        })
+})
+
+// SEE PAST EVENTS FOR A VOL
+// :id = Volunteers_id
+router.get('/vols_events/past/:id', function(req, res) {
+    var volId = req.params.id;
+    return eventProc.getVolsPastEvents(volId)
+        .then(function(events) {
+            console.log('Retrieved past events for Vol' + volId);
+            res.send(events);
+        }, function(err) {
+            console.log('Could not retrieve past events for vol' + volId);
+            res.sendStatus(504);
+        })
+})
 // USER CAN SEE THE EVENTS OF A SINGLE ORG
 // :id = Organization_id
 router.get('/organization/:id', function(req, res) {
