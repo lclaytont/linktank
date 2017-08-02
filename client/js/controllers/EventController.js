@@ -1,9 +1,9 @@
-applicationCache.controller('EventController'), ['$scope','eventFactory',
+app.controller('EventController'), ['$scope','organizationUpcomingEvents',
 function($scope, eventFactory, $routeParams){
     console.log('Events Page Loaded');
 }]
 
 // events factory
 
-$scope.allEvents = eventFactory.get({id: $routeParams.id})
-console.log($scope.allEvents);
+$scope.organizationUpcomingEvents = organizationUpcomingEventsFactory.get [] 
+console.log($scope.UpcomingEvents);
