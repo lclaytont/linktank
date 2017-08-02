@@ -30,3 +30,12 @@ app.directive('contactArea',
             templateUrl: 'views/contact.html'
         }
     });
+
+app.directive('footer',
+    function() {
+        return {
+            restric: 'E',
+            templateUrl: 'views/footer.html'
+        }
+    }
+)

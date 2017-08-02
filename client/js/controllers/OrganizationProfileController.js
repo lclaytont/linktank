@@ -11,9 +11,10 @@ app.controller('OrganizationProfileController',
 
         $scope.details = function(o){   
             $scope.singleEvent = (o);
-            console.log(o) 
+            console.log(o);
         }
         
+
 
 
         // for making a new event
