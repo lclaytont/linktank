@@ -1,5 +1,5 @@
-app.controller('VolunteerProfileController', ['$scope', 'volunteerFactory', '$routeParams', 'volEventListFactory',
-    function ($scope, volunteerFactory, $routeParams, volEventListFactory) {
+app.controller('VolunteerProfileController',
+    function ($scope, volunteerFactory, $routeParams, volUpcomingEventsFactory, volPastEventsFactory) {
         console.log('Vol Profile Loaded');
 
         //this returns the users info
@@ -7,22 +7,24 @@ app.controller('VolunteerProfileController', ['$scope', 'volunteerFactory', '$ro
         console.log($scope.volunteer);
 
         // this returns the events that the user is signed up for
-        $scope.volEvents = volEventListFactory.query({ id: $routeParams.id });
-        console.log($scope.volEvents);
+        $scope.upcomingEvents = volUpcomingEventsFactory.query({id: $routeParams.id})
+        console.log($scope.upcomingEvents);
 
-        var acc = document.getElementsByClassName("accordion");
-        var i;
+        $scope.pastEvents = volPastEventsFactory.query({id: $routeParams.id});
+        console.log($scope.pastEvents);
+        // var acc = document.getElementsByClassName("accordion");
+        // var i;
 
         // for the accordian
-        for (i = 0; i < acc.length; i++) {
-            acc[i].onclick = function () {
-                this.classList.toggle("active");
-                var panel = this.nextElementSibling;
-                if (panel.style.maxHeight) {
-                    panel.style.maxHeight = null;
-                } else {
-                    panel.style.maxHeight = panel.scrollHeight + "px";
-                }
-            }
-        }
-    }]);
+        // for (i = 0; i < acc.length; i++) {
+        //     acc[i].onclick = function () {
+        //         this.classList.toggle("active");
+        //         var panel = this.nextElementSibling;
+        //         if (panel.style.maxHeight) {
+        //             panel.style.maxHeight = null;
+        //         } else {
+        //             panel.style.maxHeight = panel.scrollHeight + "px";
+        //         }
+        //     }
+        // }
+    });

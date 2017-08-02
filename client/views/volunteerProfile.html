@@ -33,12 +33,12 @@
                                 <th></th>
                             </tr>
                         </thead>
-                        <tbody ng-repeat="e in volEvents">
-                            <td>{{ e.organizationName}}</td>
-                            <td>{{ e.title}}</td>
-                            <td>{{ e.date | date:'fullDate'}}</td>
-                            <td>{{ e.organizationCity}}, {{ e.organizationState}} </td>
-                            <td>{{ e.totalHours}}</td>
+                        <tbody ng-repeat="u in upcomingEvents">
+                            <td>{{ u.organizationName}}</td>
+                            <td>{{ u.title}}</td>
+                            <td>{{ u.date | date:'fullDate'}}</td>
+                            <td>{{ u.organizationCity}}, {{ e.organizationState}} </td>
+                            <td>{{ u.totalHours}}</td>
                             <td><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#detailsModal" ng-click="details(event)">See Details</button></td>
                             <!--<td><button class="btn btn-success btn-sm" ng-click="details(event)">Details</button></td>-->
                         </tbody>
@@ -49,6 +49,23 @@
             <div id="aboutThumbnail" class="thumbnail col-md-3">
                 <div class="caption">
                     <h1>Past Events</h1>
+                    <hr>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Organization</th>
+                                <th>Activity</th>
+                                <th>Date</th>
+                                <th>Total Hours</th>
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="p in pastEvents" style="margin:0 5px 0 5px;">
+                            <td>{{ p.organizationName}}</td>
+                            <td>{{ p.title}}</td>
+                            <td>{{ p.date | date:'shortDate' }}</td>
+                            <td class="text-center">{{ p.totalHours }}</td>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

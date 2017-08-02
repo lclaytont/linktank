@@ -114,6 +114,7 @@ router.get('/vols_events/:id', function(req, res) {
 // SEE UPCOMING EVENTS FOR A VOL
 // :id = Volunteers_id
 router.get('/vols_events/upcoming/:id', function(req, res) {
+    console.log('GOT TO LINE 117')
     var volId = req.params.id;
     return eventProc.getVolsUpcomingEvents(volId)
         .then(function(events) {
@@ -138,6 +139,7 @@ router.get('/vols_events/past/:id', function(req, res) {
             res.sendStatus(504);
         })
 })
+
 // USER CAN SEE THE EVENTS OF A SINGLE ORG
 // :id = Organization_id
 router.get('/organization/:id', function(req, res) {
