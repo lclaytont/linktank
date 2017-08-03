@@ -1,6 +1,11 @@
 app.controller('VolunteerLoginController',  
-    function($scope, userService) {
+    function($scope, userService, $location) {
         console.log('Volunteer Login to use our page')
+
+        // used for the different navs
+        userService.me().then(function(user) {
+            $scope.user = user;
+        })
 
         $scope.login = function() {
 
@@ -14,6 +19,7 @@ app.controller('VolunteerLoginController',
             userService.VolunteerLogin($scope.loginObj)
                 .then(function(data) {
                     var volId = data.id
+                    $scope.user = data;
                     // redirect to profile page
                     profileRedirect(volId);
                     // profileRedirect();
@@ -24,11 +30,11 @@ app.controller('VolunteerLoginController',
                     console.log(err);
                     $scope.email = '';
                     $scope.password = '';
-                    alert("You entered an incorrect email address or password. Please try again.")
+                    alert("You entered an invalid email address or password. Please try again.")
                 })
             }
 
         function profileRedirect(x) {
-            window.location.href = '/volunteer_profile/' + x;
+            $location.path('/volunteer_profile/' + x);
         }
     })

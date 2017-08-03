@@ -39,16 +39,6 @@ app.service('userService',
         })
     }
 
-    // log out a org
-    // this.logout = function() {
-    //     return $http({
-    //         method: 'GET', 
-    //         url: "http://localhost:3000/api/volunteers/logout"
-    //     }).then(function() {
-    //         user = undefined;
-    //     })
-    // }
-
     // Maintain user session
     this.me = function() {
         if(user) {

@@ -202,47 +202,4 @@ router.put('/:id', function(req, res) {
     
 })
 
-//  --> Updates the path of the image in DB 
-// router.put('/picture_path/:id', function(req, res) {
-//    return procedures.updateVolImg(req.params.id, req.body.image) 
-//         .then(function() {
-//        console.log('Updated the path to the image');
-//        res.sendStatus(201);
-//    }, function(err) {
-//        console.log('Path to image not updated: ' + err.message)
-//        res.status(500).send(err);
-//    })
-// })
-
-// //  --> HANDLES UPLOADED IMAGES AND PUTS THEM IN /client/images/userImg
-// router.post('/profile_picture/:id', function(req, res) {
-//        upload(req, res, function(err) {
-//            if (err) {
-//                 if (err.code === 'filetype') {
-//                     console.log('BAD FILETYPE: ' + err.message)
-//                     res.json({success: false, message: 'File type is invalid. Please use .png'})
-//                 } else {
-//                     console.log("SOMETHING ELSE BAD: " + err.message + req.file)
-//                     res.json({success: false, message: 'File was not able to be uploaded'})
-//                 }
-//            } else {
-//                if (!req.file) {
-//                    console.log('NO FILE UPLOADED?')
-//                    res.json({success: false, message: 'No File was selected'});
-//                } else {
-//                    console.log('FILE UPLOADED SUCCESSFULLY')
-//                    res.json({success: true, message: 'File was uplaoded'});
-//                }
-//            }
-//        })
-// });
-    
-    //     console.log('HERE I AM (FILE)' + req.file);
-    //     res.send(req.file);
-    // }, function(err) {
-    //     console.log('Error uploading profile pic: ' + err.message);
-    // })
-// router.route('*')//everything after this point, we are ensuring the user is logged in.
-    // .all(auth.isLoggedIn);
-
 module.exports = router;
