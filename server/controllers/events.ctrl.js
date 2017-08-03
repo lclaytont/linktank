@@ -195,7 +195,7 @@ router.post('/volunteer_for_event/:id', auth.isVol, function(req, res) {
 // CREATE NEW EVENT
 router.post('/', auth.isOrg, function(req, res) {
     return eventProc.createEvent(req.body.organizationId, req.body.title, req.body.description, req.helpNeeded,
-    req.body.startTime, req.body.endTime, req.body.totalHours)
+    req.body.date, req.body.startTime, req.body.endTime, req.body.totalHours)
         .then(function(data) {
             console.log('Successfully created an event');
             res.status(201).send(data);
@@ -208,8 +208,10 @@ router.post('/', auth.isOrg, function(req, res) {
 // UPDATE EVENT 
 // :id = Events_Id  
 router.put('/:id', auth.isOrg, function(req, res) {
+    console.log(req.params.id, req.body.title, req.body.description, req.body.helpNeeded,
+    req.body.date, req.body.startTime, req.body.endTime, req.body.totalHours)
     return eventProc.updateEvent(req.params.id, req.body.title, req.body.description, req.body.helpNeeded,
-    req.body.startTime, req.body.endTime, req.body.totalHours)
+    req.body.date, req.body.startTime, req.body.endTime, req.body.totalHours)
         .then(function() {
             console.log('Updated Event');
             res.sendStatus(201);
