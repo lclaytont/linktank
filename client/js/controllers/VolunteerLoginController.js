@@ -2,10 +2,15 @@ app.controller('VolunteerLoginController',
     function($scope, userService, $location) {
         console.log('Volunteer Login to use our page')
 
-        // used for the different navs
         userService.me().then(function(user) {
-            $scope.user = user;
+            $scope.$applyAsync(function() {
+                $scope.user = user;
+            })
         })
+
+        // userService.me().then(function(user) {
+        //     $scope.user = user;
+        // })
 
         $scope.login = function() {
 
@@ -14,7 +19,7 @@ app.controller('VolunteerLoginController',
                 password: $scope.password
             } 
          
-            console.log($scope.loginObj);
+            // console.log($scope.loginObj);
 
             userService.VolunteerLogin($scope.loginObj)
                 .then(function(data) {
@@ -36,5 +41,8 @@ app.controller('VolunteerLoginController',
 
         function profileRedirect(x) {
             $location.path('/volunteer_profile/' + x);
+
         }
+
+         
     })
