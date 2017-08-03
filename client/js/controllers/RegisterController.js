@@ -52,8 +52,8 @@ app.controller('RegisterController',
         }
         console.log(newOrg)
         
-        var u = new organizationFactory(newOrg);
-        u.$save(function(data){
+        var a = new organizationFactory(newOrg);
+        a.$save(function(data){
             console.log("penis")
             userService.OrganizationLogin(newOrg)
             .then(function(data) {
