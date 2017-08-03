@@ -9,11 +9,12 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-10 col-md-offset-1">
                 <div class="row text-center">
                     <h1>Upcoming Events to <br> Volunteer For:</h1>
                 </div>
                 <br>
+                <caption>All Events</caption>
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -34,8 +35,8 @@
                         <td>{{ x.description }}</td>
                         <td>{{ x.helpNeeded }}</td>
                         <td>{{ x.date | date:'shortDate'}}</td>
-                        <td>{{ x.startTime }}</td>
-                        <td>{{ x.endTime }}</td>
+                        <td>{{ x.startTime | date:"hh:mm a"}}</td>
+                        <td>{{ x.endTime | date:"hh:mm a"}}</td>
                         <td>{{ x.totalHours }}</td>
                         <td><button class="btn btn-success" ng-click="volunteer(x)">Volunteer</button></td>
                     </tbody>
@@ -43,8 +44,7 @@
             </div>
         </div>
     </div>
-    <div>
 
 
-    </div>
-
+<contact-area></contact-area>
+<footer></footer>

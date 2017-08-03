@@ -1,4 +1,4 @@
 app.service('loginService',
-    function(userService) {
-        
+    function(userService, $scope) {
+        // $scope.role = Volunteer;
     })

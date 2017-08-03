@@ -182,48 +182,4 @@ router.route("/")
          })
     })
 
-
-// Here we have clicked on an Org, and we are now seeing their page. 
-// Depending on the role they are signed in as, they can create and stuff. 
-// router.route('/:id')
-//     .get(function (req, res) {  //anyone can get(see) posts at this route. Don't need to be signed in. 
-//         orgProc.read(req.params.id)
-//             .then(function (event) {
-//                 res.send(event);
-//             }, function (err) {
-//                 console.log(err);
-//                 res.status(500).send(err);
-//             });
-//     })
-
-//     .post(auth.isLoggedIn, auth.isOrg, function (req, res) {  //only the logged in AS ORG can post a new event
-//         orgProc.create(req.params.id, req.body.title, req.body.content)
-//             .then(function () {
-//                 res.sendStatus(204);
-//             }, function (err) {
-//                 console.log(err);
-//                 res.status(500).send(err);
-//             });
-//     })
-
-//     .put(auth.isLoggedIn, auth.isOrg, function (req, res) {  //only the logged in AS ORG can update an event
-//         orgProc.update(req.params.id, req.body.title, req.body.content)
-//             .then(function () {
-//                 res.sendStatus(204);
-//             }, function (err) {
-//                 console.log(err);
-//                 res.status(500).send(err);
-//             });
-//     })
-
-//     .delete(auth.isLoggedIn, auth.isOrg, function (req, res) {  //has to be logged AS ORG in to delete
-//         orgProc.destroy(req.params.id)
-//             .then(function () {
-//                 res.sendStatus(204);
-//             }, function (err) {
-//                 console.log(err);
-//                 res.status(500).send(err);
-//             });
-//     });
-
 module.exports = router;

@@ -54,5 +54,9 @@ app.config(['$routeProvider', '$locationProvider',
                 templateUrl: '/views/events.html',
                 controller: 'EventController'
             })
+            .when('/volunteersForEvent',{
+                templateUrl:'/views/volunteersForEvent.html',
+                controller:'VolunteersForEventController'
+            })
 
     }])

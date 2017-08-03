@@ -20,7 +20,7 @@
                     <ul class="dropdown-menu">
                         <li>
                             <div class=" signInDrop">
-                                <div class="row rg-master"> 
+                                <div class="row rg-master">
                                     <div class="col-md-4 col-md-offset-4 text-center thing">
                                         <h1 class="wow fadeInLeft">Login</h1>
                                         <hr class="wow fadeInRight">
@@ -42,8 +42,24 @@
                     </ul>
                 </li>
                 <li><a href="/register">Sign Up</a></li>
+                <li><a href="/events">All Events</a></li>
                 <li><a href="#">About Us</a></li>
-                <li><a href="/" ng-click="logout()" >Log Out</a></li>
+                <li class="dropdown">
+                    <!--click sign in - drops once-->
+                    <a href="#" class="dropdown-toggle menu-item" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        My Profile<span class="caret"></span>
+                    </a>
+                    <!--shows dropdown-->
+                    <ul class="dropdown-menu">
+                        <li><a href="/">View Profile</a></li>
+                        <li><a href="/edit_organization_profile">Edit Profile</a></li>
+                        <li><a href="/" ng-show="$scope.Volunteer"> Logout </a></li> 
+                        <li><a href="/" ng-show="!$scope.Volunteer"> Login</a></li>
+                        <!--<li><a href="/" ng-click="logout()">Log Out</a></li>-->
+                </ul>
+                </li>
+                <!--<li><a href="/register">My Profile</a></li>
+                <li><a href="/" ng-click="logout()">Log Out</a></li>-->
             </ul>
         </div>
     </div>

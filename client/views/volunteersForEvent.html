@@ -1,0 +1,20 @@
+<!--  v-For-Event  -->
+<br><div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row text-center">
+                <h1>Volunteers for your event:</h1>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Volunteer Name</th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="v in volForEvent">
+                    <td><a class="event-anchor" ng-href="/volunteer_profile/{{v.volunteerid}}">{{ v.volName }}</a></td>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

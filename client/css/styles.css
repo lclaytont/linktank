@@ -241,12 +241,12 @@ Home View Styles
 
 .contact {
     background-color: #f1f1f1;
-    padding: 40px 0 80px;
+    padding: 20px 0 40px;
     text-align: center;
 }
 
 .contact p {
-    padding-bottom: 80px;
+    padding-bottom: 20px;
     color: #737373;
 }
 
@@ -350,19 +350,28 @@ Home View Styles
 }
 /*end footer*/
 
-/*for tables*/
 
-/*th td {
-    text-align: center;
+/*for the tables*/
+.table {
+  width: 100%;
+  border: 1px solid #d6dde6;
+  border-collapse: collapse;
 }
 
-table {
-    border-spacing: 5px;
+.tbale td {
+  border: 1px solid #d6dde6;
+  padding: 0.3em;
 }
 
-table#profileTable tr:nth-child(even) {
-    background-color: #eee;
+.table th {
+  border: 1px solid #828282;
+  background-color: #bcbcbc;
+  font-weight: bold;
+  text-align: left;
+  padding-left: 0.3em;
 }
-table#profileTable tr:nth-child(odd) {
-   background-color:#fff;
-}*/
+
+.table tr:nth-child(odd) {
+  background-color: #dfe7f2;
+  color: #000000;
+}

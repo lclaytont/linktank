@@ -103,8 +103,7 @@ function configurePassport(app) {
     });
 
     passport.deserializeUser(function (key, done) {  //deserialize user (take a unique identifier of a user and spit out the full user (e.g. get the user from the database))
-        console.log("Deserialize that shit");
-        // if (user) {
+                // if (user) {
             if (key.role === 'Volunteer') {
                 userProc.read(key.id).then(function (user) {  //references the procedure function that eventually calls getUsers()
                     done(null, user);  //this happens after you have already logged in. this is what sets req.user
