@@ -28,12 +28,12 @@ exports.getSingleEvent = function(id) {
     return db.row('Get_singleEvent', [id]);
 };
 
-exports.createEvent = function(organizationId, title, description, helpNeeded, startTime, endTime, totalHours) {
-    return db.row('Insert_Event', [organzationId, title, description, helpNeeded, startTime, endTime, totalHours])
+exports.createEvent = function(organizationId, title, description, helpNeeded, date, startTime, endTime, totalHours) {
+    return db.row('Insert_Event', [organzationId, title, description, helpNeeded, date, startTime, endTime, totalHours])
 };
 
-exports.updateEvent = function(id, title, description, helpNeeded, startTime, endTime, totalHours) {
-    return db.empty('Update_Events', [id, title, description, helpNeeded, startTime, endTime, totalHours])
+exports.updateEvent = function(id, title, description, helpNeeded, date, startTime, endTime, totalHours) {
+    return db.empty('Update_Events', [id, title, description, helpNeeded, date, startTime, endTime, totalHours])
 }; 
 
 exports.getEventsbyOrg = function(orgId) {
