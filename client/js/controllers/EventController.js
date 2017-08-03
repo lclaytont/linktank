@@ -16,9 +16,10 @@ $scope.volunteer = function(event) {
 
     }).then(function() {
         console.log('Volunteered for event');
+        alert("Thank you for signing up for an event!")
     }, function(err) {
         console.log('Could not volunteer for event: ' + err.message);
-        alert('You are already signed up for this event. Spread your charity to another event.')
+        alert('You are already signed up for this event. Spread your charity to another event!')
     })    
 }
 

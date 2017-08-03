@@ -193,9 +193,11 @@ router.post('/volunteer_for_event/:id', auth.isVol, function(req, res) {
 //  --> PROTECTED ROUTES FOR ORGS
 
 // CREATE NEW EVENT
-router.post('/', auth.isOrg, function(req, res) {
-    return eventProc.createEvent(req.body.organizationId, req.body.title, req.body.description, req.helpNeeded,
-    req.body.date, req.body.startTime, req.body.endTime, req.body.totalHours)
+router.post('/:id', auth.isOrg, function(req, res) {
+    var organizationId = req.params.id
+    console.log("We Tried");
+    return eventProc.createEvent(organizationId, req.body.title, req.body.description, req.helpNeeded,
+    req.body.date, req.body.startTime, req.body.endTime, req.body.totalHours, req.body.address, req.body.city, req.body.state)
         .then(function(data) {
             console.log('Successfully created an event');
             res.status(201).send(data);
@@ -211,7 +213,7 @@ router.put('/:id', auth.isOrg, function(req, res) {
     console.log(req.params.id, req.body.title, req.body.description, req.body.helpNeeded,
     req.body.date, req.body.startTime, req.body.endTime, req.body.totalHours)
     return eventProc.updateEvent(req.params.id, req.body.title, req.body.description, req.body.helpNeeded,
-    req.body.date, req.body.startTime, req.body.endTime, req.body.totalHours)
+    req.body.date, req.body.startTime, req.body.endTime, req.body.totalHours, req.body.address, req.body.city, req.body.state)
         .then(function() {
             console.log('Updated Event');
             res.sendStatus(201);
