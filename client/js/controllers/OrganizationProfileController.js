@@ -1,5 +1,5 @@
 app.controller('OrganizationProfileController',
-    function ($scope, $routeParams, organizationFactory, organizationUpcomingEventsFactory, $filter, updateEventFactory, $http) {
+    function ($scope, $routeParams, organizationFactory, organizationUpcomingEventsFactory, $filter, updateEventFactory, $http, pastEventFactory) {
         console.log('Welcome to an orgs profile!')
 
         $scope.organization = organizationFactory.get({ id: $routeParams.id });
@@ -7,6 +7,10 @@ app.controller('OrganizationProfileController',
 
         $scope.orgEvents = organizationUpcomingEventsFactory.query({ id: $routeParams.id });
         console.log($scope.orgEvents);
+
+        $scope.pastOrgEvents = pastEventFactory.query({id: $routeParams.id});
+        console.log($scope.pastOrgEvents)
+        // CREATE A NEW EVENT
         $scope.createEvent = function(event) {
         console.log($routeParams);
         console.log(event)
@@ -49,6 +53,8 @@ app.controller('OrganizationProfileController',
             })
         }
 
+
+        // GRAB AN EVENT TO UPDATE
         $scope.grabEvent = function(o){   
             var timeDate = o.date.split("T")[0]
             var start = o.startTime.split("T")[1];
@@ -107,32 +113,6 @@ app.controller('OrganizationProfileController',
 
     
     
-
-        // for making a new event
-        // $scope.createEvent = function () {
-        //     var newEvent = {
-        //         title: $scope.title,
-        //         description: $scope.description,
-        //         helpNeded: $scope.helpNeeded,
-        //         startTime: $scope.startTime
-        //         endTime: $scope.endTime,
-        //         totalHours: $scope.totalHours
-        //     }
-        //     console.log(newEvent);
-
-        //     var u = new organizationUpcomingEventsFactory(newEvent);
-        //     u.$save(function (data) {
-        //         console.log("penis")
-        //         organizationUpcomingEventsFactory(newEvent)
-        //             .then(function (data) {
-        //                 console.log(data);
-        //             }, function (err) {
-        //                 console.log('Could not make a new event.')
-        //             })
-        //     }, function (err) {
-        //         console.log('another fucking error');
-        //     });
-        // };
 
 
 

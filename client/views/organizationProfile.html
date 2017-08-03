@@ -3,7 +3,7 @@
 <div id="volHeader" class="volHeader">
   <div class="container">
     <div id="firstRow" class="row">
-      <img class="profilePic" ng-src="{{ organization.image }}" alt="users picture">
+      <img class="profilePic img-responsive" ng-src="{{ organization.image }}" alt="users picture">
     </div>
     <div id="secondRow" class="row">
       <div id="aboutThumbnail" class="thumbnail col-md-2 wow fadeInLeft">
@@ -65,7 +65,7 @@
                 <th>Total Hours</th>
               </tr>
             </thead>
-            <tbody ng-repeat="p in pastEvents" style="margin:0 5px 0 5px;">
+            <tbody ng-repeat="p in pastOrgEvents" style="margin:0 5px 0 5px;">
               <td>{{ p.organizationName}}</td>
               <td>{{ p.title}}</td>
               <td>{{ p.date | date:'shortDate' }}</td>
