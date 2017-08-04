@@ -56,12 +56,10 @@
                     <!--the dropdown-->
                     <ul class="dropdown-menu">
                         <!--org profile dropdown-->
-                        <li><a ng-show="user.role == 'Organization'" ng-href="/organization_profile/{{x.organizationId}}">View Profile</a></li>
-                        <li><a ng-show="user.role == 'Organization'">Edit Org Profile</a></li>
+                        <li><a ng-show="user.role == 'Organization'" ng-href="/organization_profile/{{user.id}}">View Profile</a></li>
 
                         <!--Vol profile dropdown-->
-                        <li><a ng-show="user.role == 'Volunteer'" ng-href="/volunteer_profile/{{x.volunteerId}}">View Profile</a></li>
-                        <li><a ng-show="user.role == 'Volunteer'">Edit Vol Profile</a></li>
+                        <li><a ng-show="user.role == 'Volunteer'" ng-href="/volunteer_profile/{{user.id}}">View Profile</a></li>
 
                         <!--Logout Anyone-->
                         <li><a href="#" ng-click="logout()" ng-if="user"> Logout </a></li>
