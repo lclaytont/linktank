@@ -14,9 +14,8 @@
                     <h1 ng-if="user" >Upcoming Events to <br> Volunteer For:</h1>
                     <h1 ng-if="!user"> Sign In or <span> <a href="/register" class="signUpText" >Sign Up</a> </span> To View Events</h1>
                 </div>
-                <br>
-                <caption>All Events</caption>
                 <table class="table table-striped">
+                    <caption><h3> All Events:</h3></caption>
                     <thead>
                         <tr>
                             <th>Organization</th>
@@ -27,7 +26,6 @@
                             <th>Start Time</th>
                             <th>End Time</th>
                             <th>Total Hours</th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody ng-repeat="x in upcomingEvents">

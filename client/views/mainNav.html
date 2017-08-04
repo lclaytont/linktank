@@ -53,18 +53,19 @@
                     </a>
                     <!--the dropdown-->
                     <ul class="dropdown-menu">
-                        <li><a href="/">View Profile</a></li>
-                        <li><a href="/edit_volunteer_profile/"+user.id ng-show="user.role == 'Volunteer'">Edit Vol Profile</a></li>
-                        <li><a href="/edit_organization_profile/"+user.id ng-show="user.role == 'Organization'">Edit Org Profile</a></li>
-                        <li><a href="#" ng-click="logout()" ng-if="user"> Logout </a></li> 
-                        
+                        <!--org profile dropdown-->
+                        <li><a ng-show="user.role == 'Organization'" ng-href="/organization_profile/{{x.organizationId}}">View Profile</a></li>
+                        <li><a ng-show="user.role == 'Organization'">Edit Org Profile</a></li>
+
+                        <!--Vol profile dropdown-->
+                        <li><a ng-show="user.role == 'Volunteer'" ng-href="/volunteer_profile/{{x.volunteerId}}">View Profile</a></li>
+                        <li><a ng-show="user.role == 'Volunteer'">Edit Vol Profile</a></li>
+
+                        <!--Logout Anyone-->
+                        <li><a href="#" ng-click="logout()" ng-if="user"> Logout </a></li>   
                      </ul>
                 </li>
             </ul>
-
-             <!--when no one logged in have default nav, with sign in/ Up
-                        when anyone logged in takes those away, and show logout
-                            depending on the role, edit profile link will be different-->
         </div>
     </div>
 </div>

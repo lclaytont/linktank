@@ -372,6 +372,12 @@ Home View Styles
   color: #000000;
 }
 
+caption  {
+    color: black;
+    display: table-caption;
+    text-align: center;
+}
+
 /*event page*/
 
 .signUpText {
@@ -388,3 +394,4 @@ Home View Styles
     background-color: lightgray;
     width: 50%;
 }
+
