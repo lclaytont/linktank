@@ -213,9 +213,25 @@
       <!--footer-->
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Discard All Changes</button>
-        <button type="button" class="btn btn-danger" ng-click="delete()">DELETE EVENT</button>
+        <button type="button" class="btn btn-danger" ng-click="delete(singleEvent)">DELETE EVENT</button>
         <button type="button" class="btn btn-primary" ng-click="update(singleEvent)">Save Changes</button>
       </div>
+      <br>
+      <hr>
+      <div class="container">
+        <div class="row">
+          <h2 class="text-justify">Volunteers Currently Attending:</h2>
+          <br>
+          <div class="col-md-6"> 
+            <div ng-repeat="v in vols"> 
+            <ol type="1">
+              <li><a class="volz" ng-href="/volunteer_profile/{{v.Volunteers_id}}">{{ v.name }}</a> - {{ v.email }}</li><br>
+            </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

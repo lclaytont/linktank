@@ -87,7 +87,7 @@ router.get('/:id', function(req, res) {
 // :id = Event_Id
 router.get('/event_vols/:id', function(req, res) {
     return eventProc.getSignedUpVols(req.params.id)
-        .then(function(volunteer) {
+        .then(function(volunteers) {
             console.log('Got list of volunteers for event' + req.params.id);
             res.send(volunteers);
         }, function(err) {

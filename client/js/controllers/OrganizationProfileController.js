@@ -1,5 +1,5 @@
 app.controller('OrganizationProfileController',
-    function ($scope, $routeParams, organizationFactory, organizationUpcomingEventsFactory, $filter, updateEventFactory, $http, pastEventFactory) {
+    function ($scope, $routeParams, organizationFactory, organizationUpcomingEventsFactory, $filter, updateEventFactory, $http, pastEventFactory, volsForEventFactory) {
         console.log('Welcome to an orgs profile!')
 
         $scope.organization = organizationFactory.get({ id: $routeParams.id });
@@ -9,7 +9,15 @@ app.controller('OrganizationProfileController',
         console.log($scope.orgEvents);
 
         $scope.pastOrgEvents = pastEventFactory.query({id: $routeParams.id});
-        console.log($scope.pastOrgEvents)
+        console.log($scope.pastOrgEvents) 
+
+        // DELETE AN EVENT
+        $scope.delete = function(singleEvent) {
+            console.log(singleEvent.id)
+            var thing = updateEventFactory.get({id: singleEvent.id})
+            console.log(thing)
+            thing.$delete({id: singleEvent.id});
+        }
         // CREATE A NEW EVENT
         $scope.createEvent = function(event) {
         console.log($routeParams);
@@ -66,6 +74,11 @@ app.controller('OrganizationProfileController',
             $scope.singleEvent.startTime = new Date(timeDate + "T" +  start);
             $scope.singleEvent.endTime = new Date(timeDate + "T" + end);
             
+            // GRAB VOLS FOR EVENT AND PUT THEM ON THE MODAL
+            $scope.vols = volsForEventFactory.query({ id: o.id });
+            console.log($scope.vols);
+
+
                 $scope.update = function(singleEvent) {
                 var udEvent = singleEvent;
                 // var utcTimeDiff = new Date().getTimezoneOffset().toString();
