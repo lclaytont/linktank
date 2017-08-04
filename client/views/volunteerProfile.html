@@ -19,12 +19,12 @@
                     <br>
                     <p class="fa fa-user"> {{ volunteer.about }}</p>
                     <br>
-                    <buttton ng-click="editProfile()" class="btn btn-danger">Edit Profile</buttton>
+                    <buttton ng-if="user.role=='Volunteer'" ng-click="editProfile()" class="btn btn-danger">Edit Profile</buttton>
                 </div>
             </div>
             <div class="col-md-7">
                 <div class="thumbnail">
-                    <h1>Upcoming Events</h1>
+                    <h1>Upcoming Events</h1><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#detailsModal" ng-click="details(event)">See Details</button>
                     <hr>
                     <table class="table table-striped">
                         <thead>
@@ -34,7 +34,6 @@
                                 <th>Date</th>
                                 <th>Location</th>
                                 <th>Total Hours</th>
-                                <th></th>
                             </tr>
                         </thead>
                         <tbody ng-repeat="u in upcomingEvents">
@@ -43,11 +42,10 @@
                             <td>{{ u.date | date:'fullDate'}}</td>
                             <td>{{ u.organizationCity}}, {{ e.organizationState}} </td>
                             <td>{{ u.totalHours}}</td>
-                            <td><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#detailsModal" ng-click="details(event)">See Details</button></td>
                             <!--<td><button class="btn btn-success btn-sm" ng-click="details(event)">Details</button></td>-->
                         </tbody>
                     </table>
-                    <buttton ng-click="findEvents()" class="btn btn-danger">Search Events</buttton>
+                    <buttton ng-click="findEvents()" class="btn btn-danger">See All Events</buttton>
                 </div>
             </div>
             <div id="aboutThumbnail" class="thumbnail col-md-3">
@@ -106,7 +104,7 @@
                         </tr>
                     </thead>
                     <!--table body-->
-                    <tbody ng-repeat="e in volEvents">
+                    <tbody ng-repeat="e in upcomingEvents">
                         <td>{{ e.organizationName}}</td>
                         <td>{{ e.title}}</td>
                         <td>{{ e.date | date:'fullDate'}}</td>
