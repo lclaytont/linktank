@@ -1,13 +1,17 @@
 <main-nav></main-nav>
 
 <div id="volHeader" class="volHeader">
-    <div class="container">
-
+    <!--if there is no user signed in- show this-->
+    <div id="textBG" class="container">
+        <h1 id="noUserOrgProf" ng-if="!user"> Sign In or <span> <a href="/register" class="signUpText" >Sign Up</a> </span> To View a Users Profile</h1>
+    </div>
+    <!--if the user is signed in, show this-->
+    <div class="container" ng-if="user">
         <div id="firstRow" class="row">
             <img class="profilePic" ng-src="{{volunteer.image}}" alt="users picture">
         </div>
         <div id="secondRow" class="row">
-            <div id="aboutThumbnail" class="thumbnail col-md-3">
+            <div id="aboutThumbnail" class="thumbnail col-md-2">
                 <div class="caption">
                     <h2>{{ volunteer.name }}</h2>
                     <hr>
@@ -18,7 +22,7 @@
                     <buttton ng-click="editProfile()" class="btn btn-danger">Edit Profile</buttton>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-7">
                 <div class="thumbnail">
                     <h1>Upcoming Events</h1>
                     <hr>
@@ -123,4 +127,4 @@
     </div>
 </div>
 
-<!-- <contact-area></contact-area> -->
+<!--<footer> </footer>-->

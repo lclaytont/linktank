@@ -11,7 +11,7 @@
         </div>
         <div class="navbar-collapse collapse navbar-right" id="thing-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <!--IF YOU ARE NOT A USER THEN THIS WILL BE SHOW!-->
+                <!--IF YOU ARE NOT SIGNED IN, THEN THIS WILL BE SHOW!-->
                 <li class="dropdown" ng-show="!user">
                     <!--click sign in - drops once-->
                     <a href="#" class="dropdown-toggle menu-item" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -20,7 +20,7 @@
                     <!--shows dropdown-->
                     <ul class="dropdown-menu">
                         <li>
-                            <div class=" signInDrop">
+                            <div class="signInDrop">
                                 <div class="row rg-master">
                                     <div class="col-md-4 col-md-offset-4 text-center thing">
                                         <h1 class="wow fadeInLeft">Login</h1>
@@ -42,10 +42,9 @@
                         </li>
                     </ul>
                 </li>
-                <!--IF NOT A USER, THIS WILL NOT BE SHOWN!-->
                 <li><a href="/register" ng-if="!user">Sign Up</a></li>
                 <li><a href="/events">View All Events</a></li>
-                <li><a href="/">About Us</a></li>
+                <li><a href="/#aboutUs">About Us</a></li>
                 <!--This Profile DropDown Should Not Be Shown Unless Logged In as org or vol-->
                 <li class="dropdown" ng-if="user">
                     <!--click on profile - drops down-->
@@ -55,14 +54,11 @@
                     <!--the dropdown-->
                     <ul class="dropdown-menu">
                         <li><a href="/">View Profile</a></li>
-                        <li><a href="/edit_volunteer_profile/{{v.volunteerid}}" ng-show="user.role == 'Volunteer'">Edit Vol Profile</a></li>
-                        <li><a href="/edit_organization_profile/{{o.organizationid}}" ng-show="user.role == 'Organization'">Edit Org Profile</a></li>
-                        <li><a href="/" ng-click="logout()" ng-if="user"> Logout </a></li> 
+                        <li><a href="/edit_volunteer_profile/"+user.id ng-show="user.role == 'Volunteer'">Edit Vol Profile</a></li>
+                        <li><a href="/edit_organization_profile/"+user.id ng-show="user.role == 'Organization'">Edit Org Profile</a></li>
+                        <li><a href="#" ng-click="logout()" ng-if="user"> Logout </a></li> 
                         
-
-
-                        <!--<li><a href="/" ng-click="logout()">Log Out</a></li>-->
-                </ul>
+                     </ul>
                 </li>
             </ul>
 
