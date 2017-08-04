@@ -1,7 +1,12 @@
 <main-nav></main-nav>
 
 <div id="volHeader" class="volHeader">
-  <div class="container">
+<!--if there is no user signed in- show this-->
+ <div id="textBG" class="container">
+   <h1 id="noUserOrgProf" ng-if="!user"> Sign In or <span> <a href="/register" class="signUpText" >Sign Up</a> </span> To View a Users Profile</h1>
+ </div>
+ <!--if the user is signed in, show this-->
+ <div class="container" ng-if="user">
     <div id="firstRow" class="row">
       <img class="profilePic img-responsive" ng-src="{{ organization.image }}" alt="users picture">
     </div>
@@ -77,7 +82,7 @@
     </div>
   </div>
 </div>
-</div>
+
 
 
 
@@ -156,7 +161,7 @@
 
 <!--Manage Event Modal Info-->
 
-<div class="modal fade" id="manageEventModal" tabindex="-1" role="dialog" aria-labelledby="manageEventModalLabel" aria-hidden="true">
+<div id="manageEventModal" class="modal"  tabindex="-1" role="dialog" aria-labelledby="manageEventModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="form">
     <div class="modal-content">
       <!--Header-->
@@ -215,9 +220,7 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Discard All Changes</button>
         <button type="button" class="btn btn-danger" ng-click="delete(singleEvent)">DELETE EVENT</button>
         <button type="button" class="btn btn-primary" ng-click="update(singleEvent)">Save Changes</button>
-      </div>
-      <br>
-      <hr>
+
       <div class="container">
         <div class="row">
           <h2 class="text-justify">Volunteers Currently Attending:</h2>
@@ -225,12 +228,16 @@
           <div class="col-md-6"> 
             <div ng-repeat="v in vols"> 
             <ol type="1">
-              <li><a class="volz" ng-href="/volunteer_profile/{{v.Volunteers_id}}">{{ v.name }}</a> - {{ v.email }}</li><br>
+              <li>{{ v.name }} - {{ v.email }}</li>
+              <button class="btn btn-success" ng-click="goToVol(v)">Go To</button><br>
             </ol>
             </div>
           </div>
         </div>
       </div>
+      </div>
+      <br>
+      <hr>
 
     </div>
   </div>

@@ -1,5 +1,5 @@
 app.controller('OrganizationProfileController',
-    function ($scope, $routeParams, organizationFactory, organizationUpcomingEventsFactory, $filter, updateEventFactory, $http, pastEventFactory, volsForEventFactory) {
+    function ($scope, $routeParams, organizationFactory, organizationUpcomingEventsFactory, $filter, updateEventFactory, $http, pastEventFactory, volsForEventFactory, $location) {
         console.log('Welcome to an orgs profile!')
 
         $scope.organization = organizationFactory.get({ id: $routeParams.id });
@@ -8,82 +8,90 @@ app.controller('OrganizationProfileController',
         $scope.orgEvents = organizationUpcomingEventsFactory.query({ id: $routeParams.id });
         console.log($scope.orgEvents);
 
-        $scope.pastOrgEvents = pastEventFactory.query({id: $routeParams.id});
-        console.log($scope.pastOrgEvents) 
+        $scope.pastOrgEvents = pastEventFactory.query({ id: $routeParams.id });
+        console.log($scope.pastOrgEvents)
 
         // DELETE AN EVENT
-        $scope.delete = function(singleEvent) {
+        $scope.delete = function (singleEvent) {
             console.log(singleEvent.id)
-            var thing = updateEventFactory.get({id: singleEvent.id})
+            var thing = updateEventFactory.get({ id: singleEvent.id })
             console.log(thing)
-            thing.$delete({id: singleEvent.id});
+            thing.$delete({ id: singleEvent.id });
+        }
+
+        $scope.goToVol = function (v) {
+            // console.log(v);
+            $('#manageEventModal').modal('toggle');
+            $location.url('/volunteer_profile/' + v.Volunteers_id)
         }
         // CREATE A NEW EVENT
-        $scope.createEvent = function(event) {
-        console.log($routeParams);
-        console.log(event)
-        //Splits date objs into manipulatable pieces
-        var newDate = new Date(event.date).toISOString().split("T")[0];
-        var newStart = new Date(event.startTime).toISOString().split("T")[1];
-        var newEnd = new Date(event.endTime).toISOString().split("T")[1];
+        $scope.createEvent = function (event) {
+            console.log($routeParams);
+            console.log(event)
+            //Splits date objs into manipulatable pieces
+            var newDate = new Date(event.date).toISOString().split("T")[0];
+            var newStart = new Date(event.startTime).toISOString().split("T")[1];
+            var newEnd = new Date(event.endTime).toISOString().split("T")[1];
 
-        //Manipulates date objs
-        var newStartPieces = newStart.split(":");
-        var newEndPieces = newEnd.split(":");
-        var newStartHour = newStartPieces[0] > 4 ? (parseInt(newStartPieces[0]) - 5) : (parseInt(newStartPieces[0]) + 24 - 5);
-        var newEndHour = newEndPieces[0] > 4 ? (parseInt(newEndPieces[0]) - 5) : (parseInt(newEndPieces[0]) + 24 - 5);
-        var newStartTime = newStartHour + ":" + newStartPieces[1] + ":" + newStart[2]; 
-        var newEndTime = newEndHour = ":" + newEndPieces[1] + ":" + newEndPieces[2];
+            //Manipulates date objs
+            var newStartPieces = newStart.split(":");
+            var newEndPieces = newEnd.split(":");
+            var newStartHour = newStartPieces[0] > 4 ? (parseInt(newStartPieces[0]) - 5) : (parseInt(newStartPieces[0]) + 24 - 5);
+            var newEndHour = newEndPieces[0] > 4 ? (parseInt(newEndPieces[0]) - 5) : (parseInt(newEndPieces[0]) + 24 - 5);
+            var newStartTime = newStartHour + ":" + newStartPieces[1] + ":" + newStart[2];
+            var newEndTime = newEndHour = ":" + newEndPieces[1] + ":" + newEndPieces[2];
 
-        console.log(newDate);
+            console.log(newDate);
 
             var newEvent = {
-                title: $scope.event.title, 
+                title: $scope.event.title,
                 description: $scope.event.description,
-                address: $scope.event.address, 
-                city: $scope.event.city, 
-                state: $scope.event.state, 
+                address: $scope.event.address,
+                city: $scope.event.city,
+                state: $scope.event.state,
                 date: newDate,
                 startTime: newDate + " " + newStartTime,
                 endTime: newDate + " " + newEndTime,
                 helpNeeded: $scope.event.helpNeeded,
                 totalHours: $scope.event.totalHours
             }
-        
+
             $http({
                 method: 'POST',
                 url: '/api/events/' + $routeParams.id,
                 data: newEvent
-            }).then(function() {
+            }).then(function () {
                 console.log('EVENT ADDED')
-            }, function(err) {
+            }, function (err) {
                 console.log('Nah. Event Not Added.')
             })
         }
 
 
         // GRAB AN EVENT TO UPDATE
-        $scope.grabEvent = function(o){   
+        $scope.grabEvent = function (o) {
             var timeDate = o.date.split("T")[0]
             var start = o.startTime.split("T")[1];
             var end = o.endTime.split("T")[1];
 
-            $scope.singleEvent = o; 
+            $scope.singleEvent = o;
             $scope.singleEvent.date = new Date(o.date.split("T")[0]);
 
-            $scope.singleEvent.startTime = new Date(timeDate + "T" +  start);
+            $scope.singleEvent.startTime = new Date(timeDate + "T" + start);
             $scope.singleEvent.endTime = new Date(timeDate + "T" + end);
-            
+
             // GRAB VOLS FOR EVENT AND PUT THEM ON THE MODAL
             $scope.vols = volsForEventFactory.query({ id: o.id });
             console.log($scope.vols);
 
 
-                $scope.update = function(singleEvent) {
+
+
+            $scope.update = function (singleEvent) {
                 var udEvent = singleEvent;
                 // var utcTimeDiff = new Date().getTimezoneOffset().toString();
                 // console.log(utcTimeDiff);
-                var dateElem = new Date(udEvent.date).toISOString().split("T")[0]; 
+                var dateElem = new Date(udEvent.date).toISOString().split("T")[0];
                 var begin = new Date(udEvent.startTime).toISOString().split("T")[1];
                 // console.log(begin - utcTimeDiff);
                 var theEnd = new Date(udEvent.endTime).toISOString().split("T")[1];
@@ -96,10 +104,10 @@ app.controller('OrganizationProfileController',
                 console.log(theEnd);
                 console.log(parseInt(endPieces[0]) + 24)
                 var penUltimateHack = endPieces[0] > 4 ? (parseInt(endPieces[0]) - 5) : (parseInt(endPieces[0]) + 24 - 5);
-                var endItBack2gether = penUltimateHack + ":" + endPieces[1] + ":" + endPieces[2]; 
+                var endItBack2gether = penUltimateHack + ":" + endPieces[1] + ":" + endPieces[2];
                 // constructing new object
                 newObj = {
-                    address : udEvent.address,
+                    address: udEvent.address,
                     city: udEvent.city,
                     date: dateElem,
                     description: udEvent.description,
@@ -113,25 +121,25 @@ app.controller('OrganizationProfileController',
                     state: udEvent.state,
                     title: udEvent.title,
                     address: udEvent.address,
-                    city: udEvent.city, 
+                    city: udEvent.city,
                     state: udEvent.state,
                     totalHours: udEvent.totalHours
                 }
                 console.log(newObj);
-                updateEventFactory.update({id: singleEvent.id}, newObj); 
-                }
+                updateEventFactory.update({ id: singleEvent.id }, newObj);
+            }
 
         }
-    }) 
-
-    
-    
+    })
 
 
 
 
 
 
-    
+
+
+
+
 
 
