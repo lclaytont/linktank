@@ -28,7 +28,7 @@ app.service('userService',
     }
 
 
-    // Log Out a vol
+    // Log Anyone Out
     this.VolunteerLogout = function() {
         console.log(user);
         return $http({
@@ -42,6 +42,7 @@ app.service('userService',
     // Maintain user session
     this.me = function() {
         if(user) {
+            console.log("The current user is:" + user)
             return Promise.resolve(user);
         }
         return $http({

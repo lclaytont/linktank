@@ -4,9 +4,9 @@
 }
 
 /*all background that is normaly white is now barely not white xD*/
-/*html{
+html{
     background-color: #e6e6e6;
-}*/
+}
 
 body {
     overflow-x: hidden;
@@ -307,16 +307,14 @@ Home View Styles
 }
 
 /*footer*/
-.footer {
-    
+.footer {    
     padding: 30px;
     color: #cccccc;
     background-color: #222222;
 }
 
-
 .footer .social {
-    
+   
     font-size: 20px;
     height: 30px;
     width: 30px;
@@ -328,8 +326,7 @@ Home View Styles
 }
 
 
-.footer input {
-    
+.footer input {  
     height: 40px;
     width: 160px;
     padding: 5px;
@@ -338,8 +335,7 @@ Home View Styles
     color: #000;
 }
 
-.footer .btn {
-    
+.footer .btn {   
     padding: 10px 5px 10px;
     margin: -3px 0 0 5px;
 }
@@ -374,4 +370,21 @@ Home View Styles
 .table tr:nth-child(odd) {
   background-color: #dfe7f2;
   color: #000000;
+}
+
+/*event page*/
+
+.signUpText {
+    color: #3399ff !important;
+    text-decoration: none !important;
+}
+
+#noUserOrgProf {
+    color: black;
+    text-align: center;
+}
+
+#textBG{
+    background-color: lightgray;
+    width: 50%;
 }

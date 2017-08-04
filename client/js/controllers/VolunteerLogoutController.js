@@ -3,7 +3,7 @@ app.controller('VolunteerLogoutController',
         userService.me();
         console.log('Log out of an account');
 
-        $scope.logout = function () {   //on ngclick in volunteerLogout.html run this
+        $scope.logout = function () {   
             userService.VolunteerLogout()
                 .then(function () {
                     console.log('logged out!');
