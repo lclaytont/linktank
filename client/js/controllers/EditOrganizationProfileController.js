@@ -43,7 +43,7 @@ app.controller('EditOrganizationProfileController',
                     $http.put('/api/organizations/picture_path/' + $routeParams.id,
                     newImg).then(function() {
                         console.log('Updated image path in DB');
-                        $location.path('/organization_profile' + $routeParams.id)
+                        $location.path('/organization_profile/' + $routeParams.id)
                     }, function(err) {
                         console.log('Could not update image path in DB: ' + err.message)
                     })
