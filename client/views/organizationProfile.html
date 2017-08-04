@@ -27,6 +27,7 @@
         <div class="thumbnail vol-profile-cont">
           <h1>{{organization.organizationName}}'s Events </h1>
           <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#createEventModal">Create new event</button>
+          <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#detailsModal" ng-click="details(o)">See More Details</button>
           <hr>
           <table class="table table-striped">
             <thead>
@@ -48,7 +49,7 @@
               <td>{{ o.state }}</td>
               <td>{{ o.startTime |date:'hh:mm a'}}</td>
               <td>
-                <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#detailsModal" ng-click="details(o)">See More Details</button>
+                <!-- <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#detailsModal" ng-click="details(o)">See More Details</button> -->
                 <!--<button class="btn btn-success btn-sm" ng-click="details(event)">Details</button>-->
                 <!--<button class="btn btn-danger btn-sm" style=margin-top:7px data-toggle="modal" data-target="#manageEventModal">Manage Event</button>-->
                 <button type="button" class="btn btn-danger" style=margin-top:7px data-toggle="modal" data-target="#manageEventModal" ng-click="grabEvent(o)">Manage Event</button>
@@ -199,17 +200,21 @@
           </div>
           <!--end row-->
           <div class="row">
-            <div class="form-group col-sm-4">
+            <div class="form-group col-sm-3">
               <label for="newDate" class="form-control-label">Date (YYYY-MM-DD):</label>
               <input type="date" class="form-control" id="newDate" ng-model="singleEvent.date">
             </div>
-            <div class="form-group col-sm-4">
+            <div class="form-group col-sm-3">
               <label for="newStartTime" class="form-control-label">Start Time:</label>
               <input type="time" class="form-control" id="newStartTime" ng-model="singleEvent.startTime">
             </div>
-            <div class="form-group col-sm-4">
+            <div class="form-group col-sm-3">
               <label for="newEndTime" class="form-control-label">End Time:</label>
               <input type="time" class="form-control" id="newEndTime" ng-model="singleEvent.endTime">
+            </div>
+            <div class="form-group col-sm-3">
+              <label for="newEndTime" class="form-control-label">Vols Needed:</label>
+              <input type="number" class="form-control" id="newHelpNeeded" ng-model="singleEvent.helpNeeded">
             </div>
           </div>
         </form>
@@ -261,28 +266,27 @@
         <table class="table table-striped" id="profileTable">
           <thead>
             <tr>
-              <th>Organization</th>
               <th>Activity</th>
               <th>Date</th>
               <th>Address</th>
               <th>Location</th>
               <th>Description</th>
+              <th>Vols Needed</th>
               <th>Start Time</th>
               <th>End Time</th>
               <th>Total Hours</th>
-              <th></th>
             </tr>
           </thead>
           <!--table body-->
           <tbody ng-repeat="o in orgEvents">
-            <td>{{ o.organizationName}}</td>
             <td>{{ o.title}}</td>
             <td>{{ o.date | date:'fullDate'}}</td>
             <td>{{ o.address}}</td>
             <td>{{ o.city}}, {{o.state}} </td>
             <td>{{ o.description}}</td>
-            <td>{{ o.startTime}}</td>
-            <td>{{ o.endTime}}</td>
+            <td>{{ o.helpNeeded }}</td>
+            <td>{{ o.startTime | date:"hh:mm a"}}</td>
+            <td>{{ o.endTime | date:"hh:mm a"}}</td>
             <td>{{ o.totalHours}}</td>
           </tbody>
         </table>

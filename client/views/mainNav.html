@@ -26,6 +26,8 @@
                                         <h1 class="wow fadeInLeft">Login</h1>
                                         <hr class="wow fadeInRight">
                                         <form class="wow fadeInRight">
+                                            <label class="radio-inline"><input type="radio" value="Volunteer" ng-click="volRole()"name="optradio">Volunteer</label>
+                                            <label class="radio-inline"><input type="radio" value="Organization" ng-click="orgRole()" name="optradio">Organization</label>
                                             <div class="form-group">
                                                 <label for="newUserEmail">Email</label>
                                                 <input type="email" class="form-control" placeholder="Type Email Here" ng-model="email">
@@ -48,7 +50,7 @@
                 <!--This Profile DropDown Should Not Be Shown Unless Logged In as org or vol-->
                 <li class="dropdown" ng-if="user">
                     <!--click on profile - drops down-->
-                    <a  class="dropdown-toggle menu-item" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    <a class="dropdown-toggle menu-item" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         My Profile<span class="caret"></span>
                     </a>
                     <!--the dropdown-->
@@ -62,8 +64,8 @@
                         <li><a ng-show="user.role == 'Volunteer'">Edit Vol Profile</a></li>
 
                         <!--Logout Anyone-->
-                        <li><a href="#" ng-click="logout()" ng-if="user"> Logout </a></li>   
-                     </ul>
+                        <li><a href="#" ng-click="logout()" ng-if="user"> Logout </a></li>
+                    </ul>
                 </li>
             </ul>
         </div>

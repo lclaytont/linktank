@@ -17,17 +17,17 @@ app.controller('HomeController',
    
         // team
         $scope.personOneName = "Clay"
-        $scope.personOneTitle = "This is your title"
-        $scope.personeOneAbout = "Something cool will go here"
+        $scope.personOneTitle = "Co-Founder and CEO"
+        $scope.personeOneAbout = "The only difference between a winner and a loser is a winner plays until he wins"
 
         $scope.personTwoName = "Warren"
-        $scope.personTwoTitle = "This is your title"
-        $scope.personeTwoAbout = "Something cool will go here"
+        $scope.personTwoTitle = "Co-Founder and CTO"
+        $scope.personeTwoAbout = "My Conversations with God always seem to leave him speechless"
 
         $scope.personThreeName = "Andrew"
-        $scope.personThreeTitle = "This is your title"
-        $scope.personThreeAbout = "Something cool will go here"
-        
+        $scope.personThreeTitle = "Co-Founder and CFO"
+        $scope.personThreeAbout = "Obama cool, but he ain't sending me no free checksrs"
+    
     
  })
 

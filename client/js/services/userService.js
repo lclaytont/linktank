@@ -5,6 +5,7 @@ app.service('userService',
 
     // Log Local Strategy Users in with email and pw
     this.VolunteerLogin = function(obj) {
+        console.log('VOL RAN')
         return $http({
             method: 'POST',
             url: "http://localhost:3000/api/volunteers/login",
@@ -17,6 +18,7 @@ app.service('userService',
     }
 
     this.OrganizationLogin = function(obj) {
+        console.log('I ran')
         return $http({
             method: 'POST',
             url: "http://localhost:3000/api/organizations/login",

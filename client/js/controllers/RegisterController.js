@@ -27,6 +27,7 @@ app.controller('RegisterController',
                 .then(function(data) {
                     console.log(data);
                     var volId = data.id;
+                    $('#volunteerRegisterModal').modal('toggle');
                     $location.path('/edit_volunteer_profile/' + volId)
                 }, function(err) {
                     console.log('Error Logging in New User.')
@@ -59,6 +60,7 @@ app.controller('RegisterController',
             .then(function(data) {
                 console.log(data);
                 var orgId = data.id;
+                $('#organizationRegisterModal').modal('toggle');
                 $location.path('/edit_organization_profile/' + orgId);
             }, function(err) {
                 console.log("Error logging in new Organization")

@@ -26,7 +26,7 @@ app.controller('OrganizationProfileController',
         }
         // CREATE A NEW EVENT
         $scope.createEvent = function (event) {
-            console.log($routeParams);
+            console.log(event.helpNeeded);
             console.log(event)
             //Splits date objs into manipulatable pieces
             var newDate = new Date(event.date).toISOString().split("T")[0];
@@ -56,12 +56,15 @@ app.controller('OrganizationProfileController',
                 totalHours: $scope.event.totalHours
             }
 
+            console.log(newEvent.helpNeeded);
+
             $http({
                 method: 'POST',
                 url: '/api/events/' + $routeParams.id,
                 data: newEvent
             }).then(function () {
                 console.log('EVENT ADDED')
+                window.location.reload();
             }, function (err) {
                 console.log('Nah. Event Not Added.')
             })

@@ -19,7 +19,7 @@
                     <br>
                     <p class="fa fa-user"> {{ volunteer.about }}</p>
                     <br>
-                    <buttton ng-if="user.role=='Volunteer'" ng-click="editProfile()" class="btn btn-danger">Edit Profile</buttton>
+                    <a ng-href='/edit_volunteer_profile/{{ volunteer.id }}'><buttton ng-if="user.role=='Volunteer'" class="btn btn-danger">Edit Profile</buttton></a>
                 </div>
             </div>
             <div class="col-md-7">
@@ -48,7 +48,7 @@
                     <buttton ng-click="findEvents()" class="btn btn-danger">See All Events</buttton>
                 </div>
             </div>
-            <div id="aboutThumbnail" class="thumbnail col-md-3">
+            <div id="aboutThumbnail" class="thumbnail col-md-3" >
                 <div class="caption">
                     <h1>Past Events</h1>
                     <hr>
@@ -61,7 +61,7 @@
                                 <th>Total Hours</th>
                             </tr>
                         </thead>
-                        <tbody ng-repeat="p in pastEvents" style="margin:0 5px 0 5px;">
+                        <tbody ng-repeat="p in pastEvents" style="margin:5px 5px 5px 5px !important;">
                             <td>{{ p.organizationName}}</td>
                             <td>{{ p.title}}</td>
                             <td>{{ p.date | date:'shortDate' }}</td>
@@ -100,7 +100,6 @@
                             <th>Start Time</th>
                             <th>End Time</th>
                             <th>Total Hours</th>
-                            <th></th>
                         </tr>
                     </thead>
                     <!--table body-->
@@ -111,8 +110,8 @@
                         <td>{{ e.address}}</td>
                         <td>{{ e.organizationCity}}, {{ e.organizationState}} </td>
                         <td>{{ e.description}}</td>
-                        <td>{{ e.startTime}}</td>
-                        <td>{{ e.endTime}}</td>
+                        <td>{{ e.startTime | date:"hh:mm a"}}</td>
+                        <td>{{ e.endTime | date:"hh:mm a"}}</td>
                         <td>{{ e.totalHours}}</td>
                     </tbody>
                 </table>
