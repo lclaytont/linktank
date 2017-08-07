@@ -395,3 +395,11 @@ caption  {
     width: 50%;
 }
 
+/* Register Text  */
+.rg-master {
+    text-shadow:
+   -1px -1px 0 #000,
+   1px -1px 0 #000,
+   -1px 1px 0 #000,
+   1px 1px 0 #000;
+}
