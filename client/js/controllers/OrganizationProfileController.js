@@ -24,6 +24,10 @@ app.controller('OrganizationProfileController',
             $('#manageEventModal').modal('toggle');
             $location.url('/volunteer_profile/' + v.Volunteers_id)
         }
+
+        $scope.editProfile = function() {
+            $location.path('/edit_organization_profile/' + $routeParams.id);
+        }
         // CREATE A NEW EVENT
         $scope.createEvent = function (event) {
             console.log(event.help);
