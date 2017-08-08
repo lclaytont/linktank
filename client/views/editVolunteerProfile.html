@@ -16,7 +16,7 @@
         <div class="col-md-6 text-center">
             <div class="radio">
                 <label for="profile">
-                    <input type="radio" class="custom-control-input" name="profileOptions" value="profile" ng-click="profileClick()" ng-model="editType">
+                    <button type="button" class=" btn btn-lg btn-primary custom-control-input" name="profileOptions" value="profile" ng-click="profileClick()" ng-model="editType">
                     <span class="custom-control-input"></span>
                     <span class="custom-control-input">Edit Profile Information</span> 
                 </label>
@@ -25,7 +25,7 @@
         <div class="col-md-6">
             <div class="radio">
                 <label for="pic">
-                    <input type="radio" name="profileOptions" ng-click="picClick()" value="pic" ng-model="editType">
+                    <button type="button" class=" btn btn-lg btn-primary custom-control-input" name="profileOptions" ng-click="picClick()" value="pic" ng-model="editType">
                     <span class="custom-control-input"></span>
                     <span class="custom-control-input">Edit Profile Picture</span>
                 </label>
@@ -90,7 +90,7 @@
                                 </div>
                             </div>
                             <div>
-                                <button class="btn btn-lg btn-danger" ng-click="updateVol(newVol)">Update Profile</button>
+                                <button class="btn btn-lg btn-success" ng-click="updateVol(newVol)">Save Changes</button>
                             </div>
                         </div>
                     </form>

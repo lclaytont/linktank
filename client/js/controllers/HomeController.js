@@ -10,10 +10,10 @@ app.controller('HomeController',
 
         //service
         $scope.whatWeDo = "Whether you are an organization that needs volunteers, or a volunteer that needs an organization, we can link you together!"
-        $scope.servicePointOne = "Signing up is easy. Click the Sign Up button up top to get started!"
+        $scope.servicePointOne = "Signing up is easy. Click the Sign Up button up top then choose the role that fits you most to get started!"
         $scope.servicePointTwo = "As an organization, create a new event from your profile page. As a volunteer, navigate to 'All Events' and start signing up!"
-        $scope.servicePointThree = "Go to your events and do your comunitee a service!"
-        $scope.servicePointFour = "Of course you are going to want to tell the world about what you have done. All past events will be on your profile!"
+        $scope.servicePointThree = "Go to the events that you have signed up for and have a blast meeting new people serving your community!"
+        $scope.servicePointFour = "On your profile page see all of the events that you have coming up and the ones you have completed!"
    
         // team
         $scope.personOneName = "Clay"
@@ -26,8 +26,7 @@ app.controller('HomeController',
 
         $scope.personThreeName = "Andrew"
         $scope.personThreeTitle = "Co-Founder and CFO"
-        $scope.personThreeAbout = "Obama cool, but he ain't sending me no free checksrs"
-    
+        $scope.personThreeAbout = "If you are afraid to fail, you will never succeed"
     
  })
 
