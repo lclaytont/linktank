@@ -36,16 +36,18 @@ app.controller('OrganizationProfileController',
             var newDate = new Date(event.date).toISOString().split("T")[0];
             var newStart = new Date(event.startTime).toISOString().split("T")[1];
             var newEnd = new Date(event.endTime).toISOString().split("T")[1];
+            // console.log('new end' + newEnd)
 
             //Manipulates date objs
             var newStartPieces = newStart.split(":");
             var newEndPieces = newEnd.split(":");
-            var newStartHour = newStartPieces[0] > 4 ? (parseInt(newStartPieces[0]) - 5) : (parseInt(newStartPieces[0]) + 24 - 5);
-            var newEndHour = newEndPieces[0] > 4 ? (parseInt(newEndPieces[0]) - 5) : (parseInt(newEndPieces[0]) + 24 - 5);
+            var newStartHour = newStartPieces[0] > 4 ? (parseInt(newStartPieces[0]) - 6) : (parseInt(newStartPieces[0]) + 24 - 6);
+            var newEndHour = (newEndPieces[0] > 4) ? (parseInt(newEndPieces[0]) - 6) : (parseInt(newEndPieces[0]) + 24 - 6);
             var newStartTime = newStartHour + ":" + newStartPieces[1] + ":" + newStart[2];
-            var newEndTime = newEndHour = ":" + newEndPieces[1] + ":" + newEndPieces[2];
+            var newEndTime = newEndHour + ":" + newEndPieces[1] + ":" + newEndPieces[2];
+            console.log(newEndPieces[0]);
 
-            console.log(newDate);
+            
 
             var newEvent = {
                 title: event.title,
@@ -60,7 +62,7 @@ app.controller('OrganizationProfileController',
                 totalHours: event.totalHours
             }
 
-            console.log(newEvent.helpNeeded);
+            console.log(newEvent) 
 
             $http({
                 method: 'POST',
@@ -137,7 +139,8 @@ app.controller('OrganizationProfileController',
             }
 
         }
-    })
+      })
+
 
 
 
