@@ -185,6 +185,17 @@ router.post('/volunteer_for_event/:id', auth.isVol, function(req, res) {
         })
 })
 
+router.delete('/volunteer_for_event/:id', auth.isVol, function(req, res) {
+    return eventProc.unVolunteer(req.user.id, req.params.id)
+        .then(function() {
+            console.log('User unvolunteered for event');
+            res.send(201);
+        }, function(err) {
+            console.log('Error unvolunteering: ' + err.message);
+            res.sendStatus(504);
+        })
+})
+
 
 
 
@@ -196,7 +207,7 @@ router.post('/volunteer_for_event/:id', auth.isVol, function(req, res) {
 router.post('/:id', auth.isOrg, function(req, res) {
     var organizationId = req.params.id
     console.log("We Tried");
-    return eventProc.createEvent(organizationId, req.body.title, req.body.description, req.helpNeeded,
+    return eventProc.createEvent(organizationId, req.body.title, req.body.description, req.body.helpNeeded,
     req.body.date, req.body.startTime, req.body.endTime, req.body.totalHours, req.body.address, req.body.city, req.body.state)
         .then(function(data) {
             console.log('Successfully created an event');

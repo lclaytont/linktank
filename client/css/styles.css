@@ -293,7 +293,7 @@ Home View Styles
     padding: 20px 0 20px;
 }
 
-#aboutThumbnail {
+#past {
     padding: 20px 0 20px;
 }
 
@@ -402,4 +402,8 @@ caption  {
    1px -1px 0 #000,
    -1px 1px 0 #000,
    1px 1px 0 #000;
+}
+
+.ba li a {
+    color: #111111 !important;
 }

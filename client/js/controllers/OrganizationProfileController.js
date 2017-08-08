@@ -26,7 +26,7 @@ app.controller('OrganizationProfileController',
         }
         // CREATE A NEW EVENT
         $scope.createEvent = function (event) {
-            console.log(event.helpNeeded);
+            console.log(event.help);
             console.log(event)
             //Splits date objs into manipulatable pieces
             var newDate = new Date(event.date).toISOString().split("T")[0];
@@ -44,16 +44,16 @@ app.controller('OrganizationProfileController',
             console.log(newDate);
 
             var newEvent = {
-                title: $scope.event.title,
-                description: $scope.event.description,
-                address: $scope.event.address,
-                city: $scope.event.city,
-                state: $scope.event.state,
+                title: event.title,
+                description: event.description,
+                address: event.address,
+                city: event.city,
+                state: event.state,
                 date: newDate,
                 startTime: newDate + " " + newStartTime,
                 endTime: newDate + " " + newEndTime,
-                helpNeeded: $scope.event.helpNeeded,
-                totalHours: $scope.event.totalHours
+                helpNeeded: event.help,
+                totalHours: event.totalHours
             }
 
             console.log(newEvent.helpNeeded);

@@ -1,5 +1,5 @@
 app.controller('VolunteerProfileController',
-    function ($scope, volunteerFactory, $routeParams, volUpcomingEventsFactory, volPastEventsFactory, $location) {
+    function ($scope, volunteerFactory, $routeParams, volUpcomingEventsFactory, volPastEventsFactory, $location, $http) {
         console.log('Vol Profile Loaded');
 
         //this returns the users info
@@ -15,6 +15,25 @@ app.controller('VolunteerProfileController',
 
         $scope.findEvents = function() {
             $location.path('/events')
+        }
+
+        $scope.unVolunteer = function(u) {
+            console.log(u);
+            var delObj = {
+                volId: u.volId,
+                eventId: u.id
+            };
+
+            $http({
+                method: 'DELETE',
+                url: '/api/events/volunteer_for_event/' + delObj.eventId
+            }).then(function() {
+                console.log("Successfully unvolunteered");
+                alert('Successfully Un-Volunteered from event.')
+                location.reload();
+            }, function(err) {
+                console.log("Could not unvolunteer: " + err.message);
+            })
         }
         // var acc = document.getElementsByClassName("accordion");
         // var i;

@@ -66,3 +66,7 @@ exports.getVolsPastEvents = function(volId) {
 exports.getCountOfVols = function(eventId) {
     return db.row('See_CountOfVols', [eventId]);
 }
+
+exports.unVolunteer = function(volId, eventId) {
+    return db.empty('unVolunteer', [volId, eventId]);
+}

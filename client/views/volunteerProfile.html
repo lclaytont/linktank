@@ -11,7 +11,7 @@
             <img class="profilePic" ng-src="{{volunteer.image}}" alt="users picture">
         </div>
         <div id="secondRow" class="row">
-            <div id="aboutThumbnail" class="thumbnail col-md-2">
+            <div id="aboutThumbnail" class="thumbnail col-md-3">
                 <div class="caption">
                     <h2>{{ volunteer.name }}</h2>
                     <hr>
@@ -19,60 +19,77 @@
                     <br>
                     <p class="fa fa-user"> {{ volunteer.about }}</p>
                     <br>
-                    <a ng-href='/edit_volunteer_profile/{{ volunteer.id }}'><buttton ng-if="user.role=='Volunteer'" class="btn btn-danger">Edit Profile</buttton></a>
+                    <a ng-href='/edit_volunteer_profile/{{ volunteer.id }}'>
+                        <buttton ng-if="user.role=='Volunteer'" class="btn btn-danger">Edit Profile</buttton>
+                    </a>
                 </div>
             </div>
-            <div class="col-md-7">
+            <div class="col-md-9">
                 <div class="thumbnail">
-                    <h1>Upcoming Events</h1><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#detailsModal" ng-click="details(event)">See Details</button>
-                    <hr>
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Organization</th>
-                                <th>Activity</th>
-                                <th>Date</th>
-                                <th>Location</th>
-                                <th>Total Hours</th>
-                            </tr>
-                        </thead>
-                        <tbody ng-repeat="u in upcomingEvents">
-                            <td>{{ u.organizationName}}</td>
-                            <td>{{ u.title}}</td>
-                            <td>{{ u.date | date:'fullDate'}}</td>
-                            <td>{{ u.organizationCity}}, {{ e.organizationState}} </td>
-                            <td>{{ u.totalHours}}</td>
-                            <!--<td><button class="btn btn-success btn-sm" ng-click="details(event)">Details</button></td>-->
-                        </tbody>
-                    </table>
-                    <buttton ng-click="findEvents()" class="btn btn-danger">See All Events</buttton>
+                    <ul class="nav nav-tabs ba">
+                        <li role="presentation"><a data-toggle="tab" href="#upcoming">Upcoming Events</a></li>
+                        <li role="presentation"><a data-toggle="tab" data-target="#past">Past Events</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="upcoming" class="tab-pane fade in active">
+                            <h1>Upcoming Events</h1><button class="btn btn-success btn-sm" data-toggle="modal" data-target="#detailsModal"
+                                ng-click="details(event)">See Details</button>
+                            <hr>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Organization</th>
+                                        <th>Activity</th>
+                                        <th>Date</th>
+                                        <th>Location</th>
+                                        <th>Total Hours</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-repeat="u in upcomingEvents">
+                                    <td>{{ u.organizationName}}</td>
+                                    <td>{{ u.title}}</td>
+                                    <td>{{ u.date | date:'fullDate'}}</td>
+                                    <td>{{ u.organizationCity}}, {{ e.organizationState}} </td>
+                                    <td>{{ u.totalHours}}</td>
+                                    <td><button class="btn btn-success btn-sm" ng-click="unVolunteer(u)">Un-Volunteer</button></td>
+                                </tbody>
+                            </table>
+                            <buttton ng-click="findEvents()" class="btn btn-danger">See All Events</buttton>
+                        </div>
+                        <div id="past" class="thumbnail tab-pane fade">
+                            <div class="caption">
+                                <h1>Past Events</h1>
+                                <hr>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Organization</th>
+                                            <th>Activity</th>
+                                            <th>Date</th>
+                                            <th>Total Hours</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody ng-repeat="p in pastEvents" style="margin:5px 5px 5px 5px !important;">
+                                        <td>{{ p.organizationName}}</td>
+                                        <td>{{ p.title}}</td>
+                                        <td>{{ p.date | date:'shortDate' }}</td>
+                                        <td class="text-center">{{ p.totalHours }}</td>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-            <div id="aboutThumbnail" class="thumbnail col-md-3" >
-                <div class="caption">
-                    <h1>Past Events</h1>
-                    <hr>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Organization</th>
-                                <th>Activity</th>
-                                <th>Date</th>
-                                <th>Total Hours</th>
-                            </tr>
-                        </thead>
-                        <tbody ng-repeat="p in pastEvents" style="margin:5px 5px 5px 5px !important;">
-                            <td>{{ p.organizationName}}</td>
-                            <td>{{ p.title}}</td>
-                            <td>{{ p.date | date:'shortDate' }}</td>
-                            <td class="text-center">{{ p.totalHours }}</td>
-                        </tbody>
-                    </table>
-                </div>
+
+                <!-- </div>
             </div>
+
         </div>
     </div>
-</div>
+</div> -->
 
 
 

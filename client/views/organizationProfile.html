@@ -11,7 +11,7 @@
       <img class="profilePic img-responsive" ng-src="{{ organization.image }}" alt="users picture">
     </div>
     <div id="secondRow" class="row">
-      <div id="aboutThumbnail" class="thumbnail col-md-2 wow fadeInLeft">
+      <div id="aboutThumbnail" class="thumbnail col-md-3 wow fadeInLeft">
         <div class="caption">
           <h3>{{ organization.organizationName }}</h3>
           <p>{{ organization.address }}</p>
@@ -23,66 +23,72 @@
           <buttton ng-click="editProfile()" class="btn btn-danger">Edit Profile</buttton>
         </div>
       </div>
-      <div class="col-md-7">
+      <div class="col-md-9">
         <div class="thumbnail vol-profile-cont">
+          <ul class="nav nav-tabs ba">
+              <li role="presentation"><a data-toggle="tab" href="#upOrg">Upcoming Events</a></li>
+              <li role="presentation"><a data-toggle="tab" data-target="#pastOrg">Past Events</a></li>
+          </ul>
           <h1>{{organization.organizationName}}'s Events </h1>
-          <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#createEventModal">Create new event</button>
-          <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#detailsModal" ng-click="details(o)">See More Details</button>
-          <hr>
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Date</th>
-                <th>Activity</th>
-                <th>Address</th>
-                <th>City</th>
-                <th>State</th>
-                <th>Start Time</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody ng-repeat="o in orgEvents">
-              <td>{{ o.date | date:'shortDate'}}</td>
-              <td>{{ o.title }}</td>
-              <td>{{ o.address }}</td>
-              <td>{{ o.city }}</td>
-              <td>{{ o.state }}</td>
-              <td>{{ o.startTime |date:'hh:mm a'}}</td>
-              <td>
-                <!-- <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#detailsModal" ng-click="details(o)">See More Details</button> -->
-                <!--<button class="btn btn-success btn-sm" ng-click="details(event)">Details</button>-->
-                <!--<button class="btn btn-danger btn-sm" style=margin-top:7px data-toggle="modal" data-target="#manageEventModal">Manage Event</button>-->
-                <button type="button" class="btn btn-danger" style=margin-top:7px data-toggle="modal" data-target="#manageEventModal" ng-click="grabEvent(o)">Manage Event</button>
-              </td>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div id="aboutThumbnail" class="thumbnail col-md-3">
-        <div class="caption">
-          <h1>Past Events</h1>
-          <hr>
-          <table>
-            <thead>
-              <tr>
-                <th>Organization</th>
-                <th>Activity</th>
-                <th>Date</th>
-                <th>Total Hours</th>
-              </tr>
-            </thead>
-            <tbody ng-repeat="p in pastOrgEvents" style="margin:0 5px 0 5px;">
-              <td>{{ p.organizationName}}</td>
-              <td>{{ p.title}}</td>
-              <td>{{ p.date | date:'shortDate' }}</td>
-              <td class="text-center">{{ p.totalHours }}</td>
-            </tbody>
-          </table>
+          <div class="tab-content">
+              <div id="upOrg" class="tab-pane fade in active">
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#createEventModal">Create new event</button>
+              <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#detailsModal" ng-click="details(o)">See More Details</button>
+              <hr>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Activity</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Start Time</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody ng-repeat="o in orgEvents">
+                  <td>{{ o.date | date:'shortDate'}}</td>
+                  <td>{{ o.title }}</td>
+                  <td>{{ o.address }}</td>
+                  <td>{{ o.city }}</td>
+                  <td>{{ o.state }}</td>
+                  <td>{{ o.startTime |date:'hh:mm a'}}</td>
+                  <td>
+                    <!-- <button class="btn btn-success btn-sm" data-toggle="modal" data-target="#detailsModal" ng-click="details(o)">See More Details</button> -->
+                    <!--<button class="btn btn-success btn-sm" ng-click="details(event)">Details</button>-->
+                    <!--<button class="btn btn-danger btn-sm" style=margin-top:7px data-toggle="modal" data-target="#manageEventModal">Manage Event</button>-->
+                    <button type="button" class="btn btn-danger" style=margin-top:7px data-toggle="modal" data-target="#manageEventModal" ng-click="grabEvent(o)">Manage Event</button>
+                  </td>
+                </tbody>
+              </table>
+              </div>
+
+          <div id="pastOrg" class="thumbnail tab-pane fade">
+            <div class="caption">
+              <h1>Past Events</h1>
+              <hr>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Organization</th>
+                    <th>Activity</th>
+                    <th>Date</th>
+                    <th>Total Hours</th>
+                  </tr>
+                </thead>
+                <tbody ng-repeat="p in pastOrgEvents" style="margin:0 5px 0 5px;">
+                  <td>{{ p.organizationName}}</td>
+                  <td>{{ p.title}}</td>
+                  <td>{{ p.date | date:'shortDate' }}</td>
+                  <td class="text-center">{{ p.totalHours }}</td>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
 
 
 
@@ -125,7 +131,7 @@
             </div>
             <div class="form-group col-sm-3">
               <label for="newHelpNeeded" class="form-control-label">Volunteers Needed:</label>
-              <input type="number" class="form-control" id="newHelpNeeded" ng-model="event.helpNeeded">
+              <input type="text" class="form-control" id="newHelpNeeded" ng-model="event.help">
             </div>
           </div>
           <!--end row-->
@@ -144,7 +150,7 @@
             </div>
             <div class="form-group col-sm-3">
               <label for="newTotalHours" class="form-control-label">Total Hours:</label>
-              <input type="number" class="form-control" id="newTotalHours" ng-model="event.totalHours">
+              <input type="text" class="form-control" id="newTotalHours" ng-model="event.totalHours">
             </div>
           </div>
           <form>
