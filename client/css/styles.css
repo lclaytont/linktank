@@ -407,3 +407,8 @@ caption  {
 .ba li a {
     color: #111111 !important;
 }
+
+.make-small {
+    height: 35px;
+    width: 150px;
+}

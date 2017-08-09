@@ -30,12 +30,12 @@
             <div class="col-md-9">
                 <div class="thumbnail">
                     <ul class="nav nav-tabs ba">
-                        <li role="presentation"><a data-toggle="tab" href="#upcoming">Upcoming Events</a></li>
+                        <li role="presentation"><a data-toggle="tab" href="#upcoming">{{volunteer.name}}'s Upcoming Events</a></li>
                         <li role="presentation"><a data-toggle="tab" data-target="#past">Past Events</a></li>
                     </ul>
                     <div class="tab-content">
                         <div id="upcoming" class="tab-pane fade in active">
-                            <h1>{{volunteer.name}}'s Upcoming Events</h1><button class="btn btn-info btn-sm" data-toggle="modal" data-target="#detailsModal"
+                            <h1>Upcoming Events</h1><button class="btn btn-info btn-sm" data-toggle="modal" data-target="#detailsModal"
                                 ng-click="details(event)">See More Details</button>
                             <hr>
                             <table class="table table-striped">
@@ -55,28 +55,28 @@
                                     <td>{{ u.date | date:'fullDate'}}</td>
                                     <td>{{ u.organizationCity}}, {{ e.organizationState}} </td>
                                     <td>{{ u.totalHours}}</td>
-                                    <td><button class="btn btn-success btn-sm" ng-click="unVolunteer(u)">Un-Volunteer</button></td>
+                                    <td><button class="btn btn-success btn-sm" ng-click="unVolunteer(u)">Send Regrets</button></td>
                                 </tbody>
                             </table>
-                            <buttton ng-click="findEvents()" class="btn btn-primary">See All Events</buttton>
+                            <buttton ng-click="findEvents()" class="btn btn-danger">See All Events</buttton>
                         </div>
                         <div id="past" class="thumbnail tab-pane fade">
                             <div class="caption">
                                 <h1>Past Events</h1>
                                 <hr>
-                                <table>
+                                <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Date</th>
-                                            <th>Activity</th>
                                             <th>Organization</th>
+                                            <th>Activity</th>
+                                            <th>Date</th>
                                             <th>Total Hours</th>
                                         </tr>
                                     </thead>
                                     <tbody ng-repeat="p in pastEvents" style="margin:5px 5px 5px 5px !important;">
-                                        <td>{{ p.date | date:'shortDate' }}</td>
-                                        <td>{{ p.title}}</td>
                                         <td>{{ p.organizationName}}</td>
+                                        <td>{{ p.title}}</td>
+                                        <td>{{ p.date | date:'shortDate' }}</td>
                                         <td class="text-center">{{ p.totalHours }}</td>
                                     </tbody>
                                 </table>

@@ -108,7 +108,7 @@ app.controller('VolunteerLoginController',
                userService.VolunteerLogout()
                    .then(function () {
                        console.log('logged out!');
-                       location.reload();
+                       $location.path('/');
                        alert('You have been logged out!');
                    }, function (err) {
                        console.log(err);

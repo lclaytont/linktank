@@ -29,7 +29,7 @@ app.controller('VolunteerProfileController',
                 url: '/api/events/volunteer_for_event/' + delObj.eventId
             }).then(function() {
                 console.log("Successfully unvolunteered");
-                alert('Successfully Un-Volunteered from event.')
+                alert('Thank you, the organization has been notified you are unable to volunteer for their event')
                 location.reload();
             }, function(err) {
                 console.log("Could not unvolunteer: " + err.message);
