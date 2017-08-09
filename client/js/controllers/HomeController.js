@@ -22,7 +22,7 @@ app.controller('HomeController',
 
         $scope.personTwoName = "Warren"
         $scope.personTwoTitle = "Co-Founder and CTO"
-        $scope.personeTwoAbout = "My Conversations with God always seem to leave him speechless"
+        $scope.personeTwoAbout = "It is better to fail in originality than to succeed in imitation."
 
         $scope.personThreeName = "Andrew"
         $scope.personThreeTitle = "Co-Founder and CFO"

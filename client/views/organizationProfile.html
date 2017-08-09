@@ -13,13 +13,13 @@
     <div id="secondRow" class="row">
       <div id="aboutThumbnail" class="thumbnail col-md-3 wow fadeInLeft">
         <div class="caption">
-          <h3>{{ organization.organizationName }}</h3>
-          <p>{{ organization.address }}</p>
-          <p>{{ organization.city }}</p>
-          <p>{{ organization.state }}</p>
-          <p>{{ organization.zip }}</p>
+          <h3 class="fa fa-envelope"> {{ organization.organizationName }}</h3>
+          <br>
+          <p class="fa fa-home"> {{ organization.address }}</p>
+          <br>
+          <p> {{ organization.city }}, {{ organization.state }}, {{ organization.zip }}</p>
           <hr>
-          <p>{{ organization.about }}</p>
+          <p class="fa fa-user"> {{ organization.about }}</p>
           <a ng-href='/edit_organization_profile/{{ organization.id }}'><buttton class="btn btn-danger">Edit Profile</buttton></a>
         </div>
       </div>
@@ -71,16 +71,16 @@
               <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th>Organization</th>
-                    <th>Activity</th>
                     <th>Date</th>
+                    <th>Activity</th>
+                    <th>City</th>
                     <th>Total Hours</th>
                   </tr>
                 </thead>
                 <tbody ng-repeat="p in pastOrgEvents" style="margin:0 5px 0 5px;">
-                  <td>{{ p.organizationName}}</td>
-                  <td>{{ p.title}}</td>
                   <td>{{ p.date | date:'shortDate' }}</td>
+                  <td>{{ p.title}}</td>
+                  <td>{{ p.city}}</td>
                   <td class="text-center">{{ p.totalHours }}</td>
                 </tbody>
               </table>
@@ -229,8 +229,8 @@
       <!--footer-->
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Discard All Changes</button>
-        <button type="button" class="btn btn-danger" ng-click="delete(singleEvent)">DELETE EVENT</button>
-        <button type="button" class="btn btn-primary" ng-click="update(singleEvent)">Save Changes</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="delete(singleEvent)">DELETE EVENT</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="update(singleEvent)">Save Changes</button>
 
       <div class="container">
         <div class="row">

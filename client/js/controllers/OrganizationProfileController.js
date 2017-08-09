@@ -17,6 +17,8 @@ app.controller('OrganizationProfileController',
             var thing = updateEventFactory.get({ id: singleEvent.id })
             console.log(thing)
             thing.$delete({ id: singleEvent.id });
+            alert('Event has been deleted!');
+            location.reload();
         }
 
         $scope.goToVol = function (v) {
@@ -135,8 +137,11 @@ app.controller('OrganizationProfileController',
                     totalHours: udEvent.totalHours
                 }
                 console.log(newObj);
+                
                 updateEventFactory.update({ id: singleEvent.id }, newObj);
+                alert('Successfuly updated your event!');
             }
+            
 
         }
       })
